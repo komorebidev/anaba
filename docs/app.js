@@ -3,106 +3,447 @@
 // ============================================================
 
 const countryRegions = {
+
     "north-america": {
         name: "North America",
+
         countries: {
-            US: { name: "United States", flag: "🇺🇸" },
-            CA: { name: "Canada", flag: "🇨🇦" },
-            MX: { name: "Mexico", flag: "🇲🇽" },
-            GT: { name: "Guatemala", flag: "🇬🇹" },
-            BZ: { name: "Belize", flag: "🇧🇿" },
-            CR: { name: "Costa Rica", flag: "🇨🇷" },
-            PA: { name: "Panama", flag: "🇵🇦" },
-            CU: { name: "Cuba", flag: "🇨🇺" },
-            DO: { name: "Dominican Republic", flag: "🇩🇴" },
-            JM: { name: "Jamaica", flag: "🇯🇲" },
-            BS: { name: "Bahamas", flag: "🇧🇸" },
-            BB: { name: "Barbados", flag: "🇧🇧" },
-            TT: { name: "Trinidad and Tobago", flag: "🇹🇹" }
+
+            US: {
+                name: "United States",
+                flag: "🇺🇸"
+            },
+
+            CA: {
+                name: "Canada",
+                flag: "🇨🇦"
+            },
+
+            MX: {
+                name: "Mexico",
+                flag: "🇲🇽"
+            },
+
+            GT: {
+                name: "Guatemala",
+                flag: "🇬🇹"
+            },
+
+            CR: {
+                name: "Costa Rica",
+                flag: "🇨🇷"
+            },
+
+            PA: {
+                name: "Panama",
+                flag: "🇵🇦"
+            },
+
+            CU: {
+                name: "Cuba",
+                flag: "🇨🇺"
+            },
+
+            DO: {
+                name: "Dominican Republic",
+                flag: "🇩🇴"
+            },
+
+            JM: {
+                name: "Jamaica",
+                flag: "🇯🇲"
+            },
+
+            BS: {
+                name: "Bahamas",
+                flag: "🇧🇸"
+            },
+
+            BB: {
+                name: "Barbados",
+                flag: "🇧🇧"
+            },
+
+            TT: {
+                name: "Trinidad and Tobago",
+                flag: "🇹🇹"
+            }
         }
     },
+
 
     europe: {
         name: "Europe",
+
         countries: {
-            GB: { name: "United Kingdom", flag: "🇬🇧" },
-            IE: { name: "Ireland", flag: "🇮🇪" },
-            FR: { name: "France", flag: "🇫🇷" },
-            DE: { name: "Germany", flag: "🇩🇪" },
-            ES: { name: "Spain", flag: "🇪🇸" },
-            PT: { name: "Portugal", flag: "🇵🇹" },
-            IT: { name: "Italy", flag: "🇮🇹" },
-            CH: { name: "Switzerland", flag: "🇨🇭" },
-            AT: { name: "Austria", flag: "🇦🇹" },
-            BE: { name: "Belgium", flag: "🇧🇪" },
-            NL: { name: "Netherlands", flag: "🇳🇱" },
-            LU: { name: "Luxembourg", flag: "🇱🇺" },
-            DK: { name: "Denmark", flag: "🇩🇰" },
-            SE: { name: "Sweden", flag: "🇸🇪" },
-            NO: { name: "Norway", flag: "🇳🇴" },
-            FI: { name: "Finland", flag: "🇫🇮" },
-            IS: { name: "Iceland", flag: "🇮🇸" },
-            PL: { name: "Poland", flag: "🇵🇱" },
-            CZ: { name: "Czechia", flag: "🇨🇿" },
-            SK: { name: "Slovakia", flag: "🇸🇰" },
-            HU: { name: "Hungary", flag: "🇭🇺" },
-            RO: { name: "Romania", flag: "🇷🇴" },
-            BG: { name: "Bulgaria", flag: "🇧🇬" },
-            GR: { name: "Greece", flag: "🇬🇷" },
-            HR: { name: "Croatia", flag: "🇭🇷" },
-            SI: { name: "Slovenia", flag: "🇸🇮" },
-            EE: { name: "Estonia", flag: "🇪🇪" },
-            LV: { name: "Latvia", flag: "🇱🇻" },
-            LT: { name: "Lithuania", flag: "🇱🇹" },
-            UA: { name: "Ukraine", flag: "🇺🇦" },
-            RS: { name: "Serbia", flag: "🇷🇸" },
-            AL: { name: "Albania", flag: "🇦🇱" },
-            BA: { name: "Bosnia and Herzegovina", flag: "🇧🇦" },
-            ME: { name: "Montenegro", flag: "🇲🇪" },
-            MK: { name: "North Macedonia", flag: "🇲🇰" },
-            MD: { name: "Moldova", flag: "🇲🇩" },
-            CY: { name: "Cyprus", flag: "🇨🇾" },
-            MT: { name: "Malta", flag: "🇲🇹" }
+
+            GB: {
+                name: "United Kingdom",
+                flag: "🇬🇧"
+            },
+
+            IE: {
+                name: "Ireland",
+                flag: "🇮🇪"
+            },
+
+            FR: {
+                name: "France",
+                flag: "🇫🇷"
+            },
+
+            DE: {
+                name: "Germany",
+                flag: "🇩🇪"
+            },
+
+            ES: {
+                name: "Spain",
+                flag: "🇪🇸"
+            },
+
+            PT: {
+                name: "Portugal",
+                flag: "🇵🇹"
+            },
+
+            IT: {
+                name: "Italy",
+                flag: "🇮🇹"
+            },
+
+            CH: {
+                name: "Switzerland",
+                flag: "🇨🇭"
+            },
+
+            AT: {
+                name: "Austria",
+                flag: "🇦🇹"
+            },
+
+            BE: {
+                name: "Belgium",
+                flag: "🇧🇪"
+            },
+
+            NL: {
+                name: "Netherlands",
+                flag: "🇳🇱"
+            },
+
+            LU: {
+                name: "Luxembourg",
+                flag: "🇱🇺"
+            },
+
+            DK: {
+                name: "Denmark",
+                flag: "🇩🇰"
+            },
+
+            SE: {
+                name: "Sweden",
+                flag: "🇸🇪"
+            },
+
+            NO: {
+                name: "Norway",
+                flag: "🇳🇴"
+            },
+
+            FI: {
+                name: "Finland",
+                flag: "🇫🇮"
+            },
+
+            IS: {
+                name: "Iceland",
+                flag: "🇮🇸"
+            },
+
+            PL: {
+                name: "Poland",
+                flag: "🇵🇱"
+            },
+
+            CZ: {
+                name: "Czechia",
+                flag: "🇨🇿"
+            },
+
+            SK: {
+                name: "Slovakia",
+                flag: "🇸🇰"
+            },
+
+            HU: {
+                name: "Hungary",
+                flag: "🇭🇺"
+            },
+
+            RO: {
+                name: "Romania",
+                flag: "🇷🇴"
+            },
+
+            BG: {
+                name: "Bulgaria",
+                flag: "🇧🇬"
+            },
+
+            GR: {
+                name: "Greece",
+                flag: "🇬🇷"
+            },
+
+            HR: {
+                name: "Croatia",
+                flag: "🇭🇷"
+            },
+
+            SI: {
+                name: "Slovenia",
+                flag: "🇸🇮"
+            },
+
+            EE: {
+                name: "Estonia",
+                flag: "🇪🇪"
+            },
+
+            LV: {
+                name: "Latvia",
+                flag: "🇱🇻"
+            },
+
+            LT: {
+                name: "Lithuania",
+                flag: "🇱🇹"
+            },
+
+            UA: {
+                name: "Ukraine",
+                flag: "🇺🇦"
+            },
+
+            RS: {
+                name: "Serbia",
+                flag: "🇷🇸"
+            },
+
+            AL: {
+                name: "Albania",
+                flag: "🇦🇱"
+            },
+
+            BA: {
+                name: "Bosnia and Herzegovina",
+                flag: "🇧🇦"
+            },
+
+            ME: {
+                name: "Montenegro",
+                flag: "🇲🇪"
+            },
+
+            MK: {
+                name: "North Macedonia",
+                flag: "🇲🇰"
+            },
+
+            MD: {
+                name: "Moldova",
+                flag: "🇲🇩"
+            },
+
+            CY: {
+                name: "Cyprus",
+                flag: "🇨🇾"
+            },
+
+            MT: {
+                name: "Malta",
+                flag: "🇲🇹"
+            }
         }
     },
 
+
     asia: {
         name: "Asia",
+
         countries: {
-            JP: { name: "Japan", flag: "🇯🇵" },
-            KR: { name: "South Korea", flag: "🇰🇷" },
-            CN: { name: "China", flag: "🇨🇳" },
-            TW: { name: "Taiwan", flag: "🇹🇼" },
-            HK: { name: "Hong Kong", flag: "🇭🇰" },
-            MO: { name: "Macau", flag: "🇲🇴" },
-            IN: { name: "India", flag: "🇮🇳" },
-            TH: { name: "Thailand", flag: "🇹🇭" },
-            VN: { name: "Vietnam", flag: "🇻🇳" },
-            SG: { name: "Singapore", flag: "🇸🇬" },
-            MY: { name: "Malaysia", flag: "🇲🇾" },
-            ID: { name: "Indonesia", flag: "🇮🇩" },
-            PH: { name: "Philippines", flag: "🇵🇭" },
-            KH: { name: "Cambodia", flag: "🇰🇭" },
-            LA: { name: "Laos", flag: "🇱🇦" },
-            MM: { name: "Myanmar", flag: "🇲🇲" },
-            BN: { name: "Brunei", flag: "🇧🇳" },
-            NP: { name: "Nepal", flag: "🇳🇵" },
-            LK: { name: "Sri Lanka", flag: "🇱🇰" },
-            BD: { name: "Bangladesh", flag: "🇧🇩" },
-            PK: { name: "Pakistan", flag: "🇵🇰" },
-            AE: { name: "United Arab Emirates", flag: "🇦🇪" },
-            SA: { name: "Saudi Arabia", flag: "🇸🇦" },
-            IL: { name: "Israel", flag: "🇮🇱" },
-            TR: { name: "Türkiye", flag: "🇹🇷" },
-            QA: { name: "Qatar", flag: "🇶🇦" },
-            JO: { name: "Jordan", flag: "🇯🇴" },
-            LB: { name: "Lebanon", flag: "🇱🇧" },
-            MN: { name: "Mongolia", flag: "🇲🇳" },
-            KZ: { name: "Kazakhstan", flag: "🇰🇿" },
-            UZ: { name: "Uzbekistan", flag: "🇺🇿" },
-            GE: { name: "Georgia", flag: "🇬🇪" },
-            AM: { name: "Armenia", flag: "🇦🇲" },
-            AZ: { name: "Azerbaijan", flag: "🇦🇿" }
+
+            JP: {
+                name: "Japan",
+                flag: "🇯🇵"
+            },
+
+            KR: {
+                name: "South Korea",
+                flag: "🇰🇷"
+            },
+
+            CN: {
+                name: "China",
+                flag: "🇨🇳"
+            },
+
+            TW: {
+                name: "Taiwan",
+                flag: "🇹🇼"
+            },
+
+            HK: {
+                name: "Hong Kong",
+                flag: "🇭🇰"
+            },
+
+            MO: {
+                name: "Macau",
+                flag: "🇲🇴"
+            },
+
+            IN: {
+                name: "India",
+                flag: "🇮🇳"
+            },
+
+            TH: {
+                name: "Thailand",
+                flag: "🇹🇭"
+            },
+
+            VN: {
+                name: "Vietnam",
+                flag: "🇻🇳"
+            },
+
+            SG: {
+                name: "Singapore",
+                flag: "🇸🇬"
+            },
+
+            MY: {
+                name: "Malaysia",
+                flag: "🇲🇾"
+            },
+
+            ID: {
+                name: "Indonesia",
+                flag: "🇮🇩"
+            },
+
+            PH: {
+                name: "Philippines",
+                flag: "🇵🇭"
+            },
+
+            KH: {
+                name: "Cambodia",
+                flag: "🇰🇭"
+            },
+
+            LA: {
+                name: "Laos",
+                flag: "🇱🇦"
+            },
+
+            MM: {
+                name: "Myanmar",
+                flag: "🇲🇲"
+            },
+
+            BN: {
+                name: "Brunei",
+                flag: "🇧🇳"
+            },
+
+            NP: {
+                name: "Nepal",
+                flag: "🇳🇵"
+            },
+
+            LK: {
+                name: "Sri Lanka",
+                flag: "🇱🇰"
+            },
+
+            BD: {
+                name: "Bangladesh",
+                flag: "🇧🇩"
+            },
+
+            PK: {
+                name: "Pakistan",
+                flag: "🇵🇰"
+            },
+
+            AE: {
+                name: "United Arab Emirates",
+                flag: "🇦🇪"
+            },
+
+            SA: {
+                name: "Saudi Arabia",
+                flag: "🇸🇦"
+            },
+
+            IL: {
+                name: "Israel",
+                flag: "🇮🇱"
+            },
+
+            TR: {
+                name: "Türkiye",
+                flag: "🇹🇷"
+            },
+
+            QA: {
+                name: "Qatar",
+                flag: "🇶🇦"
+            },
+
+            JO: {
+                name: "Jordan",
+                flag: "🇯🇴"
+            },
+
+            LB: {
+                name: "Lebanon",
+                flag: "🇱🇧"
+            },
+
+            MN: {
+                name: "Mongolia",
+                flag: "🇲🇳"
+            },
+
+            KZ: {
+                name: "Kazakhstan",
+                flag: "🇰🇿"
+            },
+
+            UZ: {
+                name: "Uzbekistan",
+                flag: "🇺🇿"
+            },
+
+            GE: {
+                name: "Georgia",
+                flag: "🇬🇪"
+            },
+
+            AM: {
+                name: "Armenia",
+                flag: "🇦🇲"
+            },
+
+            AZ: {
+                name: "Azerbaijan",
+                flag: "🇦🇿"
+            }
         }
     }
 };
@@ -118,12 +459,9 @@ const DESCRIPTION_PLACEHOLDER =
 const ADDRESS_PLACEHOLDER =
     "Address unavailable.";
 
-const IMAGE_PLACEHOLDER_CLASS =
-    "place-image-empty";
-
 
 // ============================================================
-// APPLICATION STATE
+// STATE
 // ============================================================
 
 let places = [];
@@ -132,15 +470,12 @@ let currentCountry = "JP";
 
 let currentCategory = "all";
 
-let map = null;
-
-let markers = [];
-
 let countryDetectionFinished = false;
 
 
-// All information discovered through APIs is kept here.
-// Nothing needs to be added to places.json.
+/*
+ * API information is kept here during the session.
+ */
 const placeCache = {};
 
 
@@ -209,18 +544,15 @@ async function loadPlaces() {
 
         console.error(error);
 
-        if (placesContainer) {
-
-            placesContainer.innerHTML = `
-                <div class="empty-state">
-                    <h3>Unable to load places</h3>
-                    <p>
-                        Please check that places.json
-                        is available.
-                    </p>
-                </div>
-            `;
-        }
+        placesContainer.innerHTML = `
+            <div class="empty-state">
+                <h3>Unable to load places</h3>
+                <p>
+                    Please check that places.json
+                    is available.
+                </p>
+            </div>
+        `;
     }
 }
 
@@ -231,13 +563,12 @@ async function loadPlaces() {
 
 function initializeApplication() {
 
-    initializeMap();
-
     setupCategoryButtons();
 
     setupRegionSelector();
 
     setupCountrySelector();
+
 
     const urlCountry =
         getCountryFromURL();
@@ -245,11 +576,10 @@ function initializeApplication() {
     const urlCategory =
         getCategoryFromURL();
 
+
     /*
-     * Explicit URL country takes priority.
-     *
-     * Otherwise we'll detect the visitor's
-     * country in the background.
+     * If a country is specified in the URL,
+     * use it immediately.
      */
     if (
         urlCountry &&
@@ -259,19 +589,20 @@ function initializeApplication() {
         currentCountry =
             urlCountry;
 
-        countryDetectionFinished = true;
+        countryDetectionFinished =
+            true;
 
     } else {
 
         /*
-         * Start with Japan temporarily so
-         * the interface can render while
-         * country detection happens.
+         * Temporarily use Japan while
+         * country detection runs.
          */
         currentCountry = "JP";
 
         detectVisitorCountry();
     }
+
 
     if (
         urlCategory &&
@@ -282,6 +613,7 @@ function initializeApplication() {
             urlCategory;
     }
 
+
     populateRegionForCountry(
         currentCountry
     );
@@ -290,9 +622,6 @@ function initializeApplication() {
 
     updateCategoryButtons();
 
-    /*
-     * Render immediately.
-     */
     render();
 }
 
@@ -324,11 +653,14 @@ async function detectVisitorCountry() {
                 data.country || ""
             ).toUpperCase();
 
+
         /*
-         * Don't override an explicit URL.
+         * Do not override a country
+         * explicitly supplied in the URL.
          */
         const urlCountry =
             getCountryFromURL();
+
 
         if (
             !urlCountry &&
@@ -358,39 +690,9 @@ async function detectVisitorCountry() {
 
     } finally {
 
-        countryDetectionFinished = true;
+        countryDetectionFinished =
+            true;
     }
-}
-
-
-// ============================================================
-// MAP
-// ============================================================
-
-function initializeMap() {
-
-    const mapElement =
-        document.getElementById("map");
-
-    if (!mapElement) {
-        return;
-    }
-
-    map =
-        L.map("map").setView(
-            [35.6812, 139.7671],
-            3
-        );
-
-    L.tileLayer(
-        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-        {
-            maxZoom: 19,
-
-            attribution:
-                '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
-        }
-    ).addTo(map);
 }
 
 
@@ -404,6 +706,7 @@ function setupCategoryButtons() {
         document.querySelectorAll(
             ".category-button"
         );
+
 
     buttons.forEach(button => {
 
@@ -432,6 +735,7 @@ function updateCategoryButtons() {
             ".category-button"
         );
 
+
     buttons.forEach(button => {
 
         button.classList.toggle(
@@ -444,7 +748,7 @@ function updateCategoryButtons() {
 
 
 // ============================================================
-// REGION
+// REGION SELECTOR
 // ============================================================
 
 function setupRegionSelector() {
@@ -453,6 +757,7 @@ function setupRegionSelector() {
         return;
     }
 
+
     regionSelect.addEventListener(
         "change",
         function () {
@@ -460,20 +765,28 @@ function setupRegionSelector() {
             const region =
                 this.value;
 
-            populateCountries(region);
+
+            populateCountries(
+                region
+            );
+
 
             if (!region) {
                 return;
             }
 
+
             const countryCodes =
                 Object.keys(
-                    countryRegions[region].countries
+                    countryRegions[region]
+                        .countries
                 );
+
 
             if (!countryCodes.length) {
                 return;
             }
+
 
             setCountry(
                 countryCodes[0]
@@ -483,24 +796,35 @@ function setupRegionSelector() {
 }
 
 
-function populateCountries(regionKey) {
+function populateCountries(
+    regionKey
+) {
 
     if (!countrySelect) {
         return;
     }
 
-    countrySelect.innerHTML =
-        `<option value="">Select country</option>`;
+
+    countrySelect.innerHTML = `
+        <option value="">
+            Select country
+        </option>
+    `;
+
 
     if (
         !regionKey ||
         !countryRegions[regionKey]
     ) {
+
         return;
     }
 
+
     const countries =
-        countryRegions[regionKey].countries;
+        countryRegions[regionKey]
+            .countries;
+
 
     Object.entries(countries)
         .forEach(
@@ -535,6 +859,7 @@ function setupCountrySelector() {
         return;
     }
 
+
     countrySelect.addEventListener(
         "change",
         function () {
@@ -543,20 +868,30 @@ function setupCountrySelector() {
                 return;
             }
 
-            setCountry(this.value);
+
+            setCountry(
+                this.value
+            );
         }
     );
 }
 
 
-function setCountry(countryCode) {
+function setCountry(
+    countryCode
+) {
 
-    if (!countryExists(countryCode)) {
+    if (
+        !countryExists(countryCode)
+    ) {
+
         return;
     }
 
+
     currentCountry =
         countryCode;
+
 
     updateCountryDisplay();
 
@@ -569,11 +904,15 @@ function setCountry(countryCode) {
 function updateCountryDisplay() {
 
     const info =
-        getCountryInfo(currentCountry);
+        getCountryInfo(
+            currentCountry
+        );
+
 
     if (!info) {
         return;
     }
+
 
     if (countryNameElement) {
 
@@ -581,17 +920,20 @@ function updateCountryDisplay() {
             info.name;
     }
 
+
     if (countryFlagElement) {
 
         countryFlagElement.textContent =
             info.flag;
     }
 
+
     if (countrySelect) {
 
         countrySelect.value =
             currentCountry;
     }
+
 
     if (regionSelect) {
 
@@ -606,11 +948,15 @@ function populateRegionForCountry(
 ) {
 
     const info =
-        getCountryInfo(countryCode);
+        getCountryInfo(
+            countryCode
+        );
+
 
     if (!info) {
         return;
     }
+
 
     if (regionSelect) {
 
@@ -618,9 +964,11 @@ function populateRegionForCountry(
             info.region;
     }
 
+
     populateCountries(
         info.region
     );
+
 
     if (countrySelect) {
 
@@ -634,11 +982,14 @@ function populateRegionForCountry(
 // COUNTRY HELPERS
 // ============================================================
 
-function countryExists(countryCode) {
+function countryExists(
+    countryCode
+) {
 
     if (!countryCode) {
         return false;
     }
+
 
     for (
         const regionKey in countryRegions
@@ -653,11 +1004,14 @@ function countryExists(countryCode) {
         }
     }
 
+
     return false;
 }
 
 
-function getCountryInfo(countryCode) {
+function getCountryInfo(
+    countryCode
+) {
 
     for (
         const regionKey in countryRegions
@@ -665,6 +1019,7 @@ function getCountryInfo(countryCode) {
 
         const region =
             countryRegions[regionKey];
+
 
         if (
             region.countries[countryCode]
@@ -677,14 +1032,20 @@ function getCountryInfo(countryCode) {
         }
     }
 
+
     return null;
 }
 
 
-function getCountryName(countryCode) {
+function getCountryName(
+    countryCode
+) {
 
     const info =
-        getCountryInfo(countryCode);
+        getCountryInfo(
+            countryCode
+        );
+
 
     return info
         ? info.name
@@ -693,25 +1054,26 @@ function getCountryName(countryCode) {
 
 
 // ============================================================
-// FILTERING
+// FILTER PLACES
 // ============================================================
 
 function getCandidatePlaces() {
 
     /*
-     * Meetups are detected from their URL.
-     *
-     * You do NOT have to add "meetups"
-     * to their categories.
+     * Meetup category means:
+     * show places whose URL is actually
+     * a Meetup URL.
      */
     if (
         currentCategory === "meetups"
     ) {
 
         return places.filter(
-            place => isMeetup(place)
+            place =>
+                isMeetup(place)
         );
     }
+
 
     if (
         currentCategory === "all"
@@ -720,11 +1082,19 @@ function getCandidatePlaces() {
         return places;
     }
 
-    return places.filter(place =>
-        Array.isArray(place.categories) &&
-        place.categories.includes(
-            currentCategory
-        )
+
+    return places.filter(
+        place => {
+
+            return (
+                Array.isArray(
+                    place.categories
+                ) &&
+                place.categories.includes(
+                    currentCategory
+                )
+            );
+        }
     );
 }
 
@@ -737,17 +1107,12 @@ function render() {
 
     renderCards();
 
-    renderMarkers();
-
-    /*
-     * Load API information after rendering.
-     */
     loadVisiblePlaceData();
 }
 
 
 // ============================================================
-// BACKGROUND LOADING
+// LOAD API DATA
 // ============================================================
 
 async function loadVisiblePlaceData() {
@@ -755,12 +1120,11 @@ async function loadVisiblePlaceData() {
     const candidates =
         getCandidatePlaces();
 
-    for (const place of candidates) {
 
-        /*
-         * If this place has already been
-         * fully resolved, don't request it again.
-         */
+    for (
+        const place of candidates
+    ) {
+
         if (
             placeCache[place.id] &&
             placeCache[place.id].loaded
@@ -769,10 +1133,7 @@ async function loadVisiblePlaceData() {
             continue;
         }
 
-        /*
-         * Don't start another request if
-         * this place is currently loading.
-         */
+
         if (
             placeCache[place.id] &&
             placeCache[place.id].loading
@@ -781,18 +1142,21 @@ async function loadVisiblePlaceData() {
             continue;
         }
 
-        await loadPlaceData(place);
+
+        await loadPlaceData(
+            place
+        );
+
 
         /*
-         * Update the UI immediately.
+         * Re-render as each place finishes.
          */
         renderCards();
 
-        renderMarkers();
 
         /*
-         * Nominatim's public service has
-         * rate limits, so don't hammer it.
+         * Nominatim is a public service.
+         * Don't bombard it with requests.
          */
         await delay(1100);
     }
@@ -800,35 +1164,50 @@ async function loadVisiblePlaceData() {
 
 
 // ============================================================
-// LOAD ALL DATA FOR ONE PLACE
+// LOAD ONE PLACE
 // ============================================================
 
-async function loadPlaceData(place) {
+async function loadPlaceData(
+    place
+) {
 
     if (!placeCache[place.id]) {
 
         placeCache[place.id] = {
+
             loading: false,
+
             loaded: false,
+
             location: null,
+
             description: null,
+
             image: null
         };
     }
 
+
     const cache =
         placeCache[place.id];
 
-    if (cache.loading || cache.loaded) {
+
+    if (
+        cache.loading ||
+        cache.loaded
+    ) {
+
         return;
     }
 
+
     cache.loading = true;
+
 
     try {
 
         /*
-         * 1. Find location
+         * Get address + coordinates + country.
          */
         cache.location =
             await getPlaceLocation(
@@ -836,8 +1215,9 @@ async function loadPlaceData(place) {
                 currentCountry
             );
 
+
         /*
-         * 2. Find Wikipedia description
+         * Get description.
          */
         cache.description =
             await getWikipediaDescription(
@@ -845,14 +1225,16 @@ async function loadPlaceData(place) {
                 currentCountry
             );
 
+
         /*
-         * 3. Find Wikimedia Commons image
+         * Get Wikimedia image.
          */
         cache.image =
             await getWikimediaImage(
                 place,
                 currentCountry
             );
+
 
         cache.loaded = true;
 
@@ -863,31 +1245,29 @@ async function loadPlaceData(place) {
             error
         );
 
-        if (!cache.location) {
 
-            cache.location = {
-                address:
-                    ADDRESS_PLACEHOLDER,
+        cache.location = {
 
-                lat: null,
+            address:
+                ADDRESS_PLACEHOLDER,
 
-                lng: null,
+            lat: null,
 
-                country: null
-            };
-        }
+            lng: null,
 
-        if (!cache.description) {
+            country: null
+        };
 
-            cache.description =
-                DESCRIPTION_PLACEHOLDER;
-        }
+
+        cache.description =
+            DESCRIPTION_PLACEHOLDER;
+
 
         /*
-         * null means:
-         * leave image area blank.
+         * No image means blank image area.
          */
         cache.image = null;
+
 
         cache.loaded = true;
 
@@ -908,10 +1288,14 @@ async function getPlaceLocation(
 ) {
 
     const countryName =
-        getCountryName(countryCode);
+        getCountryName(
+            countryCode
+        );
+
 
     let searchText =
         place.name;
+
 
     if (countryName) {
 
@@ -919,18 +1303,23 @@ async function getPlaceLocation(
             `${place.name}, ${countryName}`;
     }
 
+
     const url =
         "https://nominatim.openstreetmap.org/search" +
         "?q=" +
-        encodeURIComponent(searchText) +
+        encodeURIComponent(
+            searchText
+        ) +
         "&format=jsonv2" +
         "&limit=1" +
         "&addressdetails=1";
+
 
     try {
 
         const response =
             await fetch(url);
+
 
         if (!response.ok) {
 
@@ -939,8 +1328,10 @@ async function getPlaceLocation(
             );
         }
 
+
         const results =
             await response.json();
+
 
         if (
             !Array.isArray(results) ||
@@ -948,6 +1339,7 @@ async function getPlaceLocation(
         ) {
 
             return {
+
                 address:
                     ADDRESS_PLACEHOLDER,
 
@@ -959,14 +1351,18 @@ async function getPlaceLocation(
             };
         }
 
+
         const result =
             results[0];
+
 
         const country =
             result.address &&
             result.address.country_code
-                ? result.address.country_code.toUpperCase()
+                ? result.address.country_code
+                    .toUpperCase()
                 : null;
+
 
         return {
 
@@ -994,6 +1390,7 @@ async function getPlaceLocation(
             error
         );
 
+
         return {
 
             address:
@@ -1010,7 +1407,7 @@ async function getPlaceLocation(
 
 
 // ============================================================
-// WIKIPEDIA DESCRIPTION
+// WIKIPEDIA
 // ============================================================
 
 async function getWikipediaDescription(
@@ -1021,21 +1418,29 @@ async function getWikipediaDescription(
     try {
 
         const countryName =
-            getCountryName(countryCode);
+            getCountryName(
+                countryCode
+            );
+
 
         const searchText =
             countryName
                 ? `${place.name} ${countryName}`
                 : place.name;
 
+
         const searchURL =
             "https://en.wikipedia.org/w/rest.php/v1/search/page" +
             "?q=" +
-            encodeURIComponent(searchText) +
+            encodeURIComponent(
+                searchText
+            ) +
             "&limit=5";
+
 
         const searchResponse =
             await fetch(searchURL);
+
 
         if (!searchResponse.ok) {
 
@@ -1044,8 +1449,10 @@ async function getWikipediaDescription(
             );
         }
 
+
         const searchData =
             await searchResponse.json();
+
 
         if (
             !searchData.pages ||
@@ -1055,8 +1462,10 @@ async function getWikipediaDescription(
             return DESCRIPTION_PLACEHOLDER;
         }
 
+
         const placeName =
             place.name.toLowerCase();
+
 
         let matchingPage =
             searchData.pages.find(
@@ -1066,10 +1475,13 @@ async function getWikipediaDescription(
                         .includes(placeName)
             );
 
+
         if (!matchingPage) {
+
             matchingPage =
                 searchData.pages[0];
         }
+
 
         const summaryURL =
             "https://en.wikipedia.org/api/rest_v1/page/summary/" +
@@ -1077,8 +1489,10 @@ async function getWikipediaDescription(
                 matchingPage.key
             );
 
+
         const summaryResponse =
             await fetch(summaryURL);
+
 
         if (!summaryResponse.ok) {
 
@@ -1087,13 +1501,16 @@ async function getWikipediaDescription(
             );
         }
 
+
         const summary =
             await summaryResponse.json();
+
 
         const description =
             summary.extract ||
             summary.description ||
             "";
+
 
         if (
             typeof description !== "string" ||
@@ -1102,6 +1519,7 @@ async function getWikipediaDescription(
 
             return DESCRIPTION_PLACEHOLDER;
         }
+
 
         return description;
 
@@ -1118,7 +1536,7 @@ async function getWikipediaDescription(
 
 
 // ============================================================
-// WIKIMEDIA COMMONS IMAGE
+// WIKIMEDIA COMMONS
 // ============================================================
 
 async function getWikimediaImage(
@@ -1129,23 +1547,25 @@ async function getWikimediaImage(
     try {
 
         const countryName =
-            getCountryName(countryCode);
+            getCountryName(
+                countryCode
+            );
 
-        /*
-         * Search the place name together with
-         * the country to improve matching.
-         */
+
         const searchText =
             countryName
                 ? `${place.name} ${countryName}`
                 : place.name;
+
 
         const url =
             "https://commons.wikimedia.org/w/api.php" +
             "?action=query" +
             "&generator=search" +
             "&gsrsearch=" +
-            encodeURIComponent(searchText) +
+            encodeURIComponent(
+                searchText
+            ) +
             "&gsrnamespace=6" +
             "&gsrlimit=10" +
             "&prop=imageinfo" +
@@ -1154,8 +1574,10 @@ async function getWikimediaImage(
             "&format=json" +
             "&origin=*";
 
+
         const response =
             await fetch(url);
+
 
         if (!response.ok) {
 
@@ -1164,37 +1586,49 @@ async function getWikimediaImage(
             );
         }
 
+
         const data =
             await response.json();
 
-        if (!data.query || !data.query.pages) {
+
+        if (
+            !data.query ||
+            !data.query.pages
+        ) {
 
             return null;
         }
+
 
         const pages =
             Object.values(
                 data.query.pages
             );
 
+
         if (!pages.length) {
             return null;
         }
 
-        /*
-         * Try to find the best title match.
-         */
-        const normalizedPlaceName =
+
+        const normalizedName =
             place.name
                 .toLowerCase()
-                .replace(/[^a-z0-9]+/g, " ")
+                .replace(
+                    /[^a-z0-9]+/g,
+                    " "
+                )
                 .trim();
+
 
         let bestPage = null;
 
         let bestScore = -Infinity;
 
-        for (const page of pages) {
+
+        for (
+            const page of pages
+        ) {
 
             const title =
                 String(
@@ -1206,30 +1640,42 @@ async function getWikimediaImage(
                 )
                 .toLowerCase();
 
+
             let score = 0;
+
 
             if (
                 title.includes(
-                    normalizedPlaceName
+                    normalizedName
                 )
             ) {
 
                 score += 10;
             }
 
+
             const words =
-                normalizedPlaceName
+                normalizedName
                     .split(" ")
                     .filter(Boolean);
 
-            words.forEach(word => {
 
-                if (title.includes(word)) {
-                    score += 1;
+            words.forEach(
+                word => {
+
+                    if (
+                        title.includes(word)
+                    ) {
+
+                        score += 1;
+                    }
                 }
-            });
+            );
 
-            if (score > bestScore) {
+
+            if (
+                score > bestScore
+            ) {
 
                 bestScore =
                     score;
@@ -1239,9 +1685,11 @@ async function getWikimediaImage(
             }
         }
 
+
         if (!bestPage) {
             return null;
         }
+
 
         if (
             !bestPage.imageinfo ||
@@ -1251,13 +1699,11 @@ async function getWikimediaImage(
             return null;
         }
 
+
         const imageInfo =
             bestPage.imageinfo[0];
 
-        /*
-         * Prefer the thumbnail because it is
-         * much more appropriate for a card.
-         */
+
         return (
             imageInfo.thumburl ||
             imageInfo.url ||
@@ -1267,13 +1713,13 @@ async function getWikimediaImage(
     } catch (error) {
 
         console.error(
-            `Wikimedia image error for ${place.name}:`,
+            `Wikimedia error for ${place.name}:`,
             error
         );
 
+
         /*
-         * Returning null means the image
-         * area stays blank.
+         * No image = blank area.
          */
         return null;
     }
@@ -1290,6 +1736,7 @@ function isMeetup(place) {
         return false;
     }
 
+
     try {
 
         const hostname =
@@ -1297,9 +1744,12 @@ function isMeetup(place) {
                 .hostname
                 .toLowerCase();
 
+
         return (
             hostname === "meetup.com" ||
-            hostname.endsWith(".meetup.com")
+            hostname.endsWith(
+                ".meetup.com"
+            )
         );
 
     } catch {
@@ -1310,14 +1760,17 @@ function isMeetup(place) {
 
 
 // ============================================================
-// EXTERNAL LINKS
+// EXTERNAL LINK
 // ============================================================
 
-function getExternalLinkHTML(place) {
+function getExternalLinkHTML(
+    place
+) {
 
     if (!place.url) {
         return "";
     }
+
 
     if (isMeetup(place)) {
 
@@ -1326,12 +1779,13 @@ function getExternalLinkHTML(place) {
                 href="${escapeHTML(place.url)}"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="place-link"
+                class="place-link meetup-link"
             >
                 View Meetup →
             </a>
         `;
     }
+
 
     return `
         <a
@@ -1347,7 +1801,88 @@ function getExternalLinkHTML(place) {
 
 
 // ============================================================
-// CARDS
+// VIEW ON MAP
+// ============================================================
+
+function getMapButtonHTML(
+    place,
+    location
+) {
+
+    if (!location) {
+        return "";
+    }
+
+
+    /*
+     * Prefer the coordinates because they are
+     * more precise than an address search.
+     */
+    if (
+        location.lat !== null &&
+        location.lng !== null &&
+        !isNaN(location.lat) &&
+        !isNaN(location.lng)
+    ) {
+
+        const coordinates =
+            `${location.lat},${location.lng}`;
+
+
+        const googleMapsURL =
+            `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                coordinates
+            )}`;
+
+
+        return `
+            <a
+                href="${escapeHTML(googleMapsURL)}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="map-button"
+            >
+                View on Map ↗
+            </a>
+        `;
+    }
+
+
+    /*
+     * If coordinates aren't available,
+     * fall back to the automatically retrieved address.
+     */
+    if (
+        location.address &&
+        location.address !==
+            ADDRESS_PLACEHOLDER
+    ) {
+
+        const googleMapsURL =
+            `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                location.address
+            )}`;
+
+
+        return `
+            <a
+                href="${escapeHTML(googleMapsURL)}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="map-button"
+            >
+                View on Map ↗
+            </a>
+        `;
+    }
+
+
+    return "";
+}
+
+
+// ============================================================
+// RENDER CARDS
 // ============================================================
 
 function renderCards() {
@@ -1356,43 +1891,58 @@ function renderCards() {
         return;
     }
 
+
     const candidates =
         getCandidatePlaces();
 
+
     /*
-     * Only show places whose resolved location
-     * belongs to the selected country.
+     * Only show places that have resolved
+     * to the currently selected country.
      */
     const visiblePlaces =
-        candidates.filter(place => {
+        candidates.filter(
+            place => {
 
-            const cache =
-                placeCache[place.id];
+                const cache =
+                    placeCache[place.id];
 
-            if (!cache || !cache.location) {
-                return false;
+
+                if (
+                    !cache ||
+                    !cache.location
+                ) {
+
+                    return false;
+                }
+
+
+                return (
+                    cache.location.country ===
+                    currentCountry
+                );
             }
+        );
 
-            return (
-                cache.location.country ===
-                currentCountry
-            );
-        });
 
     /*
-     * Places not yet resolved.
+     * Places still waiting for API data.
      */
     const pendingPlaces =
-        candidates.filter(place => {
+        candidates.filter(
+            place => {
 
-            const cache =
-                placeCache[place.id];
+                const cache =
+                    placeCache[place.id];
 
-            return (
-                !cache ||
-                !cache.location
-            );
-        });
+
+                return (
+                    !cache ||
+                    !cache.location
+                );
+            }
+        );
+
 
     if (resultCount) {
 
@@ -1404,11 +1954,12 @@ function renderCards() {
             }`;
     }
 
+
     placesContainer.innerHTML = "";
 
+
     /*
-     * While API requests are happening,
-     * don't leave the page looking broken.
+     * API requests are still running.
      */
     if (
         visiblePlaces.length === 0 &&
@@ -1416,8 +1967,13 @@ function renderCards() {
     ) {
 
         placesContainer.innerHTML = `
+
             <div class="empty-state">
-                <h3>Finding places...</h3>
+
+                <h3>
+                    Finding places...
+                </h3>
+
                 <p>
                     Loading recommendations for
                     ${escapeHTML(
@@ -1426,384 +1982,266 @@ function renderCards() {
                         )
                     )}.
                 </p>
+
             </div>
+
         `;
 
         return;
     }
 
+
+    /*
+     * Nothing matched the filters.
+     */
     if (!visiblePlaces.length) {
 
         placesContainer.innerHTML = `
+
             <div class="empty-state">
-                <h3>No recommendations</h3>
+
+                <h3>
+                    No recommendations
+                </h3>
+
                 <p>
                     There are currently no places
                     matching this selection.
                 </p>
+
             </div>
+
         `;
 
         return;
     }
 
-    visiblePlaces.forEach(place => {
 
-        const cache =
-            placeCache[place.id];
-
-        const location =
-            cache.location;
-
-        const description =
-            cache.description ||
-            DESCRIPTION_PLACEHOLDER;
-
-        const image =
-            cache.image;
-
-        const card =
-            document.createElement("article");
-
-        card.className =
-            "place-card";
-
-        /*
-         * IMAGE
-         *
-         * If Wikimedia found an image:
-         * show it.
-         *
-         * If it didn't:
-         * leave the image area blank.
-         */
-        let imageHTML = `
-            <div class="${IMAGE_PLACEHOLDER_CLASS}">
-            </div>
-        `;
-
-        if (image) {
-
-            imageHTML = `
-                <div class="place-image">
-                    <img
-                        src="${escapeHTML(image)}"
-                        alt="${escapeHTML(place.name)}"
-                        loading="lazy"
-                        referrerpolicy="no-referrer"
-                    >
-                </div>
-            `;
-        }
-
-        const categoriesHTML =
-            Array.isArray(place.categories)
-                ? place.categories
-                    .map(category => `
-                        <span class="place-category">
-                            ${escapeHTML(
-                                formatCategory(category)
-                            )}
-                        </span>
-                    `)
-                    .join("")
-                : "";
-
-        const meetupTag =
-            isMeetup(place)
-                ? `
-                    <span class="place-category meetup-tag">
-                        Meetup
-                    </span>
-                `
-                : "";
-
-        const externalLinkHTML =
-            getExternalLinkHTML(place);
-
-        card.innerHTML = `
-
-            ${imageHTML}
-
-            <div class="place-card-content">
-
-                <h3 class="place-name">
-                    ${escapeHTML(place.name)}
-                </h3>
-
-                <div class="place-categories">
-                    ${categoriesHTML}
-                    ${meetupTag}
-                </div>
-
-                <p class="place-description">
-                    ${escapeHTML(description)}
-                </p>
-
-                <div class="place-address">
-
-                    <span class="address-icon">
-                        📍
-                    </span>
-
-                    <span>
-                        ${escapeHTML(
-                            location.address ||
-                            ADDRESS_PLACEHOLDER
-                        )}
-                    </span>
-
-                </div>
-
-                <div class="place-actions">
-
-                    ${externalLinkHTML}
-
-                    <button
-                        class="copy-button"
-                        type="button"
-                    >
-                        Copy address
-                    </button>
-
-                    ${
-                        location.lat !== null &&
-                        location.lng !== null
-                            ? `
-                                <button
-                                    class="map-button"
-                                    type="button"
-                                >
-                                    View on map
-                                </button>
-                            `
-                            : ""
-                    }
-
-                </div>
-
-            </div>
-        `;
-
-        /*
-         * Copy address
-         */
-        const copyButton =
-            card.querySelector(
-                ".copy-button"
-            );
-
-        if (copyButton) {
-
-            copyButton.addEventListener(
-                "click",
-                () => {
-
-                    copyAddress(
-                        location.address ||
-                            ADDRESS_PLACEHOLDER,
-                        copyButton
-                    );
-                }
-            );
-        }
-
-        /*
-         * View on map
-         */
-        const mapButton =
-            card.querySelector(
-                ".map-button"
-            );
-
-        if (mapButton) {
-
-            mapButton.addEventListener(
-                "click",
-                () => {
-
-                    focusPlaceOnMap(
-                        place
-                    );
-                }
-            );
-        }
-
-        placesContainer.appendChild(card);
-    });
-}
-
-
-// ============================================================
-// MAP MARKERS
-// ============================================================
-
-function renderMarkers() {
-
-    if (!map) {
-        return;
-    }
-
-    markers.forEach(marker => {
-
-        map.removeLayer(marker);
-    });
-
-    markers = [];
-
-    const candidates =
-        getCandidatePlaces();
-
-    const visiblePlaces =
-        candidates.filter(place => {
+    /*
+     * Create cards.
+     */
+    visiblePlaces.forEach(
+        place => {
 
             const cache =
                 placeCache[place.id];
 
-            if (!cache || !cache.location) {
-                return false;
-            }
 
             const location =
                 cache.location;
 
-            return (
-                location.country ===
-                currentCountry &&
-                typeof location.lat === "number" &&
-                typeof location.lng === "number"
+
+            const description =
+                cache.description ||
+                DESCRIPTION_PLACEHOLDER;
+
+
+            const image =
+                cache.image;
+
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+
+            card.className =
+                "place-card";
+
+
+            /*
+             * Blank image area if Wikimedia
+             * does not return an image.
+             */
+            let imageHTML = `
+
+                <div class="place-image-empty">
+                </div>
+
+            `;
+
+
+            if (image) {
+
+                imageHTML = `
+
+                    <div class="place-image">
+
+                        <img
+                            src="${escapeHTML(image)}"
+                            alt="${escapeHTML(place.name)}"
+                            loading="lazy"
+                            referrerpolicy="no-referrer"
+                        >
+
+                    </div>
+
+                `;
+            }
+
+
+            /*
+             * Categories.
+             */
+            const categoriesHTML =
+                Array.isArray(
+                    place.categories
+                )
+                    ? place.categories
+                        .map(
+                            category => `
+
+                                <span
+                                    class="place-category"
+                                >
+                                    ${escapeHTML(
+                                        formatCategory(
+                                            category
+                                        )
+                                    )}
+                                </span>
+
+                            `
+                        )
+                        .join("")
+                    : "";
+
+
+            /*
+             * Add a Meetup label automatically
+             * when the URL belongs to Meetup.
+             */
+            const meetupTag =
+                isMeetup(place)
+                    ? `
+
+                        <span
+                            class="place-category meetup-tag"
+                        >
+                            Meetup
+                        </span>
+
+                    `
+                    : "";
+
+
+            const externalLinkHTML =
+                getExternalLinkHTML(
+                    place
+                );
+
+
+            /*
+             * NEW:
+             * View on Map button.
+             */
+            const mapButtonHTML =
+                getMapButtonHTML(
+                    place,
+                    location
+                );
+
+
+            card.innerHTML = `
+
+                ${imageHTML}
+
+
+                <div class="place-card-content">
+
+                    <h3 class="place-name">
+                        ${escapeHTML(
+                            place.name
+                        )}
+                    </h3>
+
+
+                    <div class="place-categories">
+
+                        ${categoriesHTML}
+
+                        ${meetupTag}
+
+                    </div>
+
+
+                    <p class="place-description">
+
+                        ${escapeHTML(
+                            description
+                        )}
+
+                    </p>
+
+
+                    <div class="place-address">
+
+                        <span class="address-icon">
+                            📍
+                        </span>
+
+                        <span>
+                            ${escapeHTML(
+                                location.address ||
+                                ADDRESS_PLACEHOLDER
+                            )}
+                        </span>
+
+                    </div>
+
+
+                    <div class="place-actions">
+
+                        ${mapButtonHTML}
+
+                        ${externalLinkHTML}
+
+
+                        <button
+                            type="button"
+                            class="copy-button"
+                        >
+                            Copy address
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            /*
+             * Copy address button.
+             */
+            const copyButton =
+                card.querySelector(
+                    ".copy-button"
+                );
+
+
+            if (copyButton) {
+
+                copyButton.addEventListener(
+                    "click",
+                    () => {
+
+                        copyAddress(
+                            location.address ||
+                                ADDRESS_PLACEHOLDER,
+                            copyButton
+                        );
+                    }
+                );
+            }
+
+
+            placesContainer.appendChild(
+                card
             );
-        });
-
-    visiblePlaces.forEach(place => {
-
-        const location =
-            placeCache[place.id].location;
-
-        const marker =
-            L.marker([
-                location.lat,
-                location.lng
-            ]).addTo(map);
-
-        marker.bindPopup(`
-            <strong>
-                ${escapeHTML(place.name)}
-            </strong>
-
-            <br>
-
-            <span>
-                ${escapeHTML(
-                    location.address ||
-                    ADDRESS_PLACEHOLDER
-                )}
-            </span>
-        `);
-
-        markers.push({
-            marker,
-            place
-        });
-    });
-
-    if (!markers.length) {
-        return;
-    }
-
-    if (markers.length === 1) {
-
-        const location =
-            placeCache[
-                markers[0].place.id
-            ].location;
-
-        map.setView(
-            [
-                location.lat,
-                location.lng
-            ],
-            14
-        );
-
-        return;
-    }
-
-    const bounds =
-        L.latLngBounds(
-            markers.map(item =>
-                item.marker.getLatLng()
-            )
-        );
-
-    map.fitBounds(
-        bounds,
-        {
-            padding: [30, 30],
-            maxZoom: 13
         }
     );
-}
-
-
-// ============================================================
-// FOCUS MAP ON PLACE
-// ============================================================
-
-function focusPlaceOnMap(place) {
-
-    if (!map) {
-        return;
-    }
-
-    const cache =
-        placeCache[place.id];
-
-    if (
-        !cache ||
-        !cache.location ||
-        cache.location.lat === null ||
-        cache.location.lng === null
-    ) {
-
-        return;
-    }
-
-    const location =
-        cache.location;
-
-    map.setView(
-        [
-            location.lat,
-            location.lng
-        ],
-        15
-    );
-
-    const existing =
-        markers.find(
-            item =>
-                item.place.id === place.id
-        );
-
-    if (existing) {
-
-        existing.marker.openPopup();
-    }
-
-    /*
-     * On mobile, scroll the map into view.
-     */
-    const mapElement =
-        document.getElementById("map");
-
-    if (mapElement) {
-
-        mapElement.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-        });
-    }
 }
 
 
@@ -1822,26 +2260,33 @@ async function copyAddress(
             address
         );
 
+
         const originalText =
             button.textContent;
 
+
         button.textContent =
             "✓ Copied";
+
 
         button.classList.add(
             "copied"
         );
 
-        setTimeout(() => {
 
-            button.textContent =
-                originalText;
+        setTimeout(
+            () => {
 
-            button.classList.remove(
-                "copied"
-            );
+                button.textContent =
+                    originalText;
 
-        }, 1500);
+                button.classList.remove(
+                    "copied"
+                );
+
+            },
+            1500
+        );
 
     } catch {
 
@@ -1854,7 +2299,7 @@ async function copyAddress(
 
 
 // ============================================================
-// URL
+// URL PARAMETERS
 // ============================================================
 
 function getCountryFromURL() {
@@ -1864,8 +2309,10 @@ function getCountryFromURL() {
             window.location.search
         );
 
+
     return (
-        params.get("country") || ""
+        params
+            .get("country") || ""
     ).toUpperCase();
 }
 
@@ -1877,8 +2324,10 @@ function getCategoryFromURL() {
             window.location.search
         );
 
+
     return (
-        params.get("category") || ""
+        params
+            .get("category") || ""
     ).toLowerCase();
 }
 
@@ -1890,6 +2339,7 @@ function updateURL() {
             window.location.search
         );
 
+
     if (currentCountry) {
 
         params.set(
@@ -1897,6 +2347,7 @@ function updateURL() {
             currentCountry
         );
     }
+
 
     if (
         currentCategory &&
@@ -1910,16 +2361,21 @@ function updateURL() {
 
     } else {
 
-        params.delete("category");
+        params.delete(
+            "category"
+        );
     }
+
 
     const query =
         params.toString();
+
 
     const newURL =
         query
             ? `${window.location.pathname}?${query}`
             : window.location.pathname;
+
 
     window.history.replaceState(
         {},
@@ -1933,12 +2389,19 @@ function updateURL() {
 // FORMATTING
 // ============================================================
 
-function formatCategory(category) {
+function formatCategory(
+    category
+) {
 
     return String(category)
-        .replace(/-/g, " ")
-        .replace(/\b\w/g, letter =>
-            letter.toUpperCase()
+        .replace(
+            /-/g,
+            " "
+        )
+        .replace(
+            /\b\w/g,
+            letter =>
+                letter.toUpperCase()
         );
 }
 
@@ -1947,7 +2410,9 @@ function formatCategory(category) {
 // HTML ESCAPING
 // ============================================================
 
-function escapeHTML(value) {
+function escapeHTML(
+    value
+) {
 
     if (
         value === undefined ||
@@ -1957,12 +2422,33 @@ function escapeHTML(value) {
         return "";
     }
 
+
     return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 }
 
 
@@ -1970,7 +2456,9 @@ function escapeHTML(value) {
 // DELAY
 // ============================================================
 
-function delay(milliseconds) {
+function delay(
+    milliseconds
+) {
 
     return new Promise(
         resolve =>
@@ -1983,7 +2471,7 @@ function delay(milliseconds) {
 
 
 // ============================================================
-// START
+// START APPLICATION
 // ============================================================
 
 loadPlaces();

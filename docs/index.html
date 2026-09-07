@@ -2,62 +2,100 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Places</title>
-
-    <!-- Leaflet -->
-    <link
-        rel="stylesheet"
-        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
     >
 
-    <!-- Your CSS -->
-    <link rel="stylesheet" href="style.css">
+    <title>Recommended Places</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 </head>
 
 <body>
 
-    <header class="site-header">
-        <div class="header-inner">
-            <h1>🌎 Places</h1>
-            <p>穴場レコード</p>
-        </div>
-    </header>
+    <div class="container">
 
-    <main class="container">
+        <!-- HEADER -->
 
-        <!-- Country selector -->
-        <section class="country-section">
+        <header class="site-header">
 
-            <div class="country-label">
-                <span id="countryFlag">🌎</span>
-                <span id="countryName">Detecting country...</span>
+            <div>
+                <h1>Recommended Places</h1>
+
+                <p>
+                    Curated places worth visiting,
+                    eating, shopping and experiencing.
+                </p>
             </div>
 
-            <div class="country-selector">
+        </header>
+
+
+        <!-- COUNTRY CONTROLS -->
+
+        <section class="country-controls">
+
+            <div class="country-display">
+
+                <span id="countryFlag">
+                    🌎
+                </span>
+
+                <span id="countryName">
+                    Loading...
+                </span>
+
+            </div>
+
+
+            <div class="selectors">
 
                 <select id="regionSelect">
-                    <option value="">Select region</option>
-                    <option value="north-america">North America</option>
-                    <option value="europe">Europe</option>
-                    <option value="asia">Asia</option>
+                    <option value="">
+                        Select region
+                    </option>
+
+                    <option value="north-america">
+                        North America
+                    </option>
+
+                    <option value="europe">
+                        Europe
+                    </option>
+
+                    <option value="asia">
+                        Asia
+                    </option>
                 </select>
 
+
                 <select id="countrySelect">
-                    <option value="">Select country</option>
+                    <option value="">
+                        Select country
+                    </option>
                 </select>
 
             </div>
 
         </section>
 
-        <!-- Category filters -->
+
+        <!-- CATEGORY FILTERS -->
+
         <section class="category-section">
 
-            <div class="category-buttons" id="categoryButtons">
+            <div
+                class="category-buttons"
+                id="categoryButtons"
+            >
 
                 <button
+                    type="button"
                     class="category-button active"
                     data-category="all"
                 >
@@ -65,6 +103,7 @@
                 </button>
 
                 <button
+                    type="button"
                     class="category-button"
                     data-category="sightseeing"
                 >
@@ -72,6 +111,7 @@
                 </button>
 
                 <button
+                    type="button"
                     class="category-button"
                     data-category="restaurants"
                 >
@@ -79,6 +119,7 @@
                 </button>
 
                 <button
+                    type="button"
                     class="category-button"
                     data-category="nightlife"
                 >
@@ -86,6 +127,7 @@
                 </button>
 
                 <button
+                    type="button"
                     class="category-button"
                     data-category="shopping"
                 >
@@ -93,6 +135,7 @@
                 </button>
 
                 <button
+                    type="button"
                     class="category-button"
                     data-category="experiences"
                 >
@@ -100,6 +143,7 @@
                 </button>
 
                 <button
+                    type="button"
                     class="category-button"
                     data-category="hobbies"
                 >
@@ -107,6 +151,7 @@
                 </button>
 
                 <button
+                    type="button"
                     class="category-button"
                     data-category="meetups"
                 >
@@ -117,53 +162,52 @@
 
         </section>
 
-        <!-- Results -->
-        <section class="results-section">
 
-            <div class="results-header">
-                <h2>Recommendations</h2>
-                <span id="resultCount">0 recommendations</span>
-            </div>
+        <!-- RESULT COUNT -->
 
-            <div class="content-grid">
+        <div id="resultCount">
+            Loading recommendations...
+        </div>
 
-                <!-- Map -->
-                <div class="map-container">
-                    <div id="map"></div>
-                </div>
 
-                <!-- Place cards -->
-                <div
-                    class="places-container"
-                    id="placesContainer"
-                ></div>
+        <!-- PLACE CARDS -->
 
-            </div>
+        <main>
 
-        </section>
-
-    </main>
-
-    <footer class="site-footer">
-        <p>
-            Map data ©
-            <a
-                href="https://www.openstreetmap.org/"
-                target="_blank"
-                rel="noopener"
+            <section
+                id="placesContainer"
+                class="places-grid"
             >
-                OpenStreetMap
-            </a>
-            contributors.
-        </p>
-    </footer>
+                <div class="empty-state">
 
-    <!-- Leaflet -->
-    <script
-        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    ></script>
+                    <h3>
+                        Finding places...
+                    </h3>
 
-    <!-- Your JavaScript -->
+                    <p>
+                        Loading recommendations.
+                    </p>
+
+                </div>
+            </section>
+
+        </main>
+
+
+        <!-- FOOTER -->
+
+        <footer class="site-footer">
+
+            <p>
+                Place information is gathered
+                automatically from open APIs.
+            </p>
+
+        </footer>
+
+    </div>
+
+
     <script src="app.js"></script>
 
 </body>
