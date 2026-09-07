@@ -1,105 +1,105 @@
 [
   {
     "id": "carrot-tower",
-    "name": "キャロットタワー",
+    "name": "Carrot Tower",
     "categories": ["sightseeing"]
   },
   {
     "id": "asakusa-culture-tourist-information-center",
-    "name": "浅草文化観光センター",
+    "name": "Asakusa Culture Tourist Information Center",
     "categories": ["sightseeing"]
   },
   {
     "id": "showa-kinen-park",
-    "name": "昭和記念公園",
+    "name": "Showa Kinen Park",
     "categories": ["sightseeing"]
   },
   {
     "id": "yoyogi-park",
-    "name": "代々木公園",
+    "name": "Yoyogi Park",
     "categories": ["sightseeing"]
   },
   {
     "id": "tokyo-tower",
-    "name": "東京タワー",
+    "name": "Tokyo Tower",
     "categories": ["sightseeing"]
   },
   {
     "id": "skytree",
-    "name": "東京スカイツリー",
+    "name": "Tokyo Skytree",
     "categories": ["sightseeing"]
   },
   {
     "id": "kanazawa-station",
-    "name": "金沢駅",
+    "name": "Kanazawa Station",
     "categories": ["sightseeing"]
   },
   {
     "id": "enoshima",
-    "name": "江の島",
+    "name": "Enoshima",
     "categories": ["sightseeing"]
   },
   {
     "id": "kamakura",
-    "name": "鎌倉",
+    "name": "Kamakura",
     "categories": ["sightseeing"]
   },
 
   {
     "id": "minami-machida-grandberry-park",
-    "name": "南町田グランベリーパーク",
+    "name": "Minami Machida Grandberry Park",
     "categories": ["shopping"]
   },
   {
     "id": "lumine-shinjuku",
-    "name": "ルミネ新宿",
+    "name": "Lumine Shinjuku",
     "categories": ["shopping"]
   },
   {
     "id": "lumine-yurakucho",
-    "name": "ルミネ有楽町",
+    "name": "Lumine Yurakucho",
     "categories": ["shopping"]
   },
   {
     "id": "gotemba-premium-outlet",
-    "name": "御殿場プレミアム・アウトレット",
+    "name": "Gotemba Premium Outlets",
     "categories": ["shopping"]
   },
   {
     "id": "northport-mall",
-    "name": "ノースポート・モール",
+    "name": "Northport Mall",
     "categories": ["shopping"]
   },
 
   {
     "id": "jojoen-shibuya",
-    "name": "叙々苑 渋谷店",
+    "name": "Jojoen Shibuya",
     "categories": ["restaurants"]
   },
   {
     "id": "the-bvlgari-bar",
-    "name": "ブルガリ ギンザ バー",
+    "name": "Bulgari Ginza Bar",
     "categories": ["restaurants", "nightlife"]
   },
   {
     "id": "rigoletto-shibuya",
-    "name": "RIGOLETTO WINE BAR AND GRILL 渋谷",
+    "name": "RIGOLETTO WINE BAR AND GRILL Shibuya",
     "categories": ["restaurants"]
   },
   {
     "id": "rigoletto-otemachi",
-    "name": "RIGOLETTO WINE BAR AND GRILL 大手町",
+    "name": "RIGOLETTO WINE BAR AND GRILL Otemachi",
     "categories": ["restaurants"]
   },
   {
     "id": "rooftop-bar-piro-ginza",
-    "name": "ルーフトップバーピロギンザ",
+    "name": "Rooftop Bar Piro Ginza",
     "categories": ["restaurants", "nightlife"]
   },
 
   {
     "id": "ginza-corridor",
-    "name": "銀座コリドー街",
+    "name": "Ginza Corridor Street",
     "categories": ["nightlife"]
   },
   {
@@ -119,12 +119,12 @@
 
   {
     "id": "daikaku-parking-area",
-    "name": "大黒パーキングエリア",
+    "name": "Daikoku Parking Area",
     "categories": ["experiences"]
   },
   {
     "id": "lake-yamanakako",
-    "name": "山中湖",
+    "name": "Lake Yamanaka",
     "categories": ["experiences"]
   },
   {
@@ -137,12 +137,12 @@
 
   {
     "id": "tamagawa-cycling-road",
-    "name": "多摩川サイクリングロード",
+    "name": "Tamagawa Cycling Road",
     "categories": ["hobbies"]
   },
   {
     "id": "showa-kinen-park-cycling",
-    "name": "昭和記念公園 サイクリング",
+    "name": "Showa Kinen Park Cycling",
     "categories": ["hobbies"]
   },
   {
