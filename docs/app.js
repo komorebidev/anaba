@@ -161,6 +161,60 @@ const categories = [
 
 
 // ============================================================
+// SPECIAL API EXCLUSION CATEGORIES
+// ============================================================
+
+/*
+ * These categories should ONLY use the geocoder.
+ *
+ * Wikipedia:
+ *     NOT USED
+ *
+ * Wikimedia Commons:
+ *     NOT USED
+ *
+ * Description:
+ *     Blank
+ *
+ * Image:
+ *     Blank
+ *
+ * Address:
+ *     Still fetched normally
+ */
+function shouldSkipDescriptionAndImage(place) {
+
+    if (!place) {
+        return false;
+    }
+
+    /*
+     * Restaurants and hobbies are identified
+     * through their categories.
+     */
+    if (
+        Array.isArray(place.categories) &&
+        (
+            place.categories.includes("restaurants") ||
+            place.categories.includes("hobbies")
+        )
+    ) {
+        return true;
+    }
+
+    /*
+     * Meetups are identified using the same
+     * logic already used by the application.
+     */
+    if (isMeetup(place)) {
+        return true;
+    }
+
+    return false;
+}
+
+
+// ============================================================
 // LOAD PLACES
 // ============================================================
 
@@ -168,7 +222,8 @@ async function loadPlaces() {
 
     try {
 
-        const response = await fetch("places.json");
+        const response =
+            await fetch("places.json");
 
         if (!response.ok) {
             throw new Error("Could not load places.json");
@@ -257,7 +312,8 @@ async function detectVisitorCountry() {
             );
         }
 
-        const data = await response.json();
+        const data =
+            await response.json();
 
         const detectedCountry =
             String(data.country || "").toUpperCase();
@@ -454,6 +510,7 @@ function setCountry(countryCode) {
             cache.location = null;
             cache.description = null;
             cache.image = null;
+            cache.countryCode = null;
         }
     });
 
@@ -599,22 +656,6 @@ function getCandidatePlaces() {
 
 
 // ============================================================
-// SPECIAL API EXCLUSION
-// ============================================================
-
-function skipContentAPIs(place) {
-
-    return (
-        Array.isArray(place.categories) &&
-        (
-            place.categories.includes("restaurants") ||
-            place.categories.includes("hobbies")
-        )
-    ) || isMeetup(place);
-}
-
-
-// ============================================================
 // RENDER
 // ============================================================
 
@@ -685,37 +726,122 @@ async function loadPlaceData(place) {
 
     cache.loading = true;
 
-    const countryForRequest = currentCountry;
+    const countryForRequest =
+        currentCountry;
 
-    /*
-     * Restaurants, hobbies, and meetups:
-     *
-     * - Address/location API is still required.
-     * - Wikipedia is NOT called.
-     * - Wikimedia Commons is NOT called.
-     */
-    if (skipContentAPIs(place)) {
+    const skipDescriptionAndImage =
+        shouldSkipDescriptionAndImage(place);
 
-        const location =
-            await getPlaceLocation(
+    try {
+
+        /*
+         * IMPORTANT:
+         *
+         * Address/geocoder ALWAYS runs.
+         *
+         * Wikipedia and Wikimedia only run
+         * for normal categories.
+         */
+        let locationPromise =
+            getPlaceLocation(
                 place,
                 countryForRequest
             );
 
+        let descriptionPromise;
+        let imagePromise;
+
+        if (skipDescriptionAndImage) {
+
+            descriptionPromise =
+                Promise.resolve("");
+
+            imagePromise =
+                Promise.resolve(null);
+
+        } else {
+
+            descriptionPromise =
+                getWikipediaDescription(
+                    place,
+                    countryForRequest
+                );
+
+            imagePromise =
+                getWikimediaImage(
+                    place,
+                    countryForRequest
+                );
+        }
+
+        const [
+            location,
+            description,
+            image
+        ] = await Promise.all([
+            locationPromise,
+            descriptionPromise,
+            imagePromise
+        ]);
+
         /*
-         * Ignore a stale request if the user changed
-         * countries while the API was running.
+         * Ignore stale request if country changed
+         * while APIs were running.
          */
-        if (currentCountry !== countryForRequest) {
+        if (
+            currentCountry !==
+            countryForRequest
+        ) {
 
             cache.loading = false;
 
             return;
         }
 
-        cache.location = location;
+        cache.location =
+            location;
 
-        cache.description = null;
+        cache.description =
+            skipDescriptionAndImage
+                ? ""
+                : description;
+
+        cache.image =
+            skipDescriptionAndImage
+                ? null
+                : image;
+
+        cache.countryCode =
+            countryForRequest;
+
+        cache.loaded = true;
+        cache.loading = false;
+
+        renderCards();
+
+    } catch (error) {
+
+        console.error(
+            `Error loading ${place.name}:`,
+            error
+        );
+
+        cache.loading = false;
+
+        /*
+         * Keep the place visible even if an API fails.
+         */
+        cache.location = {
+            address: ADDRESS_PLACEHOLDER,
+            lat: null,
+            lng: null,
+            country: null
+        };
+
+        cache.description =
+            skipDescriptionAndImage
+                ? ""
+                : DESCRIPTION_PLACEHOLDER;
 
         cache.image = null;
 
@@ -724,48 +850,8 @@ async function loadPlaceData(place) {
 
         cache.loaded = true;
 
-        cache.loading = false;
-
         renderCards();
-
-        return;
     }
-
-    /*
-     * All other categories:
-     *
-     * Run the three APIs concurrently.
-     */
-    const [
-        location,
-        description,
-        image
-    ] = await Promise.all([
-        getPlaceLocation(place, countryForRequest),
-        getWikipediaDescription(place, countryForRequest),
-        getWikimediaImage(place, countryForRequest)
-    ]);
-
-    /*
-     * Ignore a stale request if the user changed
-     * countries while the APIs were running.
-     */
-    if (currentCountry !== countryForRequest) {
-
-        cache.loading = false;
-
-        return;
-    }
-
-    cache.location = location;
-    cache.description = description;
-    cache.image = image;
-    cache.countryCode = countryForRequest;
-
-    cache.loaded = true;
-    cache.loading = false;
-
-    renderCards();
 }
 
 
@@ -781,9 +867,11 @@ async function getPlaceLocation(
     const countryName =
         getCountryName(countryCode);
 
-    let searchText = place.name;
+    let searchText =
+        place.name;
 
     if (countryName) {
+
         searchText =
             `${place.name}, ${countryName}`;
     }
@@ -802,6 +890,7 @@ async function getPlaceLocation(
             await fetch(url);
 
         if (!response.ok) {
+
             throw new Error(
                 `Nominatim HTTP ${response.status}`
             );
@@ -827,13 +916,17 @@ async function getPlaceLocation(
 
             return {
                 address: ADDRESS_PLACEHOLDER,
-                lat: fallback?.latitude ?? null,
-                lng: fallback?.longitude ?? null,
-                country: fallback?.countryCode ?? null
+                lat:
+                    fallback?.latitude ?? null,
+                lng:
+                    fallback?.longitude ?? null,
+                country:
+                    fallback?.countryCode ?? null
             };
         }
 
-        const result = results[0];
+        const result =
+            results[0];
 
         const address =
             result.address || {};
@@ -871,6 +964,7 @@ async function getPlaceLocation(
                 );
 
             if (fallback?.countryCode) {
+
                 detectedCountry =
                     fallback.countryCode;
             }
@@ -896,11 +990,14 @@ async function getPlaceLocation(
                 result.display_name ||
                 ADDRESS_PLACEHOLDER,
 
-            lat: latitude,
+            lat:
+                latitude,
 
-            lng: longitude,
+            lng:
+                longitude,
 
-            country: detectedCountry
+            country:
+                detectedCountry
         };
 
     } catch (error) {
@@ -918,7 +1015,8 @@ async function getPlaceLocation(
 
         return {
 
-            address: ADDRESS_PLACEHOLDER,
+            address:
+                ADDRESS_PLACEHOLDER,
 
             lat:
                 fallback?.latitude ?? null,
@@ -1059,35 +1157,27 @@ function countryNameToISO(countryName) {
     const aliases = {
 
         "united states of america": "US",
-
         "usa": "US",
-
         "u.s.a.": "US",
 
         "south korea": "KR",
-
         "republic of korea": "KR",
-
         "korea, republic of": "KR",
 
         "czech republic": "CZ",
-
         "czechia": "CZ",
 
         "russian federation": "RU",
 
         "turkey": "TR",
-
         "türkiye": "TR",
 
         "united kingdom": "GB",
-
         "great britain": "GB",
 
         "hong kong": "HK",
 
         "macao": "MO",
-
         "macau": "MO"
     };
 
@@ -1198,8 +1288,6 @@ async function getWikipediaDescription(
         return DESCRIPTION_PLACEHOLDER;
     }
 }
-
-
 // ============================================================
 // WIKIMEDIA COMMONS
 // ============================================================
@@ -1285,6 +1373,7 @@ async function getWikimediaImage(
             if (
                 title.includes(normalizedName)
             ) {
+
                 score += 10;
             }
 
@@ -1413,3 +1502,620 @@ function getExternalLinkHTML(place) {
 function getMapButtonHTML(
     place,
     location
+) {
+
+    if (!location) {
+        return "";
+    }
+
+    if (
+        location.lat !== null &&
+        location.lng !== null &&
+        !isNaN(location.lat) &&
+        !isNaN(location.lng)
+    ) {
+
+        const coordinates =
+            `${location.lat},${location.lng}`;
+
+        const googleMapsURL =
+            `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                coordinates
+            )}`;
+
+        return `
+            <a
+                href="${escapeHTML(googleMapsURL)}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="map-button"
+            >
+                View on Map ↗
+            </a>
+        `;
+    }
+
+    if (
+        location.address &&
+        location.address !== ADDRESS_PLACEHOLDER
+    ) {
+
+        const googleMapsURL =
+            `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                location.address
+            )}`;
+
+        return `
+            <a
+                href="${escapeHTML(googleMapsURL)}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="map-button"
+            >
+                View on Map ↗
+            </a>
+        `;
+    }
+
+    return "";
+}
+
+
+// ============================================================
+// SKELETON HELPERS
+// ============================================================
+
+function getSkeletonCardHTML(place) {
+
+    const categoriesHTML =
+        Array.isArray(place.categories)
+            ? place.categories
+                .map(category => `
+                    <span class="place-category">
+                        ${escapeHTML(
+                            formatCategory(category)
+                        )}
+                    </span>
+                `)
+                .join("")
+            : "";
+
+    const meetupTag =
+        isMeetup(place)
+            ? `
+                <span class="place-category meetup-tag">
+                    Meetup
+                </span>
+            `
+            : "";
+
+    return `
+        <article class="place-card">
+
+            <div class="place-image-skeleton skeleton">
+            </div>
+
+            <div class="place-card-content">
+
+                <div class="skeleton skeleton-title">
+                </div>
+
+                <div class="place-categories">
+                    ${categoriesHTML}
+                    ${meetupTag}
+                </div>
+
+                <div class="skeleton skeleton-description">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="skeleton skeleton-address">
+                </div>
+
+                <div class="place-actions">
+
+                    <div class="skeleton skeleton-button">
+                    </div>
+
+                    <div class="skeleton skeleton-button">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+    `;
+}
+
+
+// ============================================================
+// RENDER CARDS
+// ============================================================
+
+function renderCards() {
+
+    if (!placesContainer) {
+        return;
+    }
+
+    const candidates =
+        getCandidatePlaces();
+
+    const visiblePlaces =
+        candidates.filter(place => {
+
+            const cache =
+                placeCache[place.id];
+
+            if (
+                cache &&
+                cache.loaded &&
+                cache.location
+            ) {
+
+                if (cache.location.country) {
+
+                    return (
+                        cache.location.country ===
+                        currentCountry
+                    );
+                }
+
+                return true;
+            }
+
+            return true;
+        });
+
+    if (resultCount) {
+
+        resultCount.textContent =
+            `${visiblePlaces.length} recommendation${
+                visiblePlaces.length === 1
+                    ? ""
+                    : "s"
+            }`;
+    }
+
+    placesContainer.innerHTML = "";
+
+    if (!visiblePlaces.length) {
+
+        placesContainer.innerHTML = `
+            <div class="empty-state">
+                <h3>No recommendations</h3>
+                <p>
+                    There are currently no places
+                    matching this selection.
+                </p>
+            </div>
+        `;
+
+        return;
+    }
+
+    visiblePlaces.forEach(place => {
+
+        const cache =
+            placeCache[place.id];
+
+        /*
+         * Not loaded yet:
+         * render skeleton.
+         */
+        if (
+            !cache ||
+            !cache.loaded
+        ) {
+
+            placesContainer.insertAdjacentHTML(
+                "beforeend",
+                getSkeletonCardHTML(place)
+            );
+
+            return;
+        }
+
+        const location =
+            cache.location || {
+                address: ADDRESS_PLACEHOLDER,
+                lat: null,
+                lng: null,
+                country: null
+            };
+
+        /*
+         * SPECIAL CATEGORIES
+         *
+         * Restaurants, hobbies and meetups:
+         *
+         * - description = blank
+         * - image = blank
+         * - no fallback image
+         */
+        const skipDescriptionAndImage =
+            shouldSkipDescriptionAndImage(place);
+
+        const description =
+            skipDescriptionAndImage
+                ? ""
+                : (
+                    cache.description ||
+                    DESCRIPTION_PLACEHOLDER
+                );
+
+        const image =
+            skipDescriptionAndImage
+                ? null
+                : cache.image;
+
+        const card =
+            document.createElement("article");
+
+        card.className =
+            "place-card";
+
+
+        // --------------------------------------------------------
+        // IMAGE
+        // --------------------------------------------------------
+
+        let imageHTML = "";
+
+        if (image) {
+
+            imageHTML = `
+                <div class="place-image">
+
+                    <img
+                        src="${escapeHTML(image)}"
+                        alt="${escapeHTML(place.name)}"
+                        loading="lazy"
+                        referrerpolicy="no-referrer"
+                        onerror="this.onerror=null;this.parentElement.remove();"
+                    >
+
+                </div>
+            `;
+
+        } else if (!skipDescriptionAndImage) {
+
+            /*
+             * Existing fallback image behavior is preserved
+             * for normal categories only.
+             */
+            const fallbackImage =
+                "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEggMt-m95pUHuS-ag4Ir8y3uV8XV4z7YRgbjsQGWlZWygFrW0vL0Xx_QMcOwiUBPB8dA7z-Ig8GP_iACAfSHgkHEp4UYunZNutAer2hDee4TZ37MAHtMSCDM2qzZwZ78Wki9Pqv706r81Fl/s800/ojigi_animal_usagi.png";
+
+            imageHTML = `
+                <div class="place-image">
+
+                    <img
+                        src="${fallbackImage}"
+                        alt="${escapeHTML(place.name)}"
+                        loading="lazy"
+                        referrerpolicy="no-referrer"
+                    >
+
+                </div>
+            `;
+        }
+
+        /*
+         * For restaurants/hobbies/meetups:
+         *
+         * imageHTML remains completely empty.
+         *
+         * No div.
+         * No img.
+         * No fallback.
+         */
+
+
+        // --------------------------------------------------------
+        // CATEGORIES
+        // --------------------------------------------------------
+
+        const categoriesHTML =
+            Array.isArray(place.categories)
+                ? place.categories
+                    .map(category => `
+                        <span class="place-category">
+                            ${escapeHTML(
+                                formatCategory(category)
+                            )}
+                        </span>
+                    `)
+                    .join("")
+                : "";
+
+        const meetupTag =
+            isMeetup(place)
+                ? `
+                    <span
+                        class="place-category meetup-tag"
+                    >
+                        Meetup
+                    </span>
+                `
+                : "";
+
+
+        // --------------------------------------------------------
+        // LINKS
+        // --------------------------------------------------------
+
+        const externalLinkHTML =
+            getExternalLinkHTML(place);
+
+        const mapButtonHTML =
+            getMapButtonHTML(
+                place,
+                location
+            );
+
+
+        // --------------------------------------------------------
+        // DESCRIPTION
+        // --------------------------------------------------------
+
+        let descriptionHTML = "";
+
+        if (description) {
+
+            descriptionHTML = `
+                <p class="place-description">
+                    ${escapeHTML(description)}
+                </p>
+            `;
+        }
+
+
+        // --------------------------------------------------------
+        // CARD HTML
+        // --------------------------------------------------------
+
+        card.innerHTML = `
+
+            ${imageHTML}
+
+            <div class="place-card-content">
+
+                <h3 class="place-name">
+                    ${escapeHTML(place.name)}
+                </h3>
+
+                <div class="place-categories">
+
+                    ${categoriesHTML}
+
+                    ${meetupTag}
+
+                </div>
+
+                ${descriptionHTML}
+
+                <div class="place-address">
+
+                    <span class="address-icon">
+                        📍
+                    </span>
+
+                    <span>
+                        ${escapeHTML(
+                            location.address ||
+                            ADDRESS_PLACEHOLDER
+                        )}
+                    </span>
+
+                </div>
+
+                <div class="place-actions">
+
+                    ${mapButtonHTML}
+
+                    ${externalLinkHTML}
+
+                    <button
+                        type="button"
+                        class="copy-button"
+                    >
+                        Copy address
+                    </button>
+
+                </div>
+
+            </div>
+        `;
+
+
+        // --------------------------------------------------------
+        // COPY ADDRESS
+        // --------------------------------------------------------
+
+        const copyButton =
+            card.querySelector(".copy-button");
+
+        if (copyButton) {
+
+            copyButton.addEventListener(
+                "click",
+                () => {
+
+                    copyAddress(
+                        location.address ||
+                        ADDRESS_PLACEHOLDER,
+                        copyButton
+                    );
+                }
+            );
+        }
+
+        placesContainer.appendChild(card);
+    });
+}
+
+
+// ============================================================
+// COPY ADDRESS
+// ============================================================
+
+async function copyAddress(
+    address,
+    button
+) {
+
+    try {
+
+        await navigator.clipboard.writeText(address);
+
+        const originalText =
+            button.textContent;
+
+        button.textContent =
+            "✓ Copied";
+
+        button.classList.add("copied");
+
+        setTimeout(() => {
+
+            button.textContent =
+                originalText;
+
+            button.classList.remove("copied");
+
+        }, 1500);
+
+    } catch {
+
+        window.prompt(
+            "Copy this address:",
+            address
+        );
+    }
+}
+
+
+// ============================================================
+// URL PARAMETERS
+// ============================================================
+
+function getCountryFromURL() {
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+    return (
+        params
+            .get("country") || ""
+    ).toUpperCase();
+}
+
+
+function getCategoryFromURL() {
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+    return (
+        params
+            .get("category") || ""
+    ).toLowerCase();
+}
+
+
+function updateURL() {
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+    if (currentCountry) {
+
+        params.set(
+            "country",
+            currentCountry
+        );
+    }
+
+    if (
+        currentCategory &&
+        currentCategory !== "all"
+    ) {
+
+        params.set(
+            "category",
+            currentCategory
+        );
+
+    } else {
+
+        params.delete("category");
+    }
+
+    const query =
+        params.toString();
+
+    const newURL =
+        query
+            ? `${window.location.pathname}?${query}`
+            : window.location.pathname;
+
+    window.history.replaceState(
+        {},
+        "",
+        newURL
+    );
+}
+
+
+// ============================================================
+// FORMATTING
+// ============================================================
+
+function formatCategory(category) {
+
+    return String(category)
+        .replace(/-/g, " ")
+        .replace(
+            /\b\w/g,
+            letter => letter.toUpperCase()
+        );
+}
+
+
+// ============================================================
+// HTML ESCAPING
+// ============================================================
+
+function escapeHTML(value) {
+
+    if (
+        value === undefined ||
+        value === null
+    ) {
+        return "";
+    }
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
+// ============================================================
+// START APPLICATION
+// ============================================================
+
+loadPlaces();
