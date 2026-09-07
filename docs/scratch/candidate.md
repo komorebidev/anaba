@@ -42,11 +42,11 @@
 
 - daikaku parking area
 - lake yamanakako
+- https://www.meetup.com/language-cafe-bar-mickey-house/?eventOrigin=home_groups_you_are_in
 
 ### hobbies
 
 - tamagawa cycling road
 - showa kinen park cycling
 - https://www.meetup.com/public-inernational-badminton-in-kawasaki/?eventOrigin=your_groups
-
 
