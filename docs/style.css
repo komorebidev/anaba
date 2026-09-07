@@ -251,6 +251,16 @@ select:focus {
 .place-card {
     overflow: hidden;
 
+    display: flex;
+
+    flex-direction: column;
+
+    /*
+     * This is important for layout stability.
+     * Every card has a predictable overall height.
+     */
+    min-height: 540px;
+
     background: white;
 
     border:
@@ -288,11 +298,19 @@ select:focus {
    IMAGE
    ============================================================ */
 
+/*
+ * Both the real image and the skeleton have exactly
+ * the same dimensions.
+ */
+
 .place-image,
-.place-image-empty {
+.place-image-empty,
+.place-image-skeleton {
     width: 100%;
 
     height: 210px;
+
+    flex-shrink: 0;
 
     background: #f1f2f4;
 }
@@ -309,8 +327,8 @@ select:focus {
 
 
 /*
- * If Wikimedia cannot find an image,
- * this remains an intentionally blank area.
+ * No Wikimedia image:
+ * intentionally blank.
  */
 
 .place-image-empty {
@@ -323,10 +341,18 @@ select:focus {
    ============================================================ */
 
 .place-card-content {
+    display: flex;
+
+    flex-direction: column;
+
+    flex: 1;
+
     padding: 20px;
 }
 
 .place-name {
+    min-height: 27px;
+
     margin: 0 0 10px;
 
     font-size: 21px;
@@ -347,6 +373,8 @@ select:focus {
     flex-wrap: wrap;
 
     gap: 6px;
+
+    min-height: 28px;
 
     margin-bottom: 15px;
 }
@@ -378,7 +406,16 @@ select:focus {
    DESCRIPTION
    ============================================================ */
 
+/*
+ * Reserve exactly the same general amount of space
+ * whether the description is loading or loaded.
+ */
+
 .place-description {
+    height: 91px;
+
+    overflow: hidden;
+
     margin: 0 0 18px;
 
     color: #4b5563;
@@ -399,6 +436,12 @@ select:focus {
     align-items: flex-start;
 
     gap: 8px;
+
+    /*
+     * Reserve address space so loading the address
+     * cannot push the buttons downward.
+     */
+    min-height: 65px;
 
     margin-bottom: 18px;
 
@@ -424,12 +467,9 @@ select:focus {
     flex-wrap: wrap;
 
     gap: 8px;
+
+    margin-top: auto;
 }
-
-
-/*
- * Shared button dimensions.
- */
 
 .place-link,
 .map-button,
@@ -476,7 +516,7 @@ select:focus {
 
 
 /* ============================================================
-   WEBSITE / MEETUP BUTTON
+   WEBSITE / MEETUP
    ============================================================ */
 
 .place-link {
@@ -520,6 +560,142 @@ select:focus {
     background: #ecfdf5;
 
     color: #047857;
+}
+
+
+/* ============================================================
+   SKELETON LOADING
+   ============================================================ */
+
+.skeleton {
+    position: relative;
+
+    overflow: hidden;
+
+    background: #e5e7eb;
+
+    border-radius: 6px;
+}
+
+
+/*
+ * Animated shine moving across the placeholder.
+ */
+
+.skeleton::after {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.55),
+            transparent
+        );
+
+    animation:
+        skeleton-shimmer 1.4s infinite;
+}
+
+
+@keyframes skeleton-shimmer {
+
+    100% {
+        left: 100%;
+    }
+}
+
+
+/* ============================================================
+   SKELETON IMAGE
+   ============================================================ */
+
+.place-image-skeleton {
+    border-radius: 0;
+}
+
+
+/* ============================================================
+   SKELETON TITLE
+   ============================================================ */
+
+.skeleton-title {
+    width: 65%;
+
+    height: 27px;
+
+    margin-bottom: 10px;
+}
+
+
+/* ============================================================
+   SKELETON DESCRIPTION
+   ============================================================ */
+
+.skeleton-description {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    height: 91px;
+
+    margin-bottom: 18px;
+
+    background: transparent;
+}
+
+.skeleton-description span {
+    display: block;
+
+    width: 100%;
+
+    height: 13px;
+
+    border-radius: 5px;
+
+    background: #e5e7eb;
+}
+
+.skeleton-description span:nth-child(2) {
+    width: 90%;
+}
+
+.skeleton-description span:nth-child(3) {
+    width: 60%;
+}
+
+
+/* ============================================================
+   SKELETON ADDRESS
+   ============================================================ */
+
+.skeleton-address {
+    width: 85%;
+
+    height: 42px;
+
+    margin-bottom: 18px;
+}
+
+
+/* ============================================================
+   SKELETON BUTTONS
+   ============================================================ */
+
+.skeleton-button {
+    width: 105px;
+
+    height: 38px;
 }
 
 
@@ -641,14 +817,15 @@ select:focus {
     }
 
     .place-image,
-    .place-image-empty {
+    .place-image-empty,
+    .place-image-skeleton {
         height: 190px;
     }
 
-    /*
-     * Let the buttons use the available width
-     * comfortably on small screens.
-     */
+    .place-card {
+        min-height: 520px;
+    }
+
     .place-actions {
         flex-direction: column;
     }

@@ -3,447 +3,105 @@
 // ============================================================
 
 const countryRegions = {
-
     "north-america": {
         name: "North America",
-
         countries: {
-
-            US: {
-                name: "United States",
-                flag: "🇺🇸"
-            },
-
-            CA: {
-                name: "Canada",
-                flag: "🇨🇦"
-            },
-
-            MX: {
-                name: "Mexico",
-                flag: "🇲🇽"
-            },
-
-            GT: {
-                name: "Guatemala",
-                flag: "🇬🇹"
-            },
-
-            CR: {
-                name: "Costa Rica",
-                flag: "🇨🇷"
-            },
-
-            PA: {
-                name: "Panama",
-                flag: "🇵🇦"
-            },
-
-            CU: {
-                name: "Cuba",
-                flag: "🇨🇺"
-            },
-
-            DO: {
-                name: "Dominican Republic",
-                flag: "🇩🇴"
-            },
-
-            JM: {
-                name: "Jamaica",
-                flag: "🇯🇲"
-            },
-
-            BS: {
-                name: "Bahamas",
-                flag: "🇧🇸"
-            },
-
-            BB: {
-                name: "Barbados",
-                flag: "🇧🇧"
-            },
-
-            TT: {
-                name: "Trinidad and Tobago",
-                flag: "🇹🇹"
-            }
+            US: { name: "United States", flag: "🇺🇸" },
+            CA: { name: "Canada", flag: "🇨🇦" },
+            MX: { name: "Mexico", flag: "🇲🇽" },
+            GT: { name: "Guatemala", flag: "🇬🇹" },
+            CR: { name: "Costa Rica", flag: "🇨🇷" },
+            PA: { name: "Panama", flag: "🇵🇦" },
+            CU: { name: "Cuba", flag: "🇨🇺" },
+            DO: { name: "Dominican Republic", flag: "🇩🇴" },
+            JM: { name: "Jamaica", flag: "🇯🇲" },
+            BS: { name: "Bahamas", flag: "🇧🇸" },
+            BB: { name: "Barbados", flag: "🇧🇧" },
+            TT: { name: "Trinidad and Tobago", flag: "🇹🇹" }
         }
     },
-
 
     europe: {
         name: "Europe",
-
         countries: {
-
-            GB: {
-                name: "United Kingdom",
-                flag: "🇬🇧"
-            },
-
-            IE: {
-                name: "Ireland",
-                flag: "🇮🇪"
-            },
-
-            FR: {
-                name: "France",
-                flag: "🇫🇷"
-            },
-
-            DE: {
-                name: "Germany",
-                flag: "🇩🇪"
-            },
-
-            ES: {
-                name: "Spain",
-                flag: "🇪🇸"
-            },
-
-            PT: {
-                name: "Portugal",
-                flag: "🇵🇹"
-            },
-
-            IT: {
-                name: "Italy",
-                flag: "🇮🇹"
-            },
-
-            CH: {
-                name: "Switzerland",
-                flag: "🇨🇭"
-            },
-
-            AT: {
-                name: "Austria",
-                flag: "🇦🇹"
-            },
-
-            BE: {
-                name: "Belgium",
-                flag: "🇧🇪"
-            },
-
-            NL: {
-                name: "Netherlands",
-                flag: "🇳🇱"
-            },
-
-            LU: {
-                name: "Luxembourg",
-                flag: "🇱🇺"
-            },
-
-            DK: {
-                name: "Denmark",
-                flag: "🇩🇰"
-            },
-
-            SE: {
-                name: "Sweden",
-                flag: "🇸🇪"
-            },
-
-            NO: {
-                name: "Norway",
-                flag: "🇳🇴"
-            },
-
-            FI: {
-                name: "Finland",
-                flag: "🇫🇮"
-            },
-
-            IS: {
-                name: "Iceland",
-                flag: "🇮🇸"
-            },
-
-            PL: {
-                name: "Poland",
-                flag: "🇵🇱"
-            },
-
-            CZ: {
-                name: "Czechia",
-                flag: "🇨🇿"
-            },
-
-            SK: {
-                name: "Slovakia",
-                flag: "🇸🇰"
-            },
-
-            HU: {
-                name: "Hungary",
-                flag: "🇭🇺"
-            },
-
-            RO: {
-                name: "Romania",
-                flag: "🇷🇴"
-            },
-
-            BG: {
-                name: "Bulgaria",
-                flag: "🇧🇬"
-            },
-
-            GR: {
-                name: "Greece",
-                flag: "🇬🇷"
-            },
-
-            HR: {
-                name: "Croatia",
-                flag: "🇭🇷"
-            },
-
-            SI: {
-                name: "Slovenia",
-                flag: "🇸🇮"
-            },
-
-            EE: {
-                name: "Estonia",
-                flag: "🇪🇪"
-            },
-
-            LV: {
-                name: "Latvia",
-                flag: "🇱🇻"
-            },
-
-            LT: {
-                name: "Lithuania",
-                flag: "🇱🇹"
-            },
-
-            UA: {
-                name: "Ukraine",
-                flag: "🇺🇦"
-            },
-
-            RS: {
-                name: "Serbia",
-                flag: "🇷🇸"
-            },
-
-            AL: {
-                name: "Albania",
-                flag: "🇦🇱"
-            },
-
-            BA: {
-                name: "Bosnia and Herzegovina",
-                flag: "🇧🇦"
-            },
-
-            ME: {
-                name: "Montenegro",
-                flag: "🇲🇪"
-            },
-
-            MK: {
-                name: "North Macedonia",
-                flag: "🇲🇰"
-            },
-
-            MD: {
-                name: "Moldova",
-                flag: "🇲🇩"
-            },
-
-            CY: {
-                name: "Cyprus",
-                flag: "🇨🇾"
-            },
-
-            MT: {
-                name: "Malta",
-                flag: "🇲🇹"
-            }
+            GB: { name: "United Kingdom", flag: "🇬🇧" },
+            IE: { name: "Ireland", flag: "🇮🇪" },
+            FR: { name: "France", flag: "🇫🇷" },
+            DE: { name: "Germany", flag: "🇩🇪" },
+            ES: { name: "Spain", flag: "🇪🇸" },
+            PT: { name: "Portugal", flag: "🇵🇹" },
+            IT: { name: "Italy", flag: "🇮🇹" },
+            CH: { name: "Switzerland", flag: "🇨🇭" },
+            AT: { name: "Austria", flag: "🇦🇹" },
+            BE: { name: "Belgium", flag: "🇧🇪" },
+            NL: { name: "Netherlands", flag: "🇳🇱" },
+            LU: { name: "Luxembourg", flag: "🇱🇺" },
+            DK: { name: "Denmark", flag: "🇩🇰" },
+            SE: { name: "Sweden", flag: "🇸🇪" },
+            NO: { name: "Norway", flag: "🇳🇴" },
+            FI: { name: "Finland", flag: "🇫🇮" },
+            IS: { name: "Iceland", flag: "🇮🇸" },
+            PL: { name: "Poland", flag: "🇵🇱" },
+            CZ: { name: "Czechia", flag: "🇨🇿" },
+            SK: { name: "Slovakia", flag: "🇸🇰" },
+            HU: { name: "Hungary", flag: "🇭🇺" },
+            RO: { name: "Romania", flag: "🇷🇴" },
+            BG: { name: "Bulgaria", flag: "🇧🇬" },
+            GR: { name: "Greece", flag: "🇬🇷" },
+            HR: { name: "Croatia", flag: "🇭🇷" },
+            SI: { name: "Slovenia", flag: "🇸🇮" },
+            EE: { name: "Estonia", flag: "🇪🇪" },
+            LV: { name: "Latvia", flag: "🇱🇻" },
+            LT: { name: "Lithuania", flag: "🇱🇹" },
+            UA: { name: "Ukraine", flag: "🇺🇦" },
+            RS: { name: "Serbia", flag: "🇷🇸" },
+            AL: { name: "Albania", flag: "🇦🇱" },
+            BA: { name: "Bosnia and Herzegovina", flag: "🇧🇦" },
+            ME: { name: "Montenegro", flag: "🇲🇪" },
+            MK: { name: "North Macedonia", flag: "🇲🇰" },
+            MD: { name: "Moldova", flag: "🇲🇩" },
+            CY: { name: "Cyprus", flag: "🇨🇾" },
+            MT: { name: "Malta", flag: "🇲🇹" }
         }
     },
 
-
     asia: {
         name: "Asia",
-
         countries: {
-
-            JP: {
-                name: "Japan",
-                flag: "🇯🇵"
-            },
-
-            KR: {
-                name: "South Korea",
-                flag: "🇰🇷"
-            },
-
-            CN: {
-                name: "China",
-                flag: "🇨🇳"
-            },
-
-            TW: {
-                name: "Taiwan",
-                flag: "🇹🇼"
-            },
-
-            HK: {
-                name: "Hong Kong",
-                flag: "🇭🇰"
-            },
-
-            MO: {
-                name: "Macau",
-                flag: "🇲🇴"
-            },
-
-            IN: {
-                name: "India",
-                flag: "🇮🇳"
-            },
-
-            TH: {
-                name: "Thailand",
-                flag: "🇹🇭"
-            },
-
-            VN: {
-                name: "Vietnam",
-                flag: "🇻🇳"
-            },
-
-            SG: {
-                name: "Singapore",
-                flag: "🇸🇬"
-            },
-
-            MY: {
-                name: "Malaysia",
-                flag: "🇲🇾"
-            },
-
-            ID: {
-                name: "Indonesia",
-                flag: "🇮🇩"
-            },
-
-            PH: {
-                name: "Philippines",
-                flag: "🇵🇭"
-            },
-
-            KH: {
-                name: "Cambodia",
-                flag: "🇰🇭"
-            },
-
-            LA: {
-                name: "Laos",
-                flag: "🇱🇦"
-            },
-
-            MM: {
-                name: "Myanmar",
-                flag: "🇲🇲"
-            },
-
-            BN: {
-                name: "Brunei",
-                flag: "🇧🇳"
-            },
-
-            NP: {
-                name: "Nepal",
-                flag: "🇳🇵"
-            },
-
-            LK: {
-                name: "Sri Lanka",
-                flag: "🇱🇰"
-            },
-
-            BD: {
-                name: "Bangladesh",
-                flag: "🇧🇩"
-            },
-
-            PK: {
-                name: "Pakistan",
-                flag: "🇵🇰"
-            },
-
-            AE: {
-                name: "United Arab Emirates",
-                flag: "🇦🇪"
-            },
-
-            SA: {
-                name: "Saudi Arabia",
-                flag: "🇸🇦"
-            },
-
-            IL: {
-                name: "Israel",
-                flag: "🇮🇱"
-            },
-
-            TR: {
-                name: "Türkiye",
-                flag: "🇹🇷"
-            },
-
-            QA: {
-                name: "Qatar",
-                flag: "🇶🇦"
-            },
-
-            JO: {
-                name: "Jordan",
-                flag: "🇯🇴"
-            },
-
-            LB: {
-                name: "Lebanon",
-                flag: "🇱🇧"
-            },
-
-            MN: {
-                name: "Mongolia",
-                flag: "🇲🇳"
-            },
-
-            KZ: {
-                name: "Kazakhstan",
-                flag: "🇰🇿"
-            },
-
-            UZ: {
-                name: "Uzbekistan",
-                flag: "🇺🇿"
-            },
-
-            GE: {
-                name: "Georgia",
-                flag: "🇬🇪"
-            },
-
-            AM: {
-                name: "Armenia",
-                flag: "🇦🇲"
-            },
-
-            AZ: {
-                name: "Azerbaijan",
-                flag: "🇦🇿"
-            }
+            JP: { name: "Japan", flag: "🇯🇵" },
+            KR: { name: "South Korea", flag: "🇰🇷" },
+            CN: { name: "China", flag: "🇨🇳" },
+            TW: { name: "Taiwan", flag: "🇹🇼" },
+            HK: { name: "Hong Kong", flag: "🇭🇰" },
+            MO: { name: "Macau", flag: "🇲🇴" },
+            IN: { name: "India", flag: "🇮🇳" },
+            TH: { name: "Thailand", flag: "🇹🇭" },
+            VN: { name: "Vietnam", flag: "🇻🇳" },
+            SG: { name: "Singapore", flag: "🇸🇬" },
+            MY: { name: "Malaysia", flag: "🇲🇾" },
+            ID: { name: "Indonesia", flag: "🇮🇩" },
+            PH: { name: "Philippines", flag: "🇵🇭" },
+            KH: { name: "Cambodia", flag: "🇰🇭" },
+            LA: { name: "Laos", flag: "🇱🇦" },
+            MM: { name: "Myanmar", flag: "🇲🇲" },
+            BN: { name: "Brunei", flag: "🇧🇳" },
+            NP: { name: "Nepal", flag: "🇳🇵" },
+            LK: { name: "Sri Lanka", flag: "🇱🇰" },
+            BD: { name: "Bangladesh", flag: "🇧🇩" },
+            PK: { name: "Pakistan", flag: "🇵🇰" },
+            AE: { name: "United Arab Emirates", flag: "🇦🇪" },
+            SA: { name: "Saudi Arabia", flag: "🇸🇦" },
+            IL: { name: "Israel", flag: "🇮🇱" },
+            TR: { name: "Türkiye", flag: "🇹🇷" },
+            QA: { name: "Qatar", flag: "🇶🇦" },
+            JO: { name: "Jordan", flag: "🇯🇴" },
+            LB: { name: "Lebanon", flag: "🇱🇧" },
+            MN: { name: "Mongolia", flag: "🇲🇳" },
+            KZ: { name: "Kazakhstan", flag: "🇰🇿" },
+            UZ: { name: "Uzbekistan", flag: "🇺🇿" },
+            GE: { name: "Georgia", flag: "🇬🇪" },
+            AM: { name: "Armenia", flag: "🇦🇲" },
+            AZ: { name: "Azerbaijan", flag: "🇦🇿" }
         }
     }
 };
@@ -453,30 +111,14 @@ const countryRegions = {
 // SETTINGS
 // ============================================================
 
-const DESCRIPTION_PLACEHOLDER =
-    "Description unavailable.";
+const DESCRIPTION_PLACEHOLDER = "Description unavailable.";
+const ADDRESS_PLACEHOLDER = "Address unavailable.";
 
-const ADDRESS_PLACEHOLDER =
-    "Address unavailable.";
-
-
-// ============================================================
-// STATE
-// ============================================================
+const placeCache = {};
 
 let places = [];
-
 let currentCountry = "JP";
-
 let currentCategory = "all";
-
-let countryDetectionFinished = false;
-
-
-/*
- * API information is kept here during the session.
- */
-const placeCache = {};
 
 
 // ============================================================
@@ -526,17 +168,13 @@ async function loadPlaces() {
 
     try {
 
-        const response =
-            await fetch("places.json");
+        const response = await fetch("places.json");
 
         if (!response.ok) {
-            throw new Error(
-                "Could not load places.json"
-            );
+            throw new Error("Could not load places.json");
         }
 
-        places =
-            await response.json();
+        places = await response.json();
 
         initializeApplication();
 
@@ -548,8 +186,7 @@ async function loadPlaces() {
             <div class="empty-state">
                 <h3>Unable to load places</h3>
                 <p>
-                    Please check that places.json
-                    is available.
+                    Please check that places.json is available.
                 </p>
             </div>
         `;
@@ -564,65 +201,52 @@ async function loadPlaces() {
 function initializeApplication() {
 
     setupCategoryButtons();
-
     setupRegionSelector();
-
     setupCountrySelector();
 
+    const urlCountry = getCountryFromURL();
+    const urlCategory = getCategoryFromURL();
 
-    const urlCountry =
-        getCountryFromURL();
-
-    const urlCategory =
-        getCategoryFromURL();
-
-
-    /*
-     * If a country is specified in the URL,
-     * use it immediately.
-     */
     if (
         urlCountry &&
         countryExists(urlCountry)
     ) {
 
-        currentCountry =
-            urlCountry;
-
-        countryDetectionFinished =
-            true;
+        currentCountry = urlCountry;
 
     } else {
 
-        /*
-         * Temporarily use Japan while
-         * country detection runs.
-         */
         currentCountry = "JP";
 
         detectVisitorCountry();
     }
-
 
     if (
         urlCategory &&
         categories.includes(urlCategory)
     ) {
 
-        currentCategory =
-            urlCategory;
+        currentCategory = urlCategory;
     }
 
-
-    populateRegionForCountry(
-        currentCountry
-    );
+    populateRegionForCountry(currentCountry);
 
     updateCountryDisplay();
-
     updateCategoryButtons();
 
+    /*
+     * IMPORTANT:
+     * Render immediately.
+     *
+     * The cards now appear with skeleton placeholders
+     * instead of waiting for the APIs.
+     */
     render();
+
+    /*
+     * Start API loading after the initial render.
+     */
+    loadVisiblePlaceData();
 }
 
 
@@ -635,9 +259,7 @@ async function detectVisitorCountry() {
     try {
 
         const response =
-            await fetch(
-                "https://ipapi.co/json/"
-            );
+            await fetch("https://ipapi.co/json/");
 
         if (!response.ok) {
             throw new Error(
@@ -645,40 +267,33 @@ async function detectVisitorCountry() {
             );
         }
 
-        const data =
-            await response.json();
+        const data = await response.json();
 
         const detectedCountry =
-            String(
-                data.country || ""
-            ).toUpperCase();
+            String(data.country || "").toUpperCase();
 
-
-        /*
-         * Do not override a country
-         * explicitly supplied in the URL.
-         */
         const urlCountry =
             getCountryFromURL();
-
 
         if (
             !urlCountry &&
             countryExists(detectedCountry)
         ) {
 
-            currentCountry =
-                detectedCountry;
+            currentCountry = detectedCountry;
 
-            populateRegionForCountry(
-                currentCountry
-            );
+            populateRegionForCountry(currentCountry);
 
             updateCountryDisplay();
 
             updateURL();
 
+            /*
+             * Render again for the newly detected country.
+             */
             render();
+
+            loadVisiblePlaceData();
         }
 
     } catch (error) {
@@ -687,11 +302,6 @@ async function detectVisitorCountry() {
             "Country detection failed:",
             error
         );
-
-    } finally {
-
-        countryDetectionFinished =
-            true;
     }
 }
 
@@ -703,27 +313,23 @@ async function detectVisitorCountry() {
 function setupCategoryButtons() {
 
     const buttons =
-        document.querySelectorAll(
-            ".category-button"
-        );
-
+        document.querySelectorAll(".category-button");
 
     buttons.forEach(button => {
 
-        button.addEventListener(
-            "click",
-            () => {
+        button.addEventListener("click", () => {
 
-                currentCategory =
-                    button.dataset.category;
+            currentCategory =
+                button.dataset.category;
 
-                updateCategoryButtons();
+            updateCategoryButtons();
 
-                updateURL();
+            updateURL();
 
-                render();
-            }
-        );
+            render();
+
+            loadVisiblePlaceData();
+        });
     });
 }
 
@@ -731,17 +337,13 @@ function setupCategoryButtons() {
 function updateCategoryButtons() {
 
     const buttons =
-        document.querySelectorAll(
-            ".category-button"
-        );
-
+        document.querySelectorAll(".category-button");
 
     buttons.forEach(button => {
 
         button.classList.toggle(
             "active",
-            button.dataset.category ===
-                currentCategory
+            button.dataset.category === currentCategory
         );
     });
 }
@@ -757,53 +359,38 @@ function setupRegionSelector() {
         return;
     }
 
-
     regionSelect.addEventListener(
         "change",
         function () {
 
-            const region =
-                this.value;
+            const region = this.value;
 
-
-            populateCountries(
-                region
-            );
-
+            populateCountries(region);
 
             if (!region) {
                 return;
             }
 
-
             const countryCodes =
                 Object.keys(
-                    countryRegions[region]
-                        .countries
+                    countryRegions[region].countries
                 );
-
 
             if (!countryCodes.length) {
                 return;
             }
 
-
-            setCountry(
-                countryCodes[0]
-            );
+            setCountry(countryCodes[0]);
         }
     );
 }
 
 
-function populateCountries(
-    regionKey
-) {
+function populateCountries(regionKey) {
 
     if (!countrySelect) {
         return;
     }
-
 
     countrySelect.innerHTML = `
         <option value="">
@@ -811,41 +398,30 @@ function populateCountries(
         </option>
     `;
 
-
     if (
         !regionKey ||
         !countryRegions[regionKey]
     ) {
-
         return;
     }
 
-
     const countries =
-        countryRegions[regionKey]
-            .countries;
+        countryRegions[regionKey].countries;
 
+    Object.entries(countries).forEach(
+        ([code, country]) => {
 
-    Object.entries(countries)
-        .forEach(
-            ([code, country]) => {
+            const option =
+                document.createElement("option");
 
-                const option =
-                    document.createElement(
-                        "option"
-                    );
+            option.value = code;
 
-                option.value =
-                    code;
+            option.textContent =
+                `${country.flag} ${country.name}`;
 
-                option.textContent =
-                    `${country.flag} ${country.name}`;
-
-                countrySelect.appendChild(
-                    option
-                );
-            }
-        );
+            countrySelect.appendChild(option);
+        }
+    );
 }
 
 
@@ -859,7 +435,6 @@ function setupCountrySelector() {
         return;
     }
 
-
     countrySelect.addEventListener(
         "change",
         function () {
@@ -868,112 +443,74 @@ function setupCountrySelector() {
                 return;
             }
 
-
-            setCountry(
-                this.value
-            );
+            setCountry(this.value);
         }
     );
 }
 
 
-function setCountry(
-    countryCode
-) {
+function setCountry(countryCode) {
 
-    if (
-        !countryExists(countryCode)
-    ) {
-
+    if (!countryExists(countryCode)) {
         return;
     }
 
-
-    currentCountry =
-        countryCode;
-
+    currentCountry = countryCode;
 
     updateCountryDisplay();
 
     updateURL();
 
     render();
+
+    loadVisiblePlaceData();
 }
 
 
 function updateCountryDisplay() {
 
     const info =
-        getCountryInfo(
-            currentCountry
-        );
-
+        getCountryInfo(currentCountry);
 
     if (!info) {
         return;
     }
 
-
     if (countryNameElement) {
-
-        countryNameElement.textContent =
-            info.name;
+        countryNameElement.textContent = info.name;
     }
-
 
     if (countryFlagElement) {
-
-        countryFlagElement.textContent =
-            info.flag;
+        countryFlagElement.textContent = info.flag;
     }
-
 
     if (countrySelect) {
-
-        countrySelect.value =
-            currentCountry;
+        countrySelect.value = currentCountry;
     }
 
-
     if (regionSelect) {
-
-        regionSelect.value =
-            info.region;
+        regionSelect.value = info.region;
     }
 }
 
 
-function populateRegionForCountry(
-    countryCode
-) {
+function populateRegionForCountry(countryCode) {
 
     const info =
-        getCountryInfo(
-            countryCode
-        );
-
+        getCountryInfo(countryCode);
 
     if (!info) {
         return;
     }
 
-
     if (regionSelect) {
-
-        regionSelect.value =
-            info.region;
+        regionSelect.value = info.region;
     }
 
-
-    populateCountries(
-        info.region
-    );
-
+    populateCountries(info.region);
 
     if (countrySelect) {
-
-        countrySelect.value =
-            countryCode;
+        countrySelect.value = countryCode;
     }
 }
 
@@ -982,44 +519,32 @@ function populateRegionForCountry(
 // COUNTRY HELPERS
 // ============================================================
 
-function countryExists(
-    countryCode
-) {
+function countryExists(countryCode) {
 
     if (!countryCode) {
         return false;
     }
 
-
-    for (
-        const regionKey in countryRegions
-    ) {
+    for (const regionKey in countryRegions) {
 
         if (
             countryRegions[regionKey]
                 .countries[countryCode]
         ) {
-
             return true;
         }
     }
-
 
     return false;
 }
 
 
-function getCountryInfo(
-    countryCode
-) {
+function getCountryInfo(countryCode) {
 
-    for (
-        const regionKey in countryRegions
-    ) {
+    for (const regionKey in countryRegions) {
 
         const region =
             countryRegions[regionKey];
-
 
         if (
             region.countries[countryCode]
@@ -1032,24 +557,16 @@ function getCountryInfo(
         }
     }
 
-
     return null;
 }
 
 
-function getCountryName(
-    countryCode
-) {
+function getCountryName(countryCode) {
 
     const info =
-        getCountryInfo(
-            countryCode
-        );
+        getCountryInfo(countryCode);
 
-
-    return info
-        ? info.name
-        : "";
+    return info ? info.name : "";
 }
 
 
@@ -1059,43 +576,25 @@ function getCountryName(
 
 function getCandidatePlaces() {
 
-    /*
-     * Meetup category means:
-     * show places whose URL is actually
-     * a Meetup URL.
-     */
-    if (
-        currentCategory === "meetups"
-    ) {
+    if (currentCategory === "meetups") {
 
-        return places.filter(
-            place =>
-                isMeetup(place)
+        return places.filter(place =>
+            isMeetup(place)
         );
     }
 
-
-    if (
-        currentCategory === "all"
-    ) {
+    if (currentCategory === "all") {
 
         return places;
     }
 
+    return places.filter(place => {
 
-    return places.filter(
-        place => {
-
-            return (
-                Array.isArray(
-                    place.categories
-                ) &&
-                place.categories.includes(
-                    currentCategory
-                )
-            );
-        }
-    );
+        return (
+            Array.isArray(place.categories) &&
+            place.categories.includes(currentCategory)
+        );
+    });
 }
 
 
@@ -1106,8 +605,6 @@ function getCandidatePlaces() {
 function render() {
 
     renderCards();
-
-    loadVisiblePlaceData();
 }
 
 
@@ -1120,46 +617,39 @@ async function loadVisiblePlaceData() {
     const candidates =
         getCandidatePlaces();
 
+    /*
+     * Only start loading places that haven't
+     * already been loaded.
+     */
+    const placesToLoad =
+        candidates.filter(place => {
 
-    for (
-        const place of candidates
-    ) {
+            return !(
+                placeCache[place.id] &&
+                (
+                    placeCache[place.id].loaded ||
+                    placeCache[place.id].loading
+                )
+            );
+        });
 
-        if (
-            placeCache[place.id] &&
-            placeCache[place.id].loaded
-        ) {
+    /*
+     * Load the places without waiting for the
+     * previous place to finish.
+     *
+     * The visual layout is already reserved,
+     * so this won't cause the page to jump.
+     */
+    await Promise.all(
+        placesToLoad.map(place =>
+            loadPlaceData(place)
+        )
+    );
 
-            continue;
-        }
-
-
-        if (
-            placeCache[place.id] &&
-            placeCache[place.id].loading
-        ) {
-
-            continue;
-        }
-
-
-        await loadPlaceData(
-            place
-        );
-
-
-        /*
-         * Re-render as each place finishes.
-         */
-        renderCards();
-
-
-        /*
-         * Nominatim is a public service.
-         * Don't bombard it with requests.
-         */
-        await delay(1100);
-    }
+    /*
+     * Render once all current requests finish.
+     */
+    renderCards();
 }
 
 
@@ -1167,114 +657,56 @@ async function loadVisiblePlaceData() {
 // LOAD ONE PLACE
 // ============================================================
 
-async function loadPlaceData(
-    place
-) {
+async function loadPlaceData(place) {
 
     if (!placeCache[place.id]) {
 
         placeCache[place.id] = {
-
             loading: false,
-
             loaded: false,
-
             location: null,
-
             description: null,
-
             image: null
         };
     }
 
-
     const cache =
         placeCache[place.id];
-
 
     if (
         cache.loading ||
         cache.loaded
     ) {
-
         return;
     }
 
-
     cache.loading = true;
 
+    /*
+     * Run the three APIs for this place concurrently.
+     */
+    const [
+        location,
+        description,
+        image
+    ] = await Promise.all([
+        getPlaceLocation(place, currentCountry),
+        getWikipediaDescription(place, currentCountry),
+        getWikimediaImage(place, currentCountry)
+    ]);
 
-    try {
+    cache.location = location;
+    cache.description = description;
+    cache.image = image;
 
-        /*
-         * Get address + coordinates + country.
-         */
-        cache.location =
-            await getPlaceLocation(
-                place,
-                currentCountry
-            );
+    cache.loaded = true;
+    cache.loading = false;
 
-
-        /*
-         * Get description.
-         */
-        cache.description =
-            await getWikipediaDescription(
-                place,
-                currentCountry
-            );
-
-
-        /*
-         * Get Wikimedia image.
-         */
-        cache.image =
-            await getWikimediaImage(
-                place,
-                currentCountry
-            );
-
-
-        cache.loaded = true;
-
-    } catch (error) {
-
-        console.error(
-            `Failed to load ${place.name}:`,
-            error
-        );
-
-
-        cache.location = {
-
-            address:
-                ADDRESS_PLACEHOLDER,
-
-            lat: null,
-
-            lng: null,
-
-            country: null
-        };
-
-
-        cache.description =
-            DESCRIPTION_PLACEHOLDER;
-
-
-        /*
-         * No image means blank image area.
-         */
-        cache.image = null;
-
-
-        cache.loaded = true;
-
-    } finally {
-
-        cache.loading = false;
-    }
+    /*
+     * Immediately replace this place's skeleton
+     * with its real information.
+     */
+    renderCards();
 }
 
 
@@ -1288,38 +720,27 @@ async function getPlaceLocation(
 ) {
 
     const countryName =
-        getCountryName(
-            countryCode
-        );
+        getCountryName(countryCode);
 
-
-    let searchText =
-        place.name;
-
+    let searchText = place.name;
 
     if (countryName) {
-
         searchText =
             `${place.name}, ${countryName}`;
     }
 
-
     const url =
         "https://nominatim.openstreetmap.org/search" +
         "?q=" +
-        encodeURIComponent(
-            searchText
-        ) +
+        encodeURIComponent(searchText) +
         "&format=jsonv2" +
         "&limit=1" +
         "&addressdetails=1";
-
 
     try {
 
         const response =
             await fetch(url);
-
 
         if (!response.ok) {
 
@@ -1328,10 +749,8 @@ async function getPlaceLocation(
             );
         }
 
-
         const results =
             await response.json();
-
 
         if (
             !Array.isArray(results) ||
@@ -1339,30 +758,20 @@ async function getPlaceLocation(
         ) {
 
             return {
-
-                address:
-                    ADDRESS_PLACEHOLDER,
-
+                address: ADDRESS_PLACEHOLDER,
                 lat: null,
-
                 lng: null,
-
                 country: null
             };
         }
 
-
-        const result =
-            results[0];
-
+        const result = results[0];
 
         const country =
             result.address &&
             result.address.country_code
-                ? result.address.country_code
-                    .toUpperCase()
+                ? result.address.country_code.toUpperCase()
                 : null;
-
 
         return {
 
@@ -1390,16 +799,10 @@ async function getPlaceLocation(
             error
         );
 
-
         return {
-
-            address:
-                ADDRESS_PLACEHOLDER,
-
+            address: ADDRESS_PLACEHOLDER,
             lat: null,
-
             lng: null,
-
             country: null
         };
     }
@@ -1418,29 +821,21 @@ async function getWikipediaDescription(
     try {
 
         const countryName =
-            getCountryName(
-                countryCode
-            );
-
+            getCountryName(countryCode);
 
         const searchText =
             countryName
                 ? `${place.name} ${countryName}`
                 : place.name;
 
-
         const searchURL =
             "https://en.wikipedia.org/w/rest.php/v1/search/page" +
             "?q=" +
-            encodeURIComponent(
-                searchText
-            ) +
+            encodeURIComponent(searchText) +
             "&limit=5";
-
 
         const searchResponse =
             await fetch(searchURL);
-
 
         if (!searchResponse.ok) {
 
@@ -1449,10 +844,8 @@ async function getWikipediaDescription(
             );
         }
 
-
         const searchData =
             await searchResponse.json();
-
 
         if (
             !searchData.pages ||
@@ -1462,37 +855,27 @@ async function getWikipediaDescription(
             return DESCRIPTION_PLACEHOLDER;
         }
 
-
         const placeName =
             place.name.toLowerCase();
 
-
         let matchingPage =
-            searchData.pages.find(
-                page =>
-                    page.title
-                        .toLowerCase()
-                        .includes(placeName)
+            searchData.pages.find(page =>
+                page.title
+                    .toLowerCase()
+                    .includes(placeName)
             );
 
-
         if (!matchingPage) {
-
             matchingPage =
                 searchData.pages[0];
         }
 
-
         const summaryURL =
             "https://en.wikipedia.org/api/rest_v1/page/summary/" +
-            encodeURIComponent(
-                matchingPage.key
-            );
-
+            encodeURIComponent(matchingPage.key);
 
         const summaryResponse =
             await fetch(summaryURL);
-
 
         if (!summaryResponse.ok) {
 
@@ -1501,16 +884,13 @@ async function getWikipediaDescription(
             );
         }
 
-
         const summary =
             await summaryResponse.json();
-
 
         const description =
             summary.extract ||
             summary.description ||
             "";
-
 
         if (
             typeof description !== "string" ||
@@ -1519,7 +899,6 @@ async function getWikipediaDescription(
 
             return DESCRIPTION_PLACEHOLDER;
         }
-
 
         return description;
 
@@ -1547,25 +926,19 @@ async function getWikimediaImage(
     try {
 
         const countryName =
-            getCountryName(
-                countryCode
-            );
-
+            getCountryName(countryCode);
 
         const searchText =
             countryName
                 ? `${place.name} ${countryName}`
                 : place.name;
 
-
         const url =
             "https://commons.wikimedia.org/w/api.php" +
             "?action=query" +
             "&generator=search" +
             "&gsrsearch=" +
-            encodeURIComponent(
-                searchText
-            ) +
+            encodeURIComponent(searchText) +
             "&gsrnamespace=6" +
             "&gsrlimit=10" +
             "&prop=imageinfo" +
@@ -1574,10 +947,8 @@ async function getWikimediaImage(
             "&format=json" +
             "&origin=*";
 
-
         const response =
             await fetch(url);
-
 
         if (!response.ok) {
 
@@ -1586,10 +957,8 @@ async function getWikimediaImage(
             );
         }
 
-
         const data =
             await response.json();
-
 
         if (
             !data.query ||
@@ -1599,17 +968,12 @@ async function getWikimediaImage(
             return null;
         }
 
-
         const pages =
-            Object.values(
-                data.query.pages
-            );
-
+            Object.values(data.query.pages);
 
         if (!pages.length) {
             return null;
         }
-
 
         const normalizedName =
             place.name
@@ -1620,89 +984,56 @@ async function getWikimediaImage(
                 )
                 .trim();
 
-
         let bestPage = null;
-
         let bestScore = -Infinity;
 
-
-        for (
-            const page of pages
-        ) {
+        for (const page of pages) {
 
             const title =
-                String(
-                    page.title || ""
-                )
-                .replace(
-                    /^File:/i,
-                    ""
-                )
-                .toLowerCase();
-
+                String(page.title || "")
+                    .replace(/^File:/i, "")
+                    .toLowerCase();
 
             let score = 0;
 
-
             if (
-                title.includes(
-                    normalizedName
-                )
+                title.includes(normalizedName)
             ) {
-
                 score += 10;
             }
-
 
             const words =
                 normalizedName
                     .split(" ")
                     .filter(Boolean);
 
+            words.forEach(word => {
 
-            words.forEach(
-                word => {
-
-                    if (
-                        title.includes(word)
-                    ) {
-
-                        score += 1;
-                    }
+                if (title.includes(word)) {
+                    score += 1;
                 }
-            );
+            });
 
+            if (score > bestScore) {
 
-            if (
-                score > bestScore
-            ) {
-
-                bestScore =
-                    score;
-
-                bestPage =
-                    page;
+                bestScore = score;
+                bestPage = page;
             }
         }
-
 
         if (!bestPage) {
             return null;
         }
 
-
         if (
             !bestPage.imageinfo ||
             !bestPage.imageinfo[0]
         ) {
-
             return null;
         }
 
-
         const imageInfo =
             bestPage.imageinfo[0];
-
 
         return (
             imageInfo.thumburl ||
@@ -1717,9 +1048,9 @@ async function getWikimediaImage(
             error
         );
 
-
         /*
-         * No image = blank area.
+         * null intentionally means:
+         * show a blank image area.
          */
         return null;
     }
@@ -1736,7 +1067,6 @@ function isMeetup(place) {
         return false;
     }
 
-
     try {
 
         const hostname =
@@ -1744,12 +1074,9 @@ function isMeetup(place) {
                 .hostname
                 .toLowerCase();
 
-
         return (
             hostname === "meetup.com" ||
-            hostname.endsWith(
-                ".meetup.com"
-            )
+            hostname.endsWith(".meetup.com")
         );
 
     } catch {
@@ -1763,14 +1090,11 @@ function isMeetup(place) {
 // EXTERNAL LINK
 // ============================================================
 
-function getExternalLinkHTML(
-    place
-) {
+function getExternalLinkHTML(place) {
 
     if (!place.url) {
         return "";
     }
-
 
     if (isMeetup(place)) {
 
@@ -1785,7 +1109,6 @@ function getExternalLinkHTML(
             </a>
         `;
     }
-
 
     return `
         <a
@@ -1813,11 +1136,6 @@ function getMapButtonHTML(
         return "";
     }
 
-
-    /*
-     * Prefer the coordinates because they are
-     * more precise than an address search.
-     */
     if (
         location.lat !== null &&
         location.lng !== null &&
@@ -1828,12 +1146,10 @@ function getMapButtonHTML(
         const coordinates =
             `${location.lat},${location.lng}`;
 
-
         const googleMapsURL =
             `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
                 coordinates
             )}`;
-
 
         return `
             <a
@@ -1847,15 +1163,9 @@ function getMapButtonHTML(
         `;
     }
 
-
-    /*
-     * If coordinates aren't available,
-     * fall back to the automatically retrieved address.
-     */
     if (
         location.address &&
-        location.address !==
-            ADDRESS_PLACEHOLDER
+        location.address !== ADDRESS_PLACEHOLDER
     ) {
 
         const googleMapsURL =
@@ -1863,7 +1173,6 @@ function getMapButtonHTML(
                 location.address
             )}`;
 
-
         return `
             <a
                 href="${escapeHTML(googleMapsURL)}"
@@ -1876,8 +1185,77 @@ function getMapButtonHTML(
         `;
     }
 
-
     return "";
+}
+
+
+// ============================================================
+// SKELETON HELPERS
+// ============================================================
+
+function getSkeletonCardHTML(place) {
+
+    const categoriesHTML =
+        Array.isArray(place.categories)
+            ? place.categories
+                .map(category => `
+                    <span class="place-category">
+                        ${escapeHTML(
+                            formatCategory(category)
+                        )}
+                    </span>
+                `)
+                .join("")
+            : "";
+
+    const meetupTag =
+        isMeetup(place)
+            ? `
+                <span class="place-category meetup-tag">
+                    Meetup
+                </span>
+            `
+            : "";
+
+    return `
+        <article class="place-card">
+
+            <div class="place-image-skeleton skeleton">
+            </div>
+
+            <div class="place-card-content">
+
+                <div class="skeleton skeleton-title">
+                </div>
+
+                <div class="place-categories">
+                    ${categoriesHTML}
+                    ${meetupTag}
+                </div>
+
+                <div class="skeleton skeleton-description">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="skeleton skeleton-address">
+                </div>
+
+                <div class="place-actions">
+
+                    <div class="skeleton skeleton-button">
+                    </div>
+
+                    <div class="skeleton skeleton-button">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+    `;
 }
 
 
@@ -1891,60 +1269,57 @@ function renderCards() {
         return;
     }
 
-
     const candidates =
         getCandidatePlaces();
 
-
     /*
-     * Only show places that have resolved
-     * to the currently selected country.
+     * Render ALL candidate cards immediately.
+     *
+     * This is the important change:
+     * the cards don't wait for the APIs.
      */
     const visiblePlaces =
-        candidates.filter(
-            place => {
+        candidates.filter(place => {
 
-                const cache =
-                    placeCache[place.id];
+            const cache =
+                placeCache[place.id];
 
-
-                if (
-                    !cache ||
-                    !cache.location
-                ) {
-
-                    return false;
-                }
-
+            /*
+             * If the API has already resolved the place,
+             * make sure it belongs to the selected country.
+             */
+            if (
+                cache &&
+                cache.loaded &&
+                cache.location
+            ) {
 
                 return (
                     cache.location.country ===
                     currentCountry
                 );
             }
-        );
 
+            /*
+             * If it hasn't loaded yet, show it.
+             * The skeleton represents the loading state.
+             */
+            return true;
+        });
 
-    /*
-     * Places still waiting for API data.
-     */
-    const pendingPlaces =
-        candidates.filter(
-            place => {
+    if (resultCount) {
+
+        const loadedCount =
+            visiblePlaces.filter(place => {
 
                 const cache =
                     placeCache[place.id];
 
-
                 return (
-                    !cache ||
-                    !cache.location
+                    cache &&
+                    cache.loaded
                 );
-            }
-        );
-
-
-    if (resultCount) {
+            }).length;
 
         resultCount.textContent =
             `${visiblePlaces.length} recommendation${
@@ -1954,294 +1329,199 @@ function renderCards() {
             }`;
     }
 
-
     placesContainer.innerHTML = "";
 
-
-    /*
-     * API requests are still running.
-     */
-    if (
-        visiblePlaces.length === 0 &&
-        pendingPlaces.length > 0
-    ) {
-
-        placesContainer.innerHTML = `
-
-            <div class="empty-state">
-
-                <h3>
-                    Finding places...
-                </h3>
-
-                <p>
-                    Loading recommendations for
-                    ${escapeHTML(
-                        getCountryName(
-                            currentCountry
-                        )
-                    )}.
-                </p>
-
-            </div>
-
-        `;
-
-        return;
-    }
-
-
-    /*
-     * Nothing matched the filters.
-     */
     if (!visiblePlaces.length) {
 
         placesContainer.innerHTML = `
-
             <div class="empty-state">
-
-                <h3>
-                    No recommendations
-                </h3>
-
+                <h3>No recommendations</h3>
                 <p>
                     There are currently no places
                     matching this selection.
                 </p>
-
             </div>
-
         `;
 
         return;
     }
 
+    visiblePlaces.forEach(place => {
 
-    /*
-     * Create cards.
-     */
-    visiblePlaces.forEach(
-        place => {
+        const cache =
+            placeCache[place.id];
 
-            const cache =
-                placeCache[place.id];
+        /*
+         * Not loaded yet:
+         * render skeleton card.
+         */
+        if (
+            !cache ||
+            !cache.loaded
+        ) {
 
+            placesContainer.insertAdjacentHTML(
+                "beforeend",
+                getSkeletonCardHTML(place)
+            );
 
-            const location =
-                cache.location;
+            return;
+        }
 
+        /*
+         * Loaded:
+         * render real card.
+         */
+        const location =
+            cache.location || {
+                address: ADDRESS_PLACEHOLDER,
+                lat: null,
+                lng: null,
+                country: null
+            };
 
-            const description =
-                cache.description ||
-                DESCRIPTION_PLACEHOLDER;
+        const description =
+            cache.description ||
+            DESCRIPTION_PLACEHOLDER;
 
+        const image =
+            cache.image;
 
-            const image =
-                cache.image;
+        const card =
+            document.createElement("article");
 
+        card.className =
+            "place-card";
 
-            const card =
-                document.createElement(
-                    "article"
-                );
+        let imageHTML = `
+            <div class="place-image-empty">
+            </div>
+        `;
 
+        if (image) {
 
-            card.className =
-                "place-card";
+            imageHTML = `
+                <div class="place-image">
 
+                    <img
+                        src="${escapeHTML(image)}"
+                        alt="${escapeHTML(place.name)}"
+                        loading="lazy"
+                        referrerpolicy="no-referrer"
+                    >
 
-            /*
-             * Blank image area if Wikimedia
-             * does not return an image.
-             */
-            let imageHTML = `
-
-                <div class="place-image-empty">
                 </div>
-
             `;
+        }
 
-
-            if (image) {
-
-                imageHTML = `
-
-                    <div class="place-image">
-
-                        <img
-                            src="${escapeHTML(image)}"
-                            alt="${escapeHTML(place.name)}"
-                            loading="lazy"
-                            referrerpolicy="no-referrer"
-                        >
-
-                    </div>
-
-                `;
-            }
-
-
-            /*
-             * Categories.
-             */
-            const categoriesHTML =
-                Array.isArray(
-                    place.categories
-                )
-                    ? place.categories
-                        .map(
-                            category => `
-
-                                <span
-                                    class="place-category"
-                                >
-                                    ${escapeHTML(
-                                        formatCategory(
-                                            category
-                                        )
-                                    )}
-                                </span>
-
-                            `
-                        )
-                        .join("")
-                    : "";
-
-
-            /*
-             * Add a Meetup label automatically
-             * when the URL belongs to Meetup.
-             */
-            const meetupTag =
-                isMeetup(place)
-                    ? `
-
-                        <span
-                            class="place-category meetup-tag"
-                        >
-                            Meetup
-                        </span>
-
-                    `
-                    : "";
-
-
-            const externalLinkHTML =
-                getExternalLinkHTML(
-                    place
-                );
-
-
-            /*
-             * NEW:
-             * View on Map button.
-             */
-            const mapButtonHTML =
-                getMapButtonHTML(
-                    place,
-                    location
-                );
-
-
-            card.innerHTML = `
-
-                ${imageHTML}
-
-
-                <div class="place-card-content">
-
-                    <h3 class="place-name">
-                        ${escapeHTML(
-                            place.name
-                        )}
-                    </h3>
-
-
-                    <div class="place-categories">
-
-                        ${categoriesHTML}
-
-                        ${meetupTag}
-
-                    </div>
-
-
-                    <p class="place-description">
-
-                        ${escapeHTML(
-                            description
-                        )}
-
-                    </p>
-
-
-                    <div class="place-address">
-
-                        <span class="address-icon">
-                            📍
-                        </span>
-
-                        <span>
+        const categoriesHTML =
+            Array.isArray(place.categories)
+                ? place.categories
+                    .map(category => `
+                        <span class="place-category">
                             ${escapeHTML(
-                                location.address ||
-                                ADDRESS_PLACEHOLDER
+                                formatCategory(category)
                             )}
                         </span>
+                    `)
+                    .join("")
+                : "";
 
-                    </div>
+        const meetupTag =
+            isMeetup(place)
+                ? `
+                    <span
+                        class="place-category meetup-tag"
+                    >
+                        Meetup
+                    </span>
+                `
+                : "";
 
+        const externalLinkHTML =
+            getExternalLinkHTML(place);
 
-                    <div class="place-actions">
+        const mapButtonHTML =
+            getMapButtonHTML(
+                place,
+                location
+            );
 
-                        ${mapButtonHTML}
+        card.innerHTML = `
 
-                        ${externalLinkHTML}
+            ${imageHTML}
 
+            <div class="place-card-content">
 
-                        <button
-                            type="button"
-                            class="copy-button"
-                        >
-                            Copy address
-                        </button>
+                <h3 class="place-name">
+                    ${escapeHTML(place.name)}
+                </h3>
 
-                    </div>
+                <div class="place-categories">
+
+                    ${categoriesHTML}
+
+                    ${meetupTag}
 
                 </div>
 
-            `;
+                <p class="place-description">
+                    ${escapeHTML(description)}
+                </p>
 
+                <div class="place-address">
 
-            /*
-             * Copy address button.
-             */
-            const copyButton =
-                card.querySelector(
-                    ".copy-button"
-                );
+                    <span class="address-icon">
+                        📍
+                    </span>
 
-
-            if (copyButton) {
-
-                copyButton.addEventListener(
-                    "click",
-                    () => {
-
-                        copyAddress(
+                    <span>
+                        ${escapeHTML(
                             location.address ||
-                                ADDRESS_PLACEHOLDER,
-                            copyButton
-                        );
-                    }
-                );
-            }
+                            ADDRESS_PLACEHOLDER
+                        )}
+                    </span>
 
+                </div>
 
-            placesContainer.appendChild(
-                card
+                <div class="place-actions">
+
+                    ${mapButtonHTML}
+
+                    ${externalLinkHTML}
+
+                    <button
+                        type="button"
+                        class="copy-button"
+                    >
+                        Copy address
+                    </button>
+
+                </div>
+
+            </div>
+        `;
+
+        const copyButton =
+            card.querySelector(".copy-button");
+
+        if (copyButton) {
+
+            copyButton.addEventListener(
+                "click",
+                () => {
+
+                    copyAddress(
+                        location.address ||
+                        ADDRESS_PLACEHOLDER,
+                        copyButton
+                    );
+                }
             );
         }
-    );
+
+        placesContainer.appendChild(card);
+    });
 }
 
 
@@ -2256,37 +1536,24 @@ async function copyAddress(
 
     try {
 
-        await navigator.clipboard.writeText(
-            address
-        );
-
+        await navigator.clipboard.writeText(address);
 
         const originalText =
             button.textContent;
 
-
         button.textContent =
             "✓ Copied";
 
+        button.classList.add("copied");
 
-        button.classList.add(
-            "copied"
-        );
+        setTimeout(() => {
 
+            button.textContent =
+                originalText;
 
-        setTimeout(
-            () => {
+            button.classList.remove("copied");
 
-                button.textContent =
-                    originalText;
-
-                button.classList.remove(
-                    "copied"
-                );
-
-            },
-            1500
-        );
+        }, 1500);
 
     } catch {
 
@@ -2309,7 +1576,6 @@ function getCountryFromURL() {
             window.location.search
         );
 
-
     return (
         params
             .get("country") || ""
@@ -2323,7 +1589,6 @@ function getCategoryFromURL() {
         new URLSearchParams(
             window.location.search
         );
-
 
     return (
         params
@@ -2339,7 +1604,6 @@ function updateURL() {
             window.location.search
         );
 
-
     if (currentCountry) {
 
         params.set(
@@ -2347,7 +1611,6 @@ function updateURL() {
             currentCountry
         );
     }
-
 
     if (
         currentCategory &&
@@ -2361,21 +1624,16 @@ function updateURL() {
 
     } else {
 
-        params.delete(
-            "category"
-        );
+        params.delete("category");
     }
-
 
     const query =
         params.toString();
-
 
     const newURL =
         query
             ? `${window.location.pathname}?${query}`
             : window.location.pathname;
-
 
     window.history.replaceState(
         {},
@@ -2389,19 +1647,13 @@ function updateURL() {
 // FORMATTING
 // ============================================================
 
-function formatCategory(
-    category
-) {
+function formatCategory(category) {
 
     return String(category)
-        .replace(
-            /-/g,
-            " "
-        )
+        .replace(/-/g, " ")
         .replace(
             /\b\w/g,
-            letter =>
-                letter.toUpperCase()
+            letter => letter.toUpperCase()
         );
 }
 
@@ -2410,63 +1662,21 @@ function formatCategory(
 // HTML ESCAPING
 // ============================================================
 
-function escapeHTML(
-    value
-) {
+function escapeHTML(value) {
 
     if (
         value === undefined ||
         value === null
     ) {
-
         return "";
     }
 
-
     return String(value)
-
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-}
-
-
-// ============================================================
-// DELAY
-// ============================================================
-
-function delay(
-    milliseconds
-) {
-
-    return new Promise(
-        resolve =>
-            setTimeout(
-                resolve,
-                milliseconds
-            )
-    );
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 }
 
 
