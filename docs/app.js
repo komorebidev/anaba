@@ -114,10 +114,6 @@ const countryRegions = {
 const DESCRIPTION_PLACEHOLDER = "Description unavailable.";
 const ADDRESS_PLACEHOLDER = "Address unavailable.";
 
-// Used only when Wikimedia returns no image or fails.
-const FALLBACK_IMAGE_URL =
-    "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEggMt-m95pUHuS-ag4Ir8y3uV8XV4z7YRgbjsQGWlZWygFrW0vL0Xx_QMcOwiUBPB8dA7z-Ig8GP_iACAfSHgkHEp4UYunZNutAer2hDee4TZ37MAHtMSCDM2qzZwZ78Wki9Pqv706r81Fl/s800/ojigi_animal_usagi.png";
-
 const placeCache = {};
 
 let places = [];
@@ -172,17 +168,13 @@ async function loadPlaces() {
 
     try {
 
-        const response =
-            await fetch("places.json");
+        const response = await fetch("places.json");
 
         if (!response.ok) {
-            throw new Error(
-                "Could not load places.json"
-            );
+            throw new Error("Could not load places.json");
         }
 
-        places =
-            await response.json();
+        places = await response.json();
 
         initializeApplication();
 
@@ -190,16 +182,14 @@ async function loadPlaces() {
 
         console.error(error);
 
-        if (placesContainer) {
-            placesContainer.innerHTML = `
-                <div class="empty-state">
-                    <h3>Unable to load places</h3>
-                    <p>
-                        Please check that places.json is available.
-                    </p>
-                </div>
-            `;
-        }
+        placesContainer.innerHTML = `
+            <div class="empty-state">
+                <h3>Unable to load places</h3>
+                <p>
+                    Please check that places.json is available.
+                </p>
+            </div>
+        `;
     }
 }
 
@@ -214,19 +204,15 @@ function initializeApplication() {
     setupRegionSelector();
     setupCountrySelector();
 
-    const urlCountry =
-        getCountryFromURL();
-
-    const urlCategory =
-        getCategoryFromURL();
+    const urlCountry = getCountryFromURL();
+    const urlCategory = getCategoryFromURL();
 
     if (
         urlCountry &&
         countryExists(urlCountry)
     ) {
 
-        currentCountry =
-            urlCountry;
+        currentCountry = urlCountry;
 
     } else {
 
@@ -240,19 +226,25 @@ function initializeApplication() {
         categories.includes(urlCategory)
     ) {
 
-        currentCategory =
-            urlCategory;
+        currentCategory = urlCategory;
     }
 
-    populateRegionForCountry(
-        currentCountry
-    );
+    populateRegionForCountry(currentCountry);
 
     updateCountryDisplay();
     updateCategoryButtons();
 
+    /*
+     * Render immediately.
+     *
+     * Cards appear with skeleton placeholders
+     * instead of waiting for the APIs.
+     */
     render();
 
+    /*
+     * Start API loading after the initial render.
+     */
     loadVisiblePlaceData();
 }
 
@@ -266,9 +258,7 @@ async function detectVisitorCountry() {
     try {
 
         const response =
-            await fetch(
-                "https://ipapi.co/json/"
-            );
+            await fetch("https://ipapi.co/json/");
 
         if (!response.ok) {
             throw new Error(
@@ -276,13 +266,10 @@ async function detectVisitorCountry() {
             );
         }
 
-        const data =
-            await response.json();
+        const data = await response.json();
 
         const detectedCountry =
-            String(
-                data.country || ""
-            ).toUpperCase();
+            String(data.country || "").toUpperCase();
 
         const urlCountry =
             getCountryFromURL();
@@ -292,14 +279,12 @@ async function detectVisitorCountry() {
             countryExists(detectedCountry)
         ) {
 
-            currentCountry =
-                detectedCountry;
+            currentCountry = detectedCountry;
 
-            populateRegionForCountry(
-                currentCountry
-            );
+            populateRegionForCountry(currentCountry);
 
             updateCountryDisplay();
+
             updateURL();
 
             render();
@@ -324,26 +309,23 @@ async function detectVisitorCountry() {
 function setupCategoryButtons() {
 
     const buttons =
-        document.querySelectorAll(
-            ".category-button"
-        );
+        document.querySelectorAll(".category-button");
 
     buttons.forEach(button => {
 
-        button.addEventListener(
-            "click",
-            () => {
+        button.addEventListener("click", () => {
 
-                currentCategory =
-                    button.dataset.category;
+            currentCategory =
+                button.dataset.category;
 
-                updateCategoryButtons();
-                updateURL();
+            updateCategoryButtons();
 
-                render();
-                loadVisiblePlaceData();
-            }
-        );
+            updateURL();
+
+            render();
+
+            loadVisiblePlaceData();
+        });
     });
 }
 
@@ -351,16 +333,13 @@ function setupCategoryButtons() {
 function updateCategoryButtons() {
 
     const buttons =
-        document.querySelectorAll(
-            ".category-button"
-        );
+        document.querySelectorAll(".category-button");
 
     buttons.forEach(button => {
 
         button.classList.toggle(
             "active",
-            button.dataset.category ===
-                currentCategory
+            button.dataset.category === currentCategory
         );
     });
 }
@@ -380,8 +359,7 @@ function setupRegionSelector() {
         "change",
         function () {
 
-            const region =
-                this.value;
+            const region = this.value;
 
             populateCountries(region);
 
@@ -398,9 +376,7 @@ function setupRegionSelector() {
                 return;
             }
 
-            setCountry(
-                countryCodes[0]
-            );
+            setCountry(countryCodes[0]);
         }
     );
 }
@@ -434,15 +410,12 @@ function populateCountries(regionKey) {
             const option =
                 document.createElement("option");
 
-            option.value =
-                code;
+            option.value = code;
 
             option.textContent =
                 `${country.flag} ${country.name}`;
 
-            countrySelect.appendChild(
-                option
-            );
+            countrySelect.appendChild(option);
         }
     );
 }
@@ -466,9 +439,7 @@ function setupCountrySelector() {
                 return;
             }
 
-            setCountry(
-                this.value
-            );
+            setCountry(this.value);
         }
     );
 }
@@ -480,13 +451,31 @@ function setCountry(countryCode) {
         return;
     }
 
-    currentCountry =
-        countryCode;
+    currentCountry = countryCode;
+
+    /*
+     * Location data depends on the selected country,
+     * so places need to be loaded again for the new country.
+     */
+    Object.keys(placeCache).forEach(id => {
+
+        const cache = placeCache[id];
+
+        if (cache) {
+            cache.loaded = false;
+            cache.loading = false;
+            cache.location = null;
+            cache.description = null;
+            cache.image = null;
+        }
+    });
 
     updateCountryDisplay();
+
     updateURL();
 
     render();
+
     loadVisiblePlaceData();
 }
 
@@ -501,30 +490,24 @@ function updateCountryDisplay() {
     }
 
     if (countryNameElement) {
-        countryNameElement.textContent =
-            info.name;
+        countryNameElement.textContent = info.name;
     }
 
     if (countryFlagElement) {
-        countryFlagElement.textContent =
-            info.flag;
+        countryFlagElement.textContent = info.flag;
     }
 
     if (countrySelect) {
-        countrySelect.value =
-            currentCountry;
+        countrySelect.value = currentCountry;
     }
 
     if (regionSelect) {
-        regionSelect.value =
-            info.region;
+        regionSelect.value = info.region;
     }
 }
 
 
-function populateRegionForCountry(
-    countryCode
-) {
+function populateRegionForCountry(countryCode) {
 
     const info =
         getCountryInfo(countryCode);
@@ -534,17 +517,13 @@ function populateRegionForCountry(
     }
 
     if (regionSelect) {
-        regionSelect.value =
-            info.region;
+        regionSelect.value = info.region;
     }
 
-    populateCountries(
-        info.region
-    );
+    populateCountries(info.region);
 
     if (countrySelect) {
-        countrySelect.value =
-            countryCode;
+        countrySelect.value = countryCode;
     }
 }
 
@@ -559,9 +538,7 @@ function countryExists(countryCode) {
         return false;
     }
 
-    for (
-        const regionKey in countryRegions
-    ) {
+    for (const regionKey in countryRegions) {
 
         if (
             countryRegions[regionKey]
@@ -577,9 +554,7 @@ function countryExists(countryCode) {
 
 function getCountryInfo(countryCode) {
 
-    for (
-        const regionKey in countryRegions
-    ) {
+    for (const regionKey in countryRegions) {
 
         const region =
             countryRegions[regionKey];
@@ -604,38 +579,7 @@ function getCountryName(countryCode) {
     const info =
         getCountryInfo(countryCode);
 
-    return info
-        ? info.name
-        : "";
-}
-
-
-// ============================================================
-// MEETUP DETECTION
-// ============================================================
-
-function isMeetup(place) {
-
-    if (!place.url) {
-        return false;
-    }
-
-    try {
-
-        const hostname =
-            new URL(place.url)
-                .hostname
-                .toLowerCase();
-
-        return (
-            hostname === "meetup.com" ||
-            hostname.endsWith(".meetup.com")
-        );
-
-    } catch {
-
-        return false;
-    }
+    return info ? info.name : "";
 }
 
 
@@ -653,6 +597,7 @@ function getCandidatePlaces() {
     }
 
     if (currentCategory === "all") {
+
         return places;
     }
 
@@ -660,9 +605,7 @@ function getCandidatePlaces() {
 
         return (
             Array.isArray(place.categories) &&
-            place.categories.includes(
-                currentCategory
-            )
+            place.categories.includes(currentCategory)
         );
     });
 }
@@ -673,6 +616,7 @@ function getCandidatePlaces() {
 // ============================================================
 
 function render() {
+
     renderCards();
 }
 
@@ -686,6 +630,10 @@ async function loadVisiblePlaceData() {
     const candidates =
         getCandidatePlaces();
 
+    /*
+     * Only start loading places that haven't
+     * already been loaded.
+     */
     const placesToLoad =
         candidates.filter(place => {
 
@@ -698,6 +646,9 @@ async function loadVisiblePlaceData() {
             );
         });
 
+    /*
+     * Load the places concurrently.
+     */
     await Promise.all(
         placesToLoad.map(place =>
             loadPlaceData(place)
@@ -717,13 +668,12 @@ async function loadPlaceData(place) {
     if (!placeCache[place.id]) {
 
         placeCache[place.id] = {
-
             loading: false,
             loaded: false,
-
             location: null,
             description: null,
-            image: null
+            image: null,
+            countryCode: null
         };
     }
 
@@ -739,52 +689,46 @@ async function loadPlaceData(place) {
 
     cache.loading = true;
 
+    const countryForRequest = currentCountry;
+
     /*
-     * Run all three APIs concurrently.
+     * Run the three APIs concurrently.
      */
     const [
         location,
         description,
         image
     ] = await Promise.all([
-
-        getPlaceLocation(
-            place,
-            currentCountry
-        ),
-
-        getWikipediaDescription(
-            place,
-            currentCountry
-        ),
-
-        getWikimediaImage(
-            place,
-            currentCountry
-        )
+        getPlaceLocation(place, countryForRequest),
+        getWikipediaDescription(place, countryForRequest),
+        getWikimediaImage(place, countryForRequest)
     ]);
 
-    cache.location =
-        location;
+    /*
+     * Ignore a stale request if the user changed
+     * countries while the APIs were running.
+     */
+    if (currentCountry !== countryForRequest) {
 
-    cache.description =
-        description;
+        cache.loading = false;
 
-    cache.image =
-        image;
+        return;
+    }
 
-    cache.loaded =
-        true;
+    cache.location = location;
+    cache.description = description;
+    cache.image = image;
+    cache.countryCode = countryForRequest;
 
-    cache.loading =
-        false;
+    cache.loaded = true;
+    cache.loading = false;
 
     renderCards();
 }
 
 
 // ============================================================
-// NOMINATIM
+// NOMINATIM + SECOND GEOCODER
 // ============================================================
 
 async function getPlaceLocation(
@@ -795,11 +739,9 @@ async function getPlaceLocation(
     const countryName =
         getCountryName(countryCode);
 
-    let searchText =
-        place.name;
+    let searchText = place.name;
 
     if (countryName) {
-
         searchText =
             `${place.name}, ${countryName}`;
     }
@@ -818,7 +760,6 @@ async function getPlaceLocation(
             await fetch(url);
 
         if (!response.ok) {
-
             throw new Error(
                 `Nominatim HTTP ${response.status}`
             );
@@ -828,56 +769,116 @@ async function getPlaceLocation(
             await response.json();
 
         /*
-         * Meetups have a manually supplied
-         * country code.
+         * Nominatim found no result.
+         *
+         * Try the second geocoder.
          */
         if (
             !Array.isArray(results) ||
             results.length === 0
         ) {
 
+            console.warn(
+                `Nominatim found no result for "${place.name}". Trying Open-Meteo.`
+            );
+
+            const fallback =
+                await getCountryFromOpenMeteo(
+                    place.name,
+                    countryCode
+                );
+
             return {
-
-                address:
-                    ADDRESS_PLACEHOLDER,
-
-                lat: null,
-                lng: null,
-
-                country:
-                    isMeetup(place) &&
-                    place.country
-                        ? String(
-                            place.country
-                        )
-                            .trim()
-                            .toUpperCase()
-                        : null
+                address: ADDRESS_PLACEHOLDER,
+                lat: fallback?.latitude ?? null,
+                lng: fallback?.longitude ?? null,
+                country: fallback?.countryCode ?? null
             };
         }
 
-        const result =
-            results[0];
+        const result = results[0];
 
-        const nominatimCountry =
-            result.address &&
-            result.address.country_code
-                ? result.address.country_code.toUpperCase()
+        const address =
+            result.address || {};
+
+        /*
+         * ------------------------------------------------------
+         * FIRST CHOICE
+         * Nominatim's ISO country code
+         * ------------------------------------------------------
+         */
+        let detectedCountry =
+            address.country_code
+                ? String(address.country_code)
+                    .trim()
+                    .toUpperCase()
                 : null;
 
         /*
-         * Meetups use their manually supplied
-         * country code.
+         * ------------------------------------------------------
+         * SECOND CHOICE
+         * Nominatim's country name
+         * ------------------------------------------------------
          */
-        const country =
-            isMeetup(place) &&
-            place.country
+        if (
+            !detectedCountry &&
+            address.country
+        ) {
 
-                ? String(place.country)
-                    .trim()
-                    .toUpperCase()
+            detectedCountry =
+                countryNameToISO(
+                    address.country
+                );
+        }
 
-                : nominatimCountry;
+        /*
+         * ------------------------------------------------------
+         * THIRD CHOICE
+         * Second geocoder
+         *
+         * We only use it when Nominatim gave us a
+         * location but failed to identify its country.
+         * ------------------------------------------------------
+         */
+        let fallback = null;
+
+        if (!detectedCountry) {
+
+            console.warn(
+                `Nominatim could not identify country for "${place.name}". Trying Open-Meteo.`
+            );
+
+            fallback =
+                await getCountryFromOpenMeteo(
+                    place.name,
+                    countryCode
+                );
+
+            if (fallback?.countryCode) {
+                detectedCountry =
+                    fallback.countryCode;
+            }
+        }
+
+        /*
+         * Prefer Nominatim's actual address and coordinates.
+         *
+         * If Nominatim didn't provide coordinates,
+         * use Open-Meteo coordinates if available.
+         */
+        const latitude =
+            result.lat
+                ? parseFloat(result.lat)
+                : (
+                    fallback?.latitude ?? null
+                );
+
+        const longitude =
+            result.lon
+                ? parseFloat(result.lon)
+                : (
+                    fallback?.longitude ?? null
+                );
 
         return {
 
@@ -885,17 +886,11 @@ async function getPlaceLocation(
                 result.display_name ||
                 ADDRESS_PLACEHOLDER,
 
-            lat:
-                result.lat
-                    ? parseFloat(result.lat)
-                    : null,
+            lat: latitude,
 
-            lng:
-                result.lon
-                    ? parseFloat(result.lon)
-                    : null,
+            lng: longitude,
 
-            country
+            country: detectedCountry
         };
 
     } catch (error) {
@@ -905,23 +900,213 @@ async function getPlaceLocation(
             error
         );
 
+        /*
+         * Nominatim completely failed.
+         *
+         * Use Open-Meteo as the second geocoder.
+         */
+        const fallback =
+            await getCountryFromOpenMeteo(
+                place.name,
+                countryCode
+            );
+
         return {
 
-            address:
-                ADDRESS_PLACEHOLDER,
+            address: ADDRESS_PLACEHOLDER,
 
-            lat: null,
-            lng: null,
+            lat:
+                fallback?.latitude ?? null,
+
+            lng:
+                fallback?.longitude ?? null,
 
             country:
-                isMeetup(place) &&
-                place.country
-                    ? String(place.country)
-                        .trim()
-                        .toUpperCase()
-                    : null
+                fallback?.countryCode ?? null
         };
     }
+}
+
+
+// ============================================================
+// OPEN-METEO SECOND GEOCODER
+// ============================================================
+
+async function getCountryFromOpenMeteo(
+    placeName,
+    countryCode
+) {
+
+    try {
+
+        const url =
+            "https://geocoding-api.open-meteo.com/v1/search" +
+            "?name=" +
+            encodeURIComponent(placeName) +
+            "&count=10" +
+            "&language=en" +
+            "&format=json";
+
+        const response =
+            await fetch(url);
+
+        if (!response.ok) {
+
+            throw new Error(
+                `Open-Meteo HTTP ${response.status}`
+            );
+        }
+
+        const data =
+            await response.json();
+
+        if (
+            !data.results ||
+            !Array.isArray(data.results) ||
+            data.results.length === 0
+        ) {
+
+            return null;
+        }
+
+        /*
+         * Prefer a result whose country matches
+         * the country currently being viewed.
+         */
+        const matchingResult =
+            data.results.find(result => {
+
+                return (
+                    result.country_code &&
+                    String(result.country_code)
+                        .toUpperCase() ===
+                    String(countryCode)
+                        .toUpperCase()
+                );
+            });
+
+        if (matchingResult) {
+
+            return {
+
+                countryCode:
+                    String(
+                        matchingResult.country_code
+                    ).toUpperCase(),
+
+                latitude:
+                    matchingResult.latitude ?? null,
+
+                longitude:
+                    matchingResult.longitude ?? null
+            };
+        }
+
+        /*
+         * Do NOT blindly accept the first result.
+         *
+         * A generic name such as "Central Park"
+         * could exist in multiple countries.
+         */
+        return null;
+
+    } catch (error) {
+
+        console.error(
+            `Open-Meteo error for "${placeName}":`,
+            error
+        );
+
+        return null;
+    }
+}
+
+
+// ============================================================
+// COUNTRY NAME → ISO CODE
+// ============================================================
+
+function countryNameToISO(countryName) {
+
+    if (!countryName) {
+        return null;
+    }
+
+    const normalized =
+        String(countryName)
+            .trim()
+            .toLowerCase();
+
+    /*
+     * Use the country list that already exists in
+     * countryRegions.
+     *
+     * No separate country database is maintained.
+     */
+    for (
+        const regionKey in countryRegions
+    ) {
+
+        const countries =
+            countryRegions[regionKey].countries;
+
+        for (
+            const [code, country] of
+            Object.entries(countries)
+        ) {
+
+            if (
+                String(country.name)
+                    .trim()
+                    .toLowerCase() ===
+                normalized
+            ) {
+
+                return code.toUpperCase();
+            }
+        }
+    }
+
+    /*
+     * A few common alternate country names that
+     * may appear in geocoder responses.
+     */
+    const aliases = {
+
+        "united states of america": "US",
+
+        "usa": "US",
+
+        "u.s.a.": "US",
+
+        "south korea": "KR",
+
+        "republic of korea": "KR",
+
+        "korea, republic of": "KR",
+
+        "czech republic": "CZ",
+
+        "czechia": "CZ",
+
+        "russian federation": "RU",
+
+        "turkey": "TR",
+
+        "türkiye": "TR",
+
+        "united kingdom": "GB",
+
+        "great britain": "GB",
+
+        "hong kong": "HK",
+
+        "macao": "MO",
+
+        "macau": "MO"
+    };
+
+    return aliases[normalized] || null;
 }
 
 
@@ -982,16 +1167,13 @@ async function getWikipediaDescription(
             );
 
         if (!matchingPage) {
-
             matchingPage =
                 searchData.pages[0];
         }
 
         const summaryURL =
             "https://en.wikipedia.org/api/rest_v1/page/summary/" +
-            encodeURIComponent(
-                matchingPage.key
-            );
+            encodeURIComponent(matchingPage.key);
 
         const summaryResponse =
             await fetch(summaryURL);
@@ -1079,15 +1261,6 @@ async function getWikimediaImage(
         const data =
             await response.json();
 
-        /*
-         * IMPORTANT:
-         *
-         * Keep the original lookup behavior.
-         * If there are no results, return null.
-         *
-         * The rabbit is applied later when
-         * rendering the card.
-         */
         if (
             !data.query ||
             !data.query.pages
@@ -1097,9 +1270,7 @@ async function getWikimediaImage(
         }
 
         const pages =
-            Object.values(
-                data.query.pages
-            );
+            Object.values(data.query.pages);
 
         if (!pages.length) {
             return null;
@@ -1121,20 +1292,14 @@ async function getWikimediaImage(
 
             const title =
                 String(page.title || "")
-                    .replace(
-                        /^File:/i,
-                        ""
-                    )
+                    .replace(/^File:/i, "")
                     .toLowerCase();
 
             let score = 0;
 
             if (
-                title.includes(
-                    normalizedName
-                )
+                title.includes(normalizedName)
             ) {
-
                 score += 10;
             }
 
@@ -1145,32 +1310,18 @@ async function getWikimediaImage(
 
             words.forEach(word => {
 
-                if (
-                    title.includes(word)
-                ) {
-
+                if (title.includes(word)) {
                     score += 1;
                 }
             });
 
-            if (
-                score > bestScore
-            ) {
+            if (score > bestScore) {
 
-                bestScore =
-                    score;
-
-                bestPage =
-                    page;
+                bestScore = score;
+                bestPage = page;
             }
         }
 
-        /*
-         * IMPORTANT:
-         *
-         * Do NOT make the matching stricter.
-         * This preserves the old Wikimedia behavior.
-         */
         if (!bestPage) {
             return null;
         }
@@ -1200,8 +1351,9 @@ async function getWikimediaImage(
         );
 
         /*
-         * null means the card renderer
-         * should use the fallback image.
+         * null means there was no usable Wikimedia image.
+         *
+         * The card renderer can then use the fallback image.
          */
         return null;
     }
@@ -1316,8 +1468,7 @@ function getMapButtonHTML(
 
     if (
         location.address &&
-        location.address !==
-            ADDRESS_PLACEHOLDER
+        location.address !== ADDRESS_PLACEHOLDER
     ) {
 
         const googleMapsURL =
@@ -1349,7 +1500,6 @@ function getSkeletonCardHTML(place) {
 
     const categoriesHTML =
         Array.isArray(place.categories)
-
             ? place.categories
                 .map(category => `
                     <span class="place-category">
@@ -1359,18 +1509,15 @@ function getSkeletonCardHTML(place) {
                     </span>
                 `)
                 .join("")
-
             : "";
 
     const meetupTag =
         isMeetup(place)
-
             ? `
                 <span class="place-category meetup-tag">
                     Meetup
                 </span>
             `
-
             : "";
 
     return `
@@ -1429,7 +1576,13 @@ function renderCards() {
         getCandidatePlaces();
 
     /*
-     * Render ALL candidate cards immediately.
+     * Once an API lookup has completed:
+     *
+     * - If the country was identified, use it to filter.
+     * - If the country is unknown, do NOT assume it belongs
+     *   to another country.
+     *
+     * This prevents API failure from making cards disappear.
      */
     const visiblePlaces =
         candidates.filter(place => {
@@ -1437,25 +1590,34 @@ function renderCards() {
             const cache =
                 placeCache[place.id];
 
-            /*
-             * Once the API has resolved,
-             * enforce country filtering.
-             */
             if (
                 cache &&
                 cache.loaded &&
                 cache.location
             ) {
 
-                return (
-                    cache.location.country ===
-                    currentCountry
-                );
+                /*
+                 * If we know the country, filter normally.
+                 */
+                if (cache.location.country) {
+
+                    return (
+                        cache.location.country ===
+                        currentCountry
+                    );
+                }
+
+                /*
+                 * Country could not be identified.
+                 *
+                 * Keep the card rather than incorrectly
+                 * treating it as belonging to another country.
+                 */
+                return true;
             }
 
             /*
-             * While loading, keep the
-             * skeleton visible.
+             * Still loading.
              */
             return true;
         });
@@ -1476,14 +1638,11 @@ function renderCards() {
 
         placesContainer.innerHTML = `
             <div class="empty-state">
-
                 <h3>No recommendations</h3>
-
                 <p>
                     There are currently no places
                     matching this selection.
                 </p>
-
             </div>
         `;
 
@@ -1496,7 +1655,8 @@ function renderCards() {
             placeCache[place.id];
 
         /*
-         * API data hasn't arrived yet.
+         * Not loaded yet:
+         * render skeleton card.
          */
         if (
             !cache ||
@@ -1511,15 +1671,15 @@ function renderCards() {
             return;
         }
 
+        /*
+         * Loaded:
+         * render real card.
+         */
         const location =
             cache.location || {
-
-                address:
-                    ADDRESS_PLACEHOLDER,
-
+                address: ADDRESS_PLACEHOLDER,
                 lat: null,
                 lng: null,
-
                 country: null
             };
 
@@ -1528,22 +1688,16 @@ function renderCards() {
             DESCRIPTION_PLACEHOLDER;
 
         /*
-         * THIS is the important change.
-         *
-         * If Wikimedia successfully found an image,
-         * use it.
-         *
-         * If Wikimedia returned null,
-         * use the rabbit.
+         * Keep the existing Wikimedia behavior:
+         * if Wikimedia doesn't return an image,
+         * use the rabbit fallback.
          */
         const image =
             cache.image ||
-            FALLBACK_IMAGE_URL;
+            "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEggMt-m95pUHuS-ag4Ir8y3uV8XV4z7YRgbjsQGWlZWygFrW0vL0Xx_QMcOwiUBPB8dA7z-Ig8GP_iACAfSHgkHEp4UYunZNutAer2hDee4TZ37MAHtMSCDM2qzZwZ78Wki9Pqv706r81Fl/s800/ojigi_animal_usagi.png";
 
         const card =
-            document.createElement(
-                "article"
-            );
+            document.createElement("article");
 
         card.className =
             "place-card";
@@ -1556,7 +1710,7 @@ function renderCards() {
                     alt="${escapeHTML(place.name)}"
                     loading="lazy"
                     referrerpolicy="no-referrer"
-                    onerror="this.onerror=null;this.src='${FALLBACK_IMAGE_URL}'"
+                    onerror="this.onerror=null;this.src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEggMt-m95pUHuS-ag4Ir8y3uV8XV4z7YRgbjsQGWlZWygFrW0vL0Xx_QMcOwiUBPB8dA7z-Ig8GP_iACAfSHgkHEp4UYunZNutAer2hDee4TZ37MAHtMSCDM2qzZwZ78Wki9Pqv706r81Fl/s800/ojigi_animal_usagi.png';"
                 >
 
             </div>
@@ -1564,7 +1718,6 @@ function renderCards() {
 
         const categoriesHTML =
             Array.isArray(place.categories)
-
                 ? place.categories
                     .map(category => `
                         <span class="place-category">
@@ -1574,12 +1727,10 @@ function renderCards() {
                         </span>
                     `)
                     .join("")
-
                 : "";
 
         const meetupTag =
             isMeetup(place)
-
                 ? `
                     <span
                         class="place-category meetup-tag"
@@ -1587,7 +1738,6 @@ function renderCards() {
                         Meetup
                     </span>
                 `
-
                 : "";
 
         const externalLinkHTML =
@@ -1655,9 +1805,7 @@ function renderCards() {
         `;
 
         const copyButton =
-            card.querySelector(
-                ".copy-button"
-            );
+            card.querySelector(".copy-button");
 
         if (copyButton) {
 
@@ -1674,9 +1822,7 @@ function renderCards() {
             );
         }
 
-        placesContainer.appendChild(
-            card
-        );
+        placesContainer.appendChild(card);
     });
 }
 
@@ -1692,9 +1838,7 @@ async function copyAddress(
 
     try {
 
-        await navigator.clipboard.writeText(
-            address
-        );
+        await navigator.clipboard.writeText(address);
 
         const originalText =
             button.textContent;
@@ -1702,18 +1846,14 @@ async function copyAddress(
         button.textContent =
             "✓ Copied";
 
-        button.classList.add(
-            "copied"
-        );
+        button.classList.add("copied");
 
         setTimeout(() => {
 
             button.textContent =
                 originalText;
 
-            button.classList.remove(
-                "copied"
-            );
+            button.classList.remove("copied");
 
         }, 1500);
 
@@ -1739,7 +1879,8 @@ function getCountryFromURL() {
         );
 
     return (
-        params.get("country") || ""
+        params
+            .get("country") || ""
     ).toUpperCase();
 }
 
@@ -1752,7 +1893,8 @@ function getCategoryFromURL() {
         );
 
     return (
-        params.get("category") || ""
+        params
+            .get("category") || ""
     ).toLowerCase();
 }
 
@@ -1784,9 +1926,7 @@ function updateURL() {
 
     } else {
 
-        params.delete(
-            "category"
-        );
+        params.delete("category");
     }
 
     const query =
@@ -1794,9 +1934,7 @@ function updateURL() {
 
     const newURL =
         query
-
             ? `${window.location.pathname}?${query}`
-
             : window.location.pathname;
 
     window.history.replaceState(
@@ -1814,16 +1952,10 @@ function updateURL() {
 function formatCategory(category) {
 
     return String(category)
-
-        .replace(
-            /-/g,
-            " "
-        )
-
+        .replace(/-/g, " ")
         .replace(
             /\b\w/g,
-            letter =>
-                letter.toUpperCase()
+            letter => letter.toUpperCase()
         );
 }
 
@@ -1838,36 +1970,15 @@ function escapeHTML(value) {
         value === undefined ||
         value === null
     ) {
-
         return "";
     }
 
     return String(value)
-
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 }
 
 
