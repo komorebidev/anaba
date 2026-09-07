@@ -77,6 +77,26 @@
     "categories": ["restaurants"]
   },
   {
+    "id": "ippudo-komazawa-daigaku",
+    "name": "Ippudo Komazawa Daigaku",
+    "categories": ["restaurants"]
+  },
+  {
+    "id": "ramen-express-hakata-ramen-ippudo-tokyo-solamachi",
+    "name": "Ramen Express Hakata Ramen Ippudo Tokyo Solamachi",
+    "categories": ["restaurants"]
+  },
+  {
+    "id": "frijoles-shibuya-dogenzaka",
+    "name": "Frijoles Shibuya Dogenzaka",
+    "categories": ["restaurants"]
+  },
+  {
+    "id": "shiawase-no-pancake-omotesando",
+    "name": "Shiawase no Pancake Omotesando",
+    "categories": ["restaurants"]
+  },
+  {
     "id": "the-bvlgari-bar",
     "name": "Bulgari Ginza Bar",
     "categories": ["restaurants", "nightlife"]
