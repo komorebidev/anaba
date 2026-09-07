@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Recommended Places</title>
+
+    <!-- Leaflet -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+    <!-- Your CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <h1>🌎 Recommended Places</h1>
+            <p>Discover useful places around the world.</p>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- Country selector -->
+        <section class="country-section">
+
+            <div class="country-label">
+                <span id="countryFlag">🌎</span>
+                <span id="countryName">Detecting country...</span>
+            </div>
+
+            <div class="country-selector">
+
+                <select id="regionSelect">
+                    <option value="">Select region</option>
+                    <option value="north-america">North America</option>
+                    <option value="europe">Europe</option>
+                    <option value="asia">Asia</option>
+                </select>
+
+                <select id="countrySelect">
+                    <option value="">Select country</option>
+                </select>
+
+            </div>
+
+        </section>
+
+        <!-- Category filters -->
+        <section class="category-section">
+
+            <div class="category-buttons" id="categoryButtons">
+
+                <button
+                    class="category-button active"
+                    data-category="all"
+                >
+                    All
+                </button>
+
+                <button
+                    class="category-button"
+                    data-category="sightseeing"
+                >
+                    Sightseeing
+                </button>
+
+                <button
+                    class="category-button"
+                    data-category="restaurants"
+                >
+                    Restaurants
+                </button>
+
+                <button
+                    class="category-button"
+                    data-category="nightlife"
+                >
+                    Nightlife
+                </button>
+
+                <button
+                    class="category-button"
+                    data-category="shopping"
+                >
+                    Shopping
+                </button>
+
+                <button
+                    class="category-button"
+                    data-category="experiences"
+                >
+                    Experiences
+                </button>
+
+                <button
+                    class="category-button"
+                    data-category="hobbies"
+                >
+                    Hobbies
+                </button>
+
+                <button
+                    class="category-button"
+                    data-category="meetups"
+                >
+                    Meetups
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- Results -->
+        <section class="results-section">
+
+            <div class="results-header">
+                <h2>Recommendations</h2>
+                <span id="resultCount">0 recommendations</span>
+            </div>
+
+            <div class="content-grid">
+
+                <!-- Map -->
+                <div class="map-container">
+                    <div id="map"></div>
+                </div>
+
+                <!-- Place cards -->
+                <div
+                    class="places-container"
+                    id="placesContainer"
+                ></div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <p>
+            Map data ©
+            <a
+                href="https://www.openstreetmap.org/"
+                target="_blank"
+                rel="noopener"
+            >
+                OpenStreetMap
+            </a>
+            contributors.
+        </p>
+    </footer>
+
+    <!-- Leaflet -->
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    ></script>
+
+    <!-- Your JavaScript -->
+    <script src="app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+[
+  {
+    "id": "sensoji",
+    "name": "Senso-ji",
+    "categories": [
+      "sightseeing",
+      "experiences"
+    ]
+  },
+  {
+    "id": "shibuya-crossing",
+    "name": "Shibuya Crossing",
+    "categories": [
+      "sightseeing",
+      "shopping",
+      "experiences"
+    ]
+  },
+  {
+    "id": "shinjuku",
+    "name": "Shinjuku",
+    "categories": [
+      "nightlife",
+      "shopping",
+      "restaurants"
+    ]
+  },
+  {
+    "id": "tokyo-skytree",
+    "name": "Tokyo Skytree",
+    "categories": [
+      "sightseeing",
+      "experiences"
+    ]
+  },
+  {
+    "id": "teamlab-borderless",
+    "name": "teamLab Borderless",
+    "categories": [
+      "experiences"
+    ]
+  },
+  {
+    "id": "eiffel-tower",
+    "name": "Eiffel Tower",
+    "categories": [
+      "sightseeing",
+      "experiences"
+    ]
+  },
+  {
+    "id": "times-square",
+    "name": "Times Square",
+    "categories": [
+      "sightseeing",
+      "shopping",
+      "nightlife"
+    ]
+  },
+  {
+    "id": "cn-tower",
+    "name": "CN Tower",
+    "categories": [
+      "sightseeing",
+      "experiences"
+    ]
+  },
+  {
+    "id": "marina-bay",
+    "name": "Marina Bay",
+    "categories": [
+      "sightseeing",
+      "shopping",
+      "restaurants",
+      "experiences"
+    ]
+  },
+  {
+    "id": "gyeongbokgung",
+    "name": "Gyeongbokgung Palace",
+    "categories": [
+      "sightseeing",
+      "experiences"
+    ]
+  }
+]
