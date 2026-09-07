@@ -1,146 +1,146 @@
 [
-  {
-    "id": "carrot-tower",
-    "name": "Carrot Tower",
-    "categories": ["sightseeing"]
-  },
-  {
-    "id": "asakusa-culture-tourist-information-center",
-    "name": "Asakusa Culture Tourist Information Center",
-    "categories": ["sightseeing"]
-  },
-  {
-    "id": "showa-kinen-park",
-    "name": "Showa Kinen Park",
-    "categories": ["sightseeing"]
-  },
-  {
-    "id": "yoyogi-park",
-    "name": "Yoyogi Park",
-    "categories": ["sightseeing"]
-  },
-  {
-    "id": "tokyo-tower",
-    "name": "Tokyo Tower",
-    "categories": ["sightseeing"]
-  },
-  {
-    "id": "skytree",
-    "name": "Tokyo Skytree",
-    "categories": ["sightseeing"]
-  },
-  {
-    "id": "kanazawa-station",
-    "name": "Kanazawa Station",
-    "categories": ["sightseeing"]
-  },
-  {
-    "id": "enoshima",
-    "name": "Enoshima",
-    "categories": ["sightseeing"]
-  },
-  {
-    "id": "kamakura",
-    "name": "Kamakura",
-    "categories": ["sightseeing"]
-  },
-  {
-    "id": "minami-machida-grandberry-park",
-    "name": "Minami Machida Grandberry Park",
-    "categories": ["shopping"]
-  },
-  {
-    "id": "lumine-shinjuku",
-    "name": "Lumine Shinjuku",
-    "categories": ["shopping"]
-  },
-  {
-    "id": "lumine-yurakucho",
-    "name": "Lumine Yurakucho",
-    "categories": ["shopping"]
-  },
-  {
-    "id": "gotemba-premium-outlet",
-    "name": "Gotemba Premium Outlets",
-    "categories": ["shopping"]
-  },
-  {
-    "id": "northport-mall",
-    "name": "Northport Mall",
-    "categories": ["shopping"]
-  },
-  {
-    "id": "jojoen-shibuya",
-    "name": "Jojoen Shibuya",
-    "categories": ["restaurants"]
-  },
-  {
-    "id": "the-bulgari-bar",
-    "name": "The Bulgari Bar",
-    "categories": ["restaurants"]
-  },
-  {
-    "id": "rigoletto-shibuya",
-    "name": "Rigoletto Shibuya",
-    "categories": ["restaurants"]
-  },
-  {
-    "id": "rigoletto-otemachi",
-    "name": "Rigoletto Otemachi",
-    "categories": ["restaurants"]
-  },
-  {
-    "id": "rooftop-bar-piro-ginza",
-    "name": "Rooftop Bar Piro Ginza",
-    "categories": ["restaurants"]
-  },
-  {
-    "id": "ginza-corridor",
-    "name": "Ginza Corridor",
-    "categories": ["nightlife"]
-  },
-  {
-    "id": "tokyo-international-parties",
-    "name": "Tokyo International Parties",
-    "categories": ["nightlife"],
-    "url": "https://www.meetup.com/tokyointernationalparties/?eventOrigin=your_groups"
-  },
-  {
-    "id": "cosmo-international-party-tokyo",
-    "name": "Cosmo International Party Tokyo",
-    "categories": ["nightlife"],
-    "url": "https://www.meetup.com/cosmo-international-party-tokyo/?eventOrigin=your_groups"
-  },
-  {
-    "id": "daikaku-parking-area",
-    "name": "Daikaku Parking Area",
-    "categories": ["experiences"]
-  },
-  {
-    "id": "lake-yamanakako",
-    "name": "Lake Yamanakako",
-    "categories": ["experiences"]
-  },
-  {
-    "id": "language-cafe-bar-mickey-house",
-    "name": "Language Cafe Bar Mickey House",
-    "categories": ["experiences"],
-    "url": "https://www.meetup.com/language-cafe-bar-mickey-house/?eventOrigin=home_groups_you_are_in"
-  },
-  {
-    "id": "tamagawa-cycling-road",
-    "name": "Tamagawa Cycling Road",
-    "categories": ["hobbies"]
-  },
-  {
-    "id": "showa-kinen-park-cycling",
-    "name": "Showa Kinen Park Cycling",
-    "categories": ["hobbies"]
-  },
-  {
-    "id": "public-international-badminton-in-kawasaki",
-    "name": "Public International Badminton in Kawasaki",
-    "categories": ["hobbies"],
-    "url": "https://www.meetup.com/public-inernational-badminton-in-kawasaki/?eventOrigin=your_groups"
-  }
+    {
+        "id": "carrot-tower",
+        "name": "Carrot Tower",
+        "categories": ["sightseeing"]
+    },
+    {
+        "id": "asakusa-culture-tourist-information-center",
+        "name": "Asakusa Culture Tourist Information Center",
+        "categories": ["sightseeing"]
+    },
+    {
+        "id": "showa-kinen-park",
+        "name": "Showa Kinen Park",
+        "categories": ["sightseeing", "hobbies"]
+    },
+    {
+        "id": "yoyogi-park",
+        "name": "Yoyogi Park",
+        "categories": ["sightseeing"]
+    },
+    {
+        "id": "tokyo-tower",
+        "name": "Tokyo Tower",
+        "categories": ["sightseeing"]
+    },
+    {
+        "id": "tokyo-skytree",
+        "name": "Tokyo Skytree",
+        "categories": ["sightseeing", "shopping"]
+    },
+    {
+        "id": "kanazawa-station",
+        "name": "Kanazawa Station",
+        "categories": ["sightseeing"]
+    },
+    {
+        "id": "enoshima",
+        "name": "Enoshima",
+        "categories": ["sightseeing", "experiences"]
+    },
+    {
+        "id": "kamakura",
+        "name": "Kamakura",
+        "categories": ["sightseeing", "experiences"]
+    },
+    {
+        "id": "minami-machida-grandberry-park",
+        "name": "Minami Machida Grandberry Park",
+        "categories": ["shopping"]
+    },
+    {
+        "id": "lumine-shinjuku",
+        "name": "Lumine Shinjuku",
+        "categories": ["shopping"]
+    },
+    {
+        "id": "lumine-yurakucho",
+        "name": "Lumine Yurakucho",
+        "categories": ["shopping"]
+    },
+    {
+        "id": "gotemba-premium-outlet",
+        "name": "Gotemba Premium Outlets",
+        "categories": ["shopping"]
+    },
+    {
+        "id": "northport-mall",
+        "name": "Northport Mall",
+        "categories": ["shopping"]
+    },
+    {
+        "id": "jojoen-shibuya",
+        "name": "Jojoen Shibuya",
+        "categories": ["restaurants"]
+    },
+    {
+        "id": "the-bvlgari-bar",
+        "name": "The Bvlgari Bar",
+        "categories": ["restaurants", "nightlife"]
+    },
+    {
+        "id": "rigoletto-shibuya",
+        "name": "Rigoletto Shibuya",
+        "categories": ["restaurants"]
+    },
+    {
+        "id": "rigoletto-otemachi",
+        "name": "Rigoletto Otemachi",
+        "categories": ["restaurants"]
+    },
+    {
+        "id": "rooftop-bar-piro-ginza",
+        "name": "Rooftop Bar Piro Ginza",
+        "categories": ["restaurants", "nightlife"]
+    },
+    {
+        "id": "ginza-corridor",
+        "name": "Ginza Corridor",
+        "categories": ["nightlife"]
+    },
+    {
+        "id": "tokyo-international-parties",
+        "name": "Tokyo International Parties",
+        "categories": ["nightlife"],
+        "url": "https://www.meetup.com/tokyointernationalparties/"
+    },
+    {
+        "id": "cosmo-international-party-tokyo",
+        "name": "Cosmo International Party Tokyo",
+        "categories": ["nightlife"],
+        "url": "https://www.meetup.com/cosmo-international-party-tokyo/"
+    },
+    {
+        "id": "daikaku-parking-area",
+        "name": "Daikaku Parking Area",
+        "categories": ["experiences"]
+    },
+    {
+        "id": "lake-yamanakako",
+        "name": "Lake Yamanakako",
+        "categories": ["experiences"]
+    },
+    {
+        "id": "language-cafe-bar-mickey-house",
+        "name": "Language Cafe Bar Mickey House",
+        "categories": ["experiences"],
+        "url": "https://www.meetup.com/language-cafe-bar-mickey-house/"
+    },
+    {
+        "id": "tamagawa-cycling-road",
+        "name": "Tamagawa Cycling Road",
+        "categories": ["hobbies"]
+    },
+    {
+        "id": "showa-kinen-park-cycling",
+        "name": "Showa Kinen Park Cycling",
+        "categories": ["hobbies"]
+    },
+    {
+        "id": "public-international-badminton-in-kawasaki",
+        "name": "Public International Badminton in Kawasaki",
+        "categories": ["hobbies"],
+        "url": "https://www.meetup.com/public-inernational-badminton-in-kawasaki/"
+    }
 ]

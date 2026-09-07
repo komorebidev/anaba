@@ -1,3 +1,7 @@
+/* ============================================================
+   RESET
+   ============================================================ */
+
 * {
     box-sizing: border-box;
 }
@@ -17,92 +21,94 @@ body {
         Arial,
         sans-serif;
 
-    background: #f5f6f8;
+    background: #f6f7f9;
     color: #1f2937;
 }
 
-.site-header {
-    background: white;
-    border-bottom: 1px solid #e5e7eb;
-    padding: 28px 20px;
-}
 
-.header-inner {
-    max-width: 1200px;
+/* ============================================================
+   MAIN CONTAINER
+   ============================================================ */
+
+.container {
+    width: min(1400px, calc(100% - 40px));
     margin: 0 auto;
 }
 
-.site-header h1 {
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+header {
+    padding: 40px 0 25px;
+}
+
+header h1 {
     margin: 0;
-    font-size: 28px;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.1;
+}
+
+header p {
+    margin: 10px 0 0;
+    color: #6b7280;
+    font-size: 16px;
+}
+
+
+/* ============================================================
+   COUNTRY SELECTOR
+   ============================================================ */
+
+.country-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.country-display {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 24px;
     font-weight: 700;
 }
 
-.site-header p {
-    margin: 6px 0 0;
-    color: #6b7280;
-    font-size: 15px;
+#countryFlag {
+    font-size: 30px;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 24px 20px 50px;
+#countryName {
+    font-size: 24px;
 }
 
-/* Country */
-
-.country-section {
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 14px;
-    padding: 20px;
-    margin-bottom: 20px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-}
-
-.country-label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    font-size: 20px;
-    font-weight: 600;
-}
-
-.country-selector {
-    display: flex;
-    gap: 10px;
-}
-
-.country-selector select {
-    padding: 10px 14px;
+select {
     border: 1px solid #d1d5db;
-    border-radius: 8px;
     background: white;
-    font-size: 14px;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 15px;
     cursor: pointer;
 }
 
-.country-selector select:focus {
-    outline: none;
-    border-color: #6b7280;
+select:focus {
+    outline: 2px solid #9ca3af;
+    outline-offset: 2px;
 }
 
-/* Categories */
 
-.category-section {
-    margin-bottom: 20px;
-}
+/* ============================================================
+   CATEGORY BUTTONS
+   ============================================================ */
 
 .category-buttons {
     display: flex;
-    flex-wrap: wrap;
     gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
 }
 
 .category-button {
@@ -110,10 +116,13 @@ body {
     background: white;
     color: #374151;
 
-    padding: 9px 15px;
     border-radius: 999px;
 
+    padding: 9px 16px;
+
     font-size: 14px;
+    font-weight: 600;
+
     cursor: pointer;
 
     transition:
@@ -132,45 +141,40 @@ body {
     border-color: #111827;
 }
 
-/* Results */
 
-.results-section {
-    background: transparent;
-}
-
-.results-header {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-
-    margin-bottom: 12px;
-}
-
-.results-header h2 {
-    margin: 0;
-    font-size: 20px;
-}
+/* ============================================================
+   RESULT COUNT
+   ============================================================ */
 
 #resultCount {
+    margin-bottom: 20px;
     color: #6b7280;
     font-size: 14px;
+    font-weight: 600;
 }
 
-/* Map + cards */
 
-.content-grid {
+/* ============================================================
+   MAIN CONTENT
+   ============================================================ */
+
+.main-content {
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 18px;
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(320px, 420px);
+
+    gap: 25px;
+
     align-items: start;
 }
 
-.map-container {
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 14px;
-    overflow: hidden;
 
+/* ============================================================
+   MAP
+   ============================================================ */
+
+.map-container {
     position: sticky;
     top: 20px;
 }
@@ -178,21 +182,39 @@ body {
 #map {
     width: 100%;
     height: 650px;
+
+    border-radius: 16px;
+    overflow: hidden;
+
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
-/* Place cards */
 
-.places-container {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+/* ============================================================
+   RECOMMENDATIONS
+   ============================================================ */
+
+#placesContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
 }
+
+
+/* ============================================================
+   PLACE CARD
+   ============================================================ */
 
 .place-card {
     background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 14px;
-    padding: 18px;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 3px 15px rgba(0, 0, 0, 0.07);
 
     transition:
         transform 0.15s ease,
@@ -200,50 +222,110 @@ body {
 }
 
 .place-card:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 25px rgba(0, 0, 0, 0.1);
+}
+
+
+/* ============================================================
+   IMAGE
+   ============================================================ */
+
+.place-image,
+.place-image-empty {
+    width: 100%;
+    height: 210px;
+
+    background: #f1f2f4;
+}
+
+.place-image img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+/*
+ * IMPORTANT:
+ *
+ * When there is no Wikimedia image,
+ * this element remains completely blank.
+ *
+ * There is intentionally NO text here.
+ */
+
+.place-image-empty {
+    background: #f1f2f4;
+}
+
+
+/* ============================================================
+   CARD CONTENT
+   ============================================================ */
+
+.place-card-content {
+    padding: 20px;
 }
 
 .place-name {
-    margin: 0 0 8px;
-    font-size: 18px;
-    font-weight: 650;
-}
+    margin: 0 0 10px;
 
-.place-description {
-    margin: 0 0 12px;
-    color: #6b7280;
-    line-height: 1.5;
-    font-size: 14px;
+    font-size: 21px;
+    line-height: 1.25;
 }
 
 .place-categories {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
+
     margin-bottom: 14px;
 }
 
 .place-category {
     display: inline-block;
 
-    padding: 4px 8px;
+    padding: 5px 9px;
 
-    background: #f3f4f6;
+    border-radius: 999px;
+
+    background: #f0f1f3;
+
     color: #4b5563;
 
-    border-radius: 6px;
-
     font-size: 12px;
+    font-weight: 600;
+}
+
+.meetup-tag {
+    background: #f3e8ff;
+    color: #7e22ce;
+}
+
+.place-description {
+    margin: 0 0 18px;
+
+    color: #4b5563;
+
+    font-size: 14px;
+    line-height: 1.6;
 }
 
 .place-address {
     display: flex;
+    align-items: flex-start;
     gap: 8px;
 
-    margin-bottom: 12px;
+    margin-bottom: 18px;
 
     color: #374151;
+
     font-size: 14px;
     line-height: 1.5;
 }
@@ -252,124 +334,165 @@ body {
     flex-shrink: 0;
 }
 
-.copy-button {
-    width: 100%;
 
-    border: 1px solid #d1d5db;
-    background: white;
+/* ============================================================
+   CARD ACTIONS
+   ============================================================ */
 
-    padding: 9px 12px;
+.place-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.place-link,
+.copy-button,
+.map-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 38px;
+
+    padding: 8px 12px;
 
     border-radius: 8px;
 
     font-size: 13px;
+    font-weight: 600;
+
+    text-decoration: none;
+
     cursor: pointer;
 }
 
-.copy-button:hover {
-    background: #f9fafb;
+.place-link {
+    background: #111827;
+    color: white;
 }
 
-.copy-button.copied {
+.place-link:hover {
+    background: #374151;
+}
+
+.copy-button,
+.map-button {
+    border: 1px solid #d1d5db;
+
+    background: white;
+
+    color: #374151;
+}
+
+.copy-button:hover,
+.map-button:hover {
     background: #f3f4f6;
 }
 
-/* Empty state */
+.copy-button.copied {
+    background: #ecfdf5;
+    border-color: #a7f3d0;
+    color: #047857;
+}
+
+
+/* ============================================================
+   EMPTY / LOADING STATE
+   ============================================================ */
 
 .empty-state {
+    padding: 50px 25px;
+
     background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 14px;
-    padding: 40px 20px;
+
+    border-radius: 16px;
 
     text-align: center;
-    color: #6b7280;
 }
 
 .empty-state h3 {
     margin: 0 0 8px;
-    color: #374151;
 }
 
-/* Footer */
-
-.site-footer {
-    border-top: 1px solid #e5e7eb;
-    background: white;
-
-    padding: 20px;
-
-    text-align: center;
+.empty-state p {
+    margin: 0;
 
     color: #6b7280;
-    font-size: 13px;
+    line-height: 1.6;
 }
 
-.site-footer a {
-    color: inherit;
-}
 
-/* Responsive */
+/* ============================================================
+   MOBILE
+   ============================================================ */
 
-@media (max-width: 850px) {
+@media (max-width: 900px) {
 
-    .country-section {
-        flex-direction: column;
-        align-items: stretch;
+    .container {
+        width: min(
+            100% - 24px,
+            700px
+        );
     }
 
-    .country-selector {
-        width: 100%;
-        flex-direction: column;
+    header {
+        padding-top: 25px;
     }
 
-    .country-selector select {
-        width: 100%;
-    }
-
-    .content-grid {
+    .main-content {
         grid-template-columns: 1fr;
     }
 
     .map-container {
         position: static;
+        order: 2;
     }
 
     #map {
         height: 400px;
     }
 
-    .results-header {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 4px;
+    #placesContainer {
+        order: 1;
     }
 }
 
+
 @media (max-width: 500px) {
 
-    .container {
-        padding-left: 12px;
-        padding-right: 12px;
+    .country-display {
+        width: 100%;
     }
 
-    .site-header {
-        padding: 22px 14px;
+    #countryName {
+        font-size: 21px;
     }
 
-    .site-header h1 {
-        font-size: 24px;
-    }
-
-    .country-section {
-        padding: 16px;
+    .category-buttons {
+        gap: 6px;
     }
 
     .category-button {
         padding: 8px 12px;
+        font-size: 13px;
     }
 
-    #map {
-        height: 350px;
+    .place-image,
+    .place-image-empty {
+        height: 180px;
+    }
+
+    .place-card-content {
+        padding: 17px;
+    }
+
+    .place-actions {
+        flex-direction: column;
+    }
+
+    .place-link,
+    .copy-button,
+    .map-button {
+        width: 100%;
     }
 }
