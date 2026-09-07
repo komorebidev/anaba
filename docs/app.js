@@ -161,51 +161,69 @@ const categories = [
 
 
 // ============================================================
-// SPECIAL API EXCLUSION CATEGORIES
+// API EXCLUSION RULES
 // ============================================================
 
 /*
- * These categories should ONLY use the geocoder.
+ * These categories do not use Wikipedia:
  *
- * Wikipedia:
- *     NOT USED
- *
- * Wikimedia Commons:
- *     NOT USED
- *
- * Description:
- *     Blank
- *
- * Image:
- *     Blank
- *
- * Address:
- *     Still fetched normally
+ * - restaurants
+ * - nightlife
+ * - hobbies
+ * - meetups
  */
-function shouldSkipDescriptionAndImage(place) {
+function shouldSkipDescription(place) {
 
     if (!place) {
         return false;
     }
 
-    /*
-     * Restaurants and hobbies are identified
-     * through their categories.
-     */
     if (
         Array.isArray(place.categories) &&
         (
             place.categories.includes("restaurants") ||
+            place.categories.includes("nightlife") ||
             place.categories.includes("hobbies")
         )
     ) {
         return true;
     }
 
-    /*
-     * Meetups are identified using the same
-     * logic already used by the application.
-     */
+    if (isMeetup(place)) {
+        return true;
+    }
+
+    return false;
+}
+
+
+/*
+ * These categories do not use Wikimedia:
+ *
+ * - restaurants
+ * - nightlife
+ * - hobbies
+ * - meetups
+ *
+ * There is NO fallback image.
+ */
+function shouldSkipImage(place) {
+
+    if (!place) {
+        return false;
+    }
+
+    if (
+        Array.isArray(place.categories) &&
+        (
+            place.categories.includes("restaurants") ||
+            place.categories.includes("nightlife") ||
+            place.categories.includes("hobbies")
+        )
+    ) {
+        return true;
+    }
+
     if (isMeetup(place)) {
         return true;
     }
@@ -226,10 +244,13 @@ async function loadPlaces() {
             await fetch("places.json");
 
         if (!response.ok) {
-            throw new Error("Could not load places.json");
+            throw new Error(
+                "Could not load places.json"
+            );
         }
 
-        places = await response.json();
+        places =
+            await response.json();
 
         initializeApplication();
 
@@ -239,10 +260,15 @@ async function loadPlaces() {
 
         placesContainer.innerHTML = `
             <div class="empty-state">
-                <h3>Unable to load places</h3>
+
+                <h3>
+                    Unable to load places
+                </h3>
+
                 <p>
                     Please check that places.json is available.
                 </p>
+
             </div>
         `;
     }
@@ -259,19 +285,24 @@ function initializeApplication() {
     setupRegionSelector();
     setupCountrySelector();
 
-    const urlCountry = getCountryFromURL();
-    const urlCategory = getCategoryFromURL();
+    const urlCountry =
+        getCountryFromURL();
+
+    const urlCategory =
+        getCategoryFromURL();
 
     if (
         urlCountry &&
         countryExists(urlCountry)
     ) {
 
-        currentCountry = urlCountry;
+        currentCountry =
+            urlCountry;
 
     } else {
 
-        currentCountry = "JP";
+        currentCountry =
+            "JP";
 
         detectVisitorCountry();
     }
@@ -281,12 +312,16 @@ function initializeApplication() {
         categories.includes(urlCategory)
     ) {
 
-        currentCategory = urlCategory;
+        currentCategory =
+            urlCategory;
     }
 
-    populateRegionForCountry(currentCountry);
+    populateRegionForCountry(
+        currentCountry
+    );
 
     updateCountryDisplay();
+
     updateCategoryButtons();
 
     render();
@@ -304,9 +339,12 @@ async function detectVisitorCountry() {
     try {
 
         const response =
-            await fetch("https://ipapi.co/json/");
+            await fetch(
+                "https://ipapi.co/json/"
+            );
 
         if (!response.ok) {
+
             throw new Error(
                 `Country detection HTTP ${response.status}`
             );
@@ -316,7 +354,9 @@ async function detectVisitorCountry() {
             await response.json();
 
         const detectedCountry =
-            String(data.country || "").toUpperCase();
+            String(
+                data.country || ""
+            ).toUpperCase();
 
         const urlCountry =
             getCountryFromURL();
@@ -326,9 +366,12 @@ async function detectVisitorCountry() {
             countryExists(detectedCountry)
         ) {
 
-            currentCountry = detectedCountry;
+            currentCountry =
+                detectedCountry;
 
-            populateRegionForCountry(currentCountry);
+            populateRegionForCountry(
+                currentCountry
+            );
 
             updateCountryDisplay();
 
@@ -356,23 +399,28 @@ async function detectVisitorCountry() {
 function setupCategoryButtons() {
 
     const buttons =
-        document.querySelectorAll(".category-button");
+        document.querySelectorAll(
+            ".category-button"
+        );
 
     buttons.forEach(button => {
 
-        button.addEventListener("click", () => {
+        button.addEventListener(
+            "click",
+            () => {
 
-            currentCategory =
-                button.dataset.category;
+                currentCategory =
+                    button.dataset.category;
 
-            updateCategoryButtons();
+                updateCategoryButtons();
 
-            updateURL();
+                updateURL();
 
-            render();
+                render();
 
-            loadVisiblePlaceData();
-        });
+                loadVisiblePlaceData();
+            }
+        );
     });
 }
 
@@ -380,13 +428,16 @@ function setupCategoryButtons() {
 function updateCategoryButtons() {
 
     const buttons =
-        document.querySelectorAll(".category-button");
+        document.querySelectorAll(
+            ".category-button"
+        );
 
     buttons.forEach(button => {
 
         button.classList.toggle(
             "active",
-            button.dataset.category === currentCategory
+            button.dataset.category ===
+            currentCategory
         );
     });
 }
@@ -406,7 +457,8 @@ function setupRegionSelector() {
         "change",
         function () {
 
-            const region = this.value;
+            const region =
+                this.value;
 
             populateCountries(region);
 
@@ -416,20 +468,25 @@ function setupRegionSelector() {
 
             const countryCodes =
                 Object.keys(
-                    countryRegions[region].countries
+                    countryRegions[region]
+                        .countries
                 );
 
             if (!countryCodes.length) {
                 return;
             }
 
-            setCountry(countryCodes[0]);
+            setCountry(
+                countryCodes[0]
+            );
         }
     );
 }
 
 
-function populateCountries(regionKey) {
+function populateCountries(
+    regionKey
+) {
 
     if (!countrySelect) {
         return;
@@ -449,22 +506,28 @@ function populateCountries(regionKey) {
     }
 
     const countries =
-        countryRegions[regionKey].countries;
+        countryRegions[regionKey]
+            .countries;
 
-    Object.entries(countries).forEach(
-        ([code, country]) => {
+    Object.entries(countries)
+        .forEach(
+            ([code, country]) => {
 
-            const option =
-                document.createElement("option");
+                const option =
+                    document.createElement(
+                        "option"
+                    );
 
-            option.value = code;
+                option.value =
+                    code;
 
-            option.textContent =
-                `${country.flag} ${country.name}`;
+                option.textContent =
+                    `${country.flag} ${country.name}`;
 
-            countrySelect.appendChild(option);
-        }
-    );
+                countrySelect
+                    .appendChild(option);
+            }
+        );
 }
 
 
@@ -486,33 +549,58 @@ function setupCountrySelector() {
                 return;
             }
 
-            setCountry(this.value);
+            setCountry(
+                this.value
+            );
         }
     );
 }
 
 
-function setCountry(countryCode) {
+function setCountry(
+    countryCode
+) {
 
-    if (!countryExists(countryCode)) {
+    if (
+        !countryExists(countryCode)
+    ) {
         return;
     }
 
-    currentCountry = countryCode;
+    currentCountry =
+        countryCode;
 
-    Object.keys(placeCache).forEach(id => {
+    /*
+     * Location data depends on country,
+     * so clear all cached location data.
+     */
+    Object.keys(placeCache)
+        .forEach(id => {
 
-        const cache = placeCache[id];
+            const cache =
+                placeCache[id];
 
-        if (cache) {
-            cache.loaded = false;
-            cache.loading = false;
-            cache.location = null;
-            cache.description = null;
-            cache.image = null;
-            cache.countryCode = null;
-        }
-    });
+            if (cache) {
+
+                cache.loaded =
+                    false;
+
+                cache.loading =
+                    false;
+
+                cache.location =
+                    null;
+
+                cache.description =
+                    null;
+
+                cache.image =
+                    null;
+
+                cache.countryCode =
+                    null;
+            }
+        });
 
     updateCountryDisplay();
 
@@ -527,47 +615,67 @@ function setCountry(countryCode) {
 function updateCountryDisplay() {
 
     const info =
-        getCountryInfo(currentCountry);
+        getCountryInfo(
+            currentCountry
+        );
 
     if (!info) {
         return;
     }
 
     if (countryNameElement) {
-        countryNameElement.textContent = info.name;
+
+        countryNameElement.textContent =
+            info.name;
     }
 
     if (countryFlagElement) {
-        countryFlagElement.textContent = info.flag;
+
+        countryFlagElement.textContent =
+            info.flag;
     }
 
     if (countrySelect) {
-        countrySelect.value = currentCountry;
+
+        countrySelect.value =
+            currentCountry;
     }
 
     if (regionSelect) {
-        regionSelect.value = info.region;
+
+        regionSelect.value =
+            info.region;
     }
 }
 
 
-function populateRegionForCountry(countryCode) {
+function populateRegionForCountry(
+    countryCode
+) {
 
     const info =
-        getCountryInfo(countryCode);
+        getCountryInfo(
+            countryCode
+        );
 
     if (!info) {
         return;
     }
 
     if (regionSelect) {
-        regionSelect.value = info.region;
+
+        regionSelect.value =
+            info.region;
     }
 
-    populateCountries(info.region);
+    populateCountries(
+        info.region
+    );
 
     if (countrySelect) {
-        countrySelect.value = countryCode;
+
+        countrySelect.value =
+            countryCode;
     }
 }
 
@@ -576,13 +684,17 @@ function populateRegionForCountry(countryCode) {
 // COUNTRY HELPERS
 // ============================================================
 
-function countryExists(countryCode) {
+function countryExists(
+    countryCode
+) {
 
     if (!countryCode) {
         return false;
     }
 
-    for (const regionKey in countryRegions) {
+    for (
+        const regionKey in countryRegions
+    ) {
 
         if (
             countryRegions[regionKey]
@@ -596,9 +708,13 @@ function countryExists(countryCode) {
 }
 
 
-function getCountryInfo(countryCode) {
+function getCountryInfo(
+    countryCode
+) {
 
-    for (const regionKey in countryRegions) {
+    for (
+        const regionKey in countryRegions
+    ) {
 
         const region =
             countryRegions[regionKey];
@@ -618,12 +734,18 @@ function getCountryInfo(countryCode) {
 }
 
 
-function getCountryName(countryCode) {
+function getCountryName(
+    countryCode
+) {
 
     const info =
-        getCountryInfo(countryCode);
+        getCountryInfo(
+            countryCode
+        );
 
-    return info ? info.name : "";
+    return info
+        ? info.name
+        : "";
 }
 
 
@@ -633,25 +755,38 @@ function getCountryName(countryCode) {
 
 function getCandidatePlaces() {
 
-    if (currentCategory === "meetups") {
+    if (
+        currentCategory ===
+        "meetups"
+    ) {
 
-        return places.filter(place =>
-            isMeetup(place)
+        return places.filter(
+            place =>
+                isMeetup(place)
         );
     }
 
-    if (currentCategory === "all") {
+    if (
+        currentCategory ===
+        "all"
+    ) {
 
         return places;
     }
 
-    return places.filter(place => {
+    return places.filter(
+        place => {
 
-        return (
-            Array.isArray(place.categories) &&
-            place.categories.includes(currentCategory)
-        );
-    });
+            return (
+                Array.isArray(
+                    place.categories
+                ) &&
+                place.categories.includes(
+                    currentCategory
+                )
+            );
+        }
+    );
 }
 
 
@@ -675,20 +810,26 @@ async function loadVisiblePlaceData() {
         getCandidatePlaces();
 
     const placesToLoad =
-        candidates.filter(place => {
+        candidates.filter(
+            place => {
 
-            return !(
-                placeCache[place.id] &&
-                (
-                    placeCache[place.id].loaded ||
-                    placeCache[place.id].loading
-                )
-            );
-        });
+                return !(
+                    placeCache[place.id] &&
+                    (
+                        placeCache[place.id]
+                            .loaded ||
+
+                        placeCache[place.id]
+                            .loading
+                    )
+                );
+            }
+        );
 
     await Promise.all(
-        placesToLoad.map(place =>
-            loadPlaceData(place)
+        placesToLoad.map(
+            place =>
+                loadPlaceData(place)
         )
     );
 
@@ -700,16 +841,24 @@ async function loadVisiblePlaceData() {
 // LOAD ONE PLACE
 // ============================================================
 
-async function loadPlaceData(place) {
+async function loadPlaceData(
+    place
+) {
 
     if (!placeCache[place.id]) {
 
         placeCache[place.id] = {
+
             loading: false,
+
             loaded: false,
+
             location: null,
+
             description: null,
+
             image: null,
+
             countryCode: null
         };
     }
@@ -724,55 +873,64 @@ async function loadPlaceData(place) {
         return;
     }
 
-    cache.loading = true;
+    cache.loading =
+        true;
 
     const countryForRequest =
         currentCountry;
 
-    const skipDescriptionAndImage =
-        shouldSkipDescriptionAndImage(place);
+    const skipDescription =
+        shouldSkipDescription(
+            place
+        );
+
+    const skipImage =
+        shouldSkipImage(
+            place
+        );
 
     try {
 
         /*
-         * IMPORTANT:
-         *
-         * Address/geocoder ALWAYS runs.
-         *
-         * Wikipedia and Wikimedia only run
-         * for normal categories.
+         * Address is ALWAYS fetched.
          */
-        let locationPromise =
+        const locationPromise =
             getPlaceLocation(
                 place,
                 countryForRequest
             );
 
-        let descriptionPromise;
-        let imagePromise;
-
-        if (skipDescriptionAndImage) {
-
-            descriptionPromise =
-                Promise.resolve("");
-
-            imagePromise =
-                Promise.resolve(null);
-
-        } else {
-
-            descriptionPromise =
-                getWikipediaDescription(
+        /*
+         * Wikipedia is skipped for:
+         *
+         * restaurants
+         * nightlife
+         * hobbies
+         * meetups
+         */
+        const descriptionPromise =
+            skipDescription
+                ? Promise.resolve("")
+                : getWikipediaDescription(
                     place,
                     countryForRequest
                 );
 
-            imagePromise =
-                getWikimediaImage(
+        /*
+         * Wikimedia is skipped for:
+         *
+         * restaurants
+         * nightlife
+         * hobbies
+         * meetups
+         */
+        const imagePromise =
+            skipImage
+                ? Promise.resolve(null)
+                : getWikimediaImage(
                     place,
                     countryForRequest
                 );
-        }
 
         const [
             location,
@@ -785,15 +943,16 @@ async function loadPlaceData(place) {
         ]);
 
         /*
-         * Ignore stale request if country changed
-         * while APIs were running.
+         * Ignore stale request if the user
+         * changed countries while loading.
          */
         if (
             currentCountry !==
             countryForRequest
         ) {
 
-            cache.loading = false;
+            cache.loading =
+                false;
 
             return;
         }
@@ -802,20 +961,23 @@ async function loadPlaceData(place) {
             location;
 
         cache.description =
-            skipDescriptionAndImage
+            skipDescription
                 ? ""
                 : description;
 
         cache.image =
-            skipDescriptionAndImage
+            skipImage
                 ? null
                 : image;
 
         cache.countryCode =
             countryForRequest;
 
-        cache.loaded = true;
-        cache.loading = false;
+        cache.loaded =
+            true;
+
+        cache.loading =
+            false;
 
         renderCards();
 
@@ -826,29 +988,30 @@ async function loadPlaceData(place) {
             error
         );
 
-        cache.loading = false;
+        cache.loading =
+            false;
 
-        /*
-         * Keep the place visible even if an API fails.
-         */
         cache.location = {
-            address: ADDRESS_PLACEHOLDER,
+            address:
+                ADDRESS_PLACEHOLDER,
             lat: null,
             lng: null,
             country: null
         };
 
         cache.description =
-            skipDescriptionAndImage
+            skipDescription
                 ? ""
                 : DESCRIPTION_PLACEHOLDER;
 
-        cache.image = null;
+        cache.image =
+            null;
 
         cache.countryCode =
             countryForRequest;
 
-        cache.loaded = true;
+        cache.loaded =
+            true;
 
         renderCards();
     }
@@ -865,7 +1028,9 @@ async function getPlaceLocation(
 ) {
 
     const countryName =
-        getCountryName(countryCode);
+        getCountryName(
+            countryCode
+        );
 
     let searchText =
         place.name;
@@ -879,7 +1044,9 @@ async function getPlaceLocation(
     const url =
         "https://nominatim.openstreetmap.org/search" +
         "?q=" +
-        encodeURIComponent(searchText) +
+        encodeURIComponent(
+            searchText
+        ) +
         "&format=jsonv2" +
         "&limit=1" +
         "&addressdetails=1";
@@ -899,6 +1066,10 @@ async function getPlaceLocation(
         const results =
             await response.json();
 
+        /*
+         * Nominatim found nothing.
+         * Try Open-Meteo.
+         */
         if (
             !Array.isArray(results) ||
             results.length === 0
@@ -915,13 +1086,21 @@ async function getPlaceLocation(
                 );
 
             return {
-                address: ADDRESS_PLACEHOLDER,
+
+                address:
+                    ADDRESS_PLACEHOLDER,
+
                 lat:
-                    fallback?.latitude ?? null,
+                    fallback?.latitude ??
+                    null,
+
                 lng:
-                    fallback?.longitude ?? null,
+                    fallback?.longitude ??
+                    null,
+
                 country:
-                    fallback?.countryCode ?? null
+                    fallback?.countryCode ??
+                    null
             };
         }
 
@@ -931,13 +1110,23 @@ async function getPlaceLocation(
         const address =
             result.address || {};
 
+        /*
+         * First choice:
+         * Nominatim ISO country code.
+         */
         let detectedCountry =
             address.country_code
-                ? String(address.country_code)
+                ? String(
+                    address.country_code
+                )
                     .trim()
                     .toUpperCase()
                 : null;
 
+        /*
+         * Second choice:
+         * Nominatim country name.
+         */
         if (
             !detectedCountry &&
             address.country
@@ -949,7 +1138,13 @@ async function getPlaceLocation(
                 );
         }
 
-        let fallback = null;
+        /*
+         * Third choice:
+         * Open-Meteo only when Nominatim
+         * could not identify the country.
+         */
+        let fallback =
+            null;
 
         if (!detectedCountry) {
 
@@ -963,7 +1158,9 @@ async function getPlaceLocation(
                     countryCode
                 );
 
-            if (fallback?.countryCode) {
+            if (
+                fallback?.countryCode
+            ) {
 
                 detectedCountry =
                     fallback.countryCode;
@@ -972,16 +1169,22 @@ async function getPlaceLocation(
 
         const latitude =
             result.lat
-                ? parseFloat(result.lat)
+                ? parseFloat(
+                    result.lat
+                )
                 : (
-                    fallback?.latitude ?? null
+                    fallback?.latitude ??
+                    null
                 );
 
         const longitude =
             result.lon
-                ? parseFloat(result.lon)
+                ? parseFloat(
+                    result.lon
+                )
                 : (
-                    fallback?.longitude ?? null
+                    fallback?.longitude ??
+                    null
                 );
 
         return {
@@ -1007,6 +1210,10 @@ async function getPlaceLocation(
             error
         );
 
+        /*
+         * Nominatim completely failed.
+         * Use Open-Meteo.
+         */
         const fallback =
             await getCountryFromOpenMeteo(
                 place.name,
@@ -1019,13 +1226,16 @@ async function getPlaceLocation(
                 ADDRESS_PLACEHOLDER,
 
             lat:
-                fallback?.latitude ?? null,
+                fallback?.latitude ??
+                null,
 
             lng:
-                fallback?.longitude ?? null,
+                fallback?.longitude ??
+                null,
 
             country:
-                fallback?.countryCode ?? null
+                fallback?.countryCode ??
+                null
         };
     }
 }
@@ -1045,7 +1255,9 @@ async function getCountryFromOpenMeteo(
         const url =
             "https://geocoding-api.open-meteo.com/v1/search" +
             "?name=" +
-            encodeURIComponent(placeName) +
+            encodeURIComponent(
+                placeName
+            ) +
             "&count=10" +
             "&language=en" +
             "&format=json";
@@ -1065,24 +1277,34 @@ async function getCountryFromOpenMeteo(
 
         if (
             !data.results ||
-            !Array.isArray(data.results) ||
+            !Array.isArray(
+                data.results
+            ) ||
             data.results.length === 0
         ) {
 
             return null;
         }
 
+        /*
+         * Prefer a result matching
+         * the selected country.
+         */
         const matchingResult =
-            data.results.find(result => {
+            data.results.find(
+                result => {
 
-                return (
-                    result.country_code &&
-                    String(result.country_code)
-                        .toUpperCase() ===
-                    String(countryCode)
-                        .toUpperCase()
-                );
-            });
+                    return (
+                        result.country_code &&
+                        String(
+                            result.country_code
+                        ).toUpperCase() ===
+                        String(
+                            countryCode
+                        ).toUpperCase()
+                    );
+                }
+            );
 
         if (matchingResult) {
 
@@ -1090,17 +1312,24 @@ async function getCountryFromOpenMeteo(
 
                 countryCode:
                     String(
-                        matchingResult.country_code
+                        matchingResult
+                            .country_code
                     ).toUpperCase(),
 
                 latitude:
-                    matchingResult.latitude ?? null,
+                    matchingResult.latitude ??
+                    null,
 
                 longitude:
-                    matchingResult.longitude ?? null
+                    matchingResult.longitude ??
+                    null
             };
         }
 
+        /*
+         * Do not blindly accept the first
+         * result for ambiguous place names.
+         */
         return null;
 
     } catch (error) {
@@ -1119,7 +1348,9 @@ async function getCountryFromOpenMeteo(
 // COUNTRY NAME → ISO CODE
 // ============================================================
 
-function countryNameToISO(countryName) {
+function countryNameToISO(
+    countryName
+) {
 
     if (!countryName) {
         return null;
@@ -1130,20 +1361,30 @@ function countryNameToISO(countryName) {
             .trim()
             .toLowerCase();
 
+    /*
+     * Use the existing country list.
+     */
     for (
         const regionKey in countryRegions
     ) {
 
         const countries =
-            countryRegions[regionKey].countries;
+            countryRegions[regionKey]
+                .countries;
 
         for (
-            const [code, country] of
-            Object.entries(countries)
+            const [
+                code,
+                country
+            ] of Object.entries(
+                countries
+            )
         ) {
 
             if (
-                String(country.name)
+                String(
+                    country.name
+                )
                     .trim()
                     .toLowerCase() ===
                 normalized
@@ -1154,34 +1395,64 @@ function countryNameToISO(countryName) {
         }
     }
 
+    /*
+     * Common alternate names.
+     */
     const aliases = {
 
-        "united states of america": "US",
-        "usa": "US",
-        "u.s.a.": "US",
+        "united states of america":
+            "US",
 
-        "south korea": "KR",
-        "republic of korea": "KR",
-        "korea, republic of": "KR",
+        "usa":
+            "US",
 
-        "czech republic": "CZ",
-        "czechia": "CZ",
+        "u.s.a.":
+            "US",
 
-        "russian federation": "RU",
+        "south korea":
+            "KR",
 
-        "turkey": "TR",
-        "türkiye": "TR",
+        "republic of korea":
+            "KR",
 
-        "united kingdom": "GB",
-        "great britain": "GB",
+        "korea, republic of":
+            "KR",
 
-        "hong kong": "HK",
+        "czech republic":
+            "CZ",
 
-        "macao": "MO",
-        "macau": "MO"
+        "czechia":
+            "CZ",
+
+        "russian federation":
+            "RU",
+
+        "turkey":
+            "TR",
+
+        "türkiye":
+            "TR",
+
+        "united kingdom":
+            "GB",
+
+        "great britain":
+            "GB",
+
+        "hong kong":
+            "HK",
+
+        "macao":
+            "MO",
+
+        "macau":
+            "MO"
     };
 
-    return aliases[normalized] || null;
+    return (
+        aliases[normalized] ||
+        null
+    );
 }
 
 
@@ -1197,7 +1468,9 @@ async function getWikipediaDescription(
     try {
 
         const countryName =
-            getCountryName(countryCode);
+            getCountryName(
+                countryCode
+            );
 
         const searchText =
             countryName
@@ -1207,7 +1480,9 @@ async function getWikipediaDescription(
         const searchURL =
             "https://en.wikipedia.org/w/rest.php/v1/search/page" +
             "?q=" +
-            encodeURIComponent(searchText) +
+            encodeURIComponent(
+                searchText
+            ) +
             "&limit=5";
 
         const searchResponse =
@@ -1235,20 +1510,26 @@ async function getWikipediaDescription(
             place.name.toLowerCase();
 
         let matchingPage =
-            searchData.pages.find(page =>
-                page.title
-                    .toLowerCase()
-                    .includes(placeName)
+            searchData.pages.find(
+                page =>
+                    page.title
+                        .toLowerCase()
+                        .includes(
+                            placeName
+                        )
             );
 
         if (!matchingPage) {
+
             matchingPage =
                 searchData.pages[0];
         }
 
         const summaryURL =
             "https://en.wikipedia.org/api/rest_v1/page/summary/" +
-            encodeURIComponent(matchingPage.key);
+            encodeURIComponent(
+                matchingPage.key
+            );
 
         const summaryResponse =
             await fetch(summaryURL);
@@ -1269,7 +1550,8 @@ async function getWikipediaDescription(
             "";
 
         if (
-            typeof description !== "string" ||
+            typeof description !==
+                "string" ||
             !description.trim()
         ) {
 
@@ -1300,7 +1582,9 @@ async function getWikimediaImage(
     try {
 
         const countryName =
-            getCountryName(countryCode);
+            getCountryName(
+                countryCode
+            );
 
         const searchText =
             countryName
@@ -1312,7 +1596,9 @@ async function getWikimediaImage(
             "?action=query" +
             "&generator=search" +
             "&gsrsearch=" +
-            encodeURIComponent(searchText) +
+            encodeURIComponent(
+                searchText
+            ) +
             "&gsrnamespace=6" +
             "&gsrlimit=10" +
             "&prop=imageinfo" +
@@ -1343,7 +1629,9 @@ async function getWikimediaImage(
         }
 
         const pages =
-            Object.values(data.query.pages);
+            Object.values(
+                data.query.pages
+            );
 
         if (!pages.length) {
             return null;
@@ -1358,20 +1646,35 @@ async function getWikimediaImage(
                 )
                 .trim();
 
-        let bestPage = null;
-        let bestScore = -Infinity;
+        let bestPage =
+            null;
+
+        let bestScore =
+            -Infinity;
 
         for (const page of pages) {
 
             const title =
-                String(page.title || "")
-                    .replace(/^File:/i, "")
+                String(
+                    page.title || ""
+                )
+                    .replace(
+                        /^File:/i,
+                        ""
+                    )
                     .toLowerCase();
 
-            let score = 0;
+            let score =
+                0;
 
+            /*
+             * Strong match when the entire
+             * place name occurs in the title.
+             */
             if (
-                title.includes(normalizedName)
+                title.includes(
+                    normalizedName
+                )
             ) {
 
                 score += 10;
@@ -1382,17 +1685,30 @@ async function getWikimediaImage(
                     .split(" ")
                     .filter(Boolean);
 
-            words.forEach(word => {
+            words.forEach(
+                word => {
 
-                if (title.includes(word)) {
-                    score += 1;
+                    if (
+                        title.includes(
+                            word
+                        )
+                    ) {
+
+                        score += 1;
+                    }
                 }
-            });
+            );
 
-            if (score > bestScore) {
+            if (
+                score >
+                bestScore
+            ) {
 
-                bestScore = score;
-                bestPage = page;
+                bestScore =
+                    score;
+
+                bestPage =
+                    page;
             }
         }
 
@@ -1424,6 +1740,11 @@ async function getWikimediaImage(
             error
         );
 
+        /*
+         * IMPORTANT:
+         *
+         * No fallback image.
+         */
         return null;
     }
 }
@@ -1447,8 +1768,11 @@ function isMeetup(place) {
                 .toLowerCase();
 
         return (
-            hostname === "meetup.com" ||
-            hostname.endsWith(".meetup.com")
+            hostname ===
+                "meetup.com" ||
+            hostname.endsWith(
+                ".meetup.com"
+            )
         );
 
     } catch {
@@ -1462,7 +1786,9 @@ function isMeetup(place) {
 // EXTERNAL LINK
 // ============================================================
 
-function getExternalLinkHTML(place) {
+function getExternalLinkHTML(
+    place
+) {
 
     if (!place.url) {
         return "";
@@ -1508,6 +1834,9 @@ function getMapButtonHTML(
         return "";
     }
 
+    /*
+     * Prefer coordinates when available.
+     */
     if (
         location.lat !== null &&
         location.lng !== null &&
@@ -1535,9 +1864,14 @@ function getMapButtonHTML(
         `;
     }
 
+    /*
+     * If coordinates aren't available,
+     * use the address.
+     */
     if (
         location.address &&
-        location.address !== ADDRESS_PLACEHOLDER
+        location.address !==
+            ADDRESS_PLACEHOLDER
     ) {
 
         const googleMapsURL =
@@ -1565,25 +1899,35 @@ function getMapButtonHTML(
 // SKELETON HELPERS
 // ============================================================
 
-function getSkeletonCardHTML(place) {
+function getSkeletonCardHTML(
+    place
+) {
 
     const categoriesHTML =
-        Array.isArray(place.categories)
+        Array.isArray(
+            place.categories
+        )
             ? place.categories
-                .map(category => `
-                    <span class="place-category">
-                        ${escapeHTML(
-                            formatCategory(category)
-                        )}
-                    </span>
-                `)
+                .map(
+                    category => `
+                        <span class="place-category">
+                            ${escapeHTML(
+                                formatCategory(
+                                    category
+                                )
+                            )}
+                        </span>
+                    `
+                )
                 .join("")
             : "";
 
     const meetupTag =
         isMeetup(place)
             ? `
-                <span class="place-category meetup-tag">
+                <span
+                    class="place-category meetup-tag"
+                >
                     Meetup
                 </span>
             `
@@ -1592,34 +1936,51 @@ function getSkeletonCardHTML(place) {
     return `
         <article class="place-card">
 
-            <div class="place-image-skeleton skeleton">
+            <div
+                class="place-image-skeleton skeleton"
+            >
             </div>
 
-            <div class="place-card-content">
+            <div
+                class="place-card-content"
+            >
 
-                <div class="skeleton skeleton-title">
+                <div
+                    class="skeleton skeleton-title"
+                >
                 </div>
 
                 <div class="place-categories">
+
                     ${categoriesHTML}
+
                     ${meetupTag}
+
                 </div>
 
-                <div class="skeleton skeleton-description">
+                <div
+                    class="skeleton skeleton-description"
+                >
                     <span></span>
                     <span></span>
                     <span></span>
                 </div>
 
-                <div class="skeleton skeleton-address">
+                <div
+                    class="skeleton skeleton-address"
+                >
                 </div>
 
                 <div class="place-actions">
 
-                    <div class="skeleton skeleton-button">
+                    <div
+                        class="skeleton skeleton-button"
+                    >
                     </div>
 
-                    <div class="skeleton skeleton-button">
+                    <div
+                        class="skeleton skeleton-button"
+                    >
                     </div>
 
                 </div>
@@ -1644,31 +2005,51 @@ function renderCards() {
     const candidates =
         getCandidatePlaces();
 
+    /*
+     * Filter by country only after
+     * geocoding has completed.
+     */
     const visiblePlaces =
-        candidates.filter(place => {
+        candidates.filter(
+            place => {
 
-            const cache =
-                placeCache[place.id];
+                const cache =
+                    placeCache[place.id];
 
-            if (
-                cache &&
-                cache.loaded &&
-                cache.location
-            ) {
+                if (
+                    cache &&
+                    cache.loaded &&
+                    cache.location
+                ) {
 
-                if (cache.location.country) {
+                    /*
+                     * If country is known,
+                     * filter normally.
+                     */
+                    if (
+                        cache.location.country
+                    ) {
 
-                    return (
-                        cache.location.country ===
-                        currentCountry
-                    );
+                        return (
+                            cache.location.country ===
+                            currentCountry
+                        );
+                    }
+
+                    /*
+                     * If country is unknown,
+                     * don't incorrectly remove
+                     * the card.
+                     */
+                    return true;
                 }
 
+                /*
+                 * Still loading.
+                 */
                 return true;
             }
-
-            return true;
-        });
+        );
 
     if (resultCount) {
 
@@ -1680,282 +2061,302 @@ function renderCards() {
             }`;
     }
 
-    placesContainer.innerHTML = "";
+    placesContainer.innerHTML =
+        "";
 
     if (!visiblePlaces.length) {
 
         placesContainer.innerHTML = `
             <div class="empty-state">
-                <h3>No recommendations</h3>
+
+                <h3>
+                    No recommendations
+                </h3>
+
                 <p>
                     There are currently no places
                     matching this selection.
                 </p>
+
             </div>
         `;
 
         return;
     }
 
-    visiblePlaces.forEach(place => {
+    visiblePlaces.forEach(
+        place => {
 
-        const cache =
-            placeCache[place.id];
-
-        /*
-         * Not loaded yet:
-         * render skeleton.
-         */
-        if (
-            !cache ||
-            !cache.loaded
-        ) {
-
-            placesContainer.insertAdjacentHTML(
-                "beforeend",
-                getSkeletonCardHTML(place)
-            );
-
-            return;
-        }
-
-        const location =
-            cache.location || {
-                address: ADDRESS_PLACEHOLDER,
-                lat: null,
-                lng: null,
-                country: null
-            };
-
-        /*
-         * SPECIAL CATEGORIES
-         *
-         * Restaurants, hobbies and meetups:
-         *
-         * - description = blank
-         * - image = blank
-         * - no fallback image
-         */
-        const skipDescriptionAndImage =
-            shouldSkipDescriptionAndImage(place);
-
-        const description =
-            skipDescriptionAndImage
-                ? ""
-                : (
-                    cache.description ||
-                    DESCRIPTION_PLACEHOLDER
-                );
-
-        const image =
-            skipDescriptionAndImage
-                ? null
-                : cache.image;
-
-        const card =
-            document.createElement("article");
-
-        card.className =
-            "place-card";
-
-
-        // --------------------------------------------------------
-        // IMAGE
-        // --------------------------------------------------------
-
-        let imageHTML = "";
-
-        if (image) {
-
-            imageHTML = `
-                <div class="place-image">
-
-                    <img
-                        src="${escapeHTML(image)}"
-                        alt="${escapeHTML(place.name)}"
-                        loading="lazy"
-                        referrerpolicy="no-referrer"
-                        onerror="this.onerror=null;this.parentElement.remove();"
-                    >
-
-                </div>
-            `;
-
-        } else if (!skipDescriptionAndImage) {
+            const cache =
+                placeCache[place.id];
 
             /*
-             * Existing fallback image behavior is preserved
-             * for normal categories only.
+             * Still loading:
+             * show skeleton.
              */
-            const fallbackImage =
-                "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEggMt-m95pUHuS-ag4Ir8y3uV8XV4z7YRgbjsQGWlZWygFrW0vL0Xx_QMcOwiUBPB8dA7z-Ig8GP_iACAfSHgkHEp4UYunZNutAer2hDee4TZ37MAHtMSCDM2qzZwZ78Wki9Pqv706r81Fl/s800/ojigi_animal_usagi.png";
+            if (
+                !cache ||
+                !cache.loaded
+            ) {
 
-            imageHTML = `
-                <div class="place-image">
+                placesContainer
+                    .insertAdjacentHTML(
+                        "beforeend",
+                        getSkeletonCardHTML(
+                            place
+                        )
+                    );
 
-                    <img
-                        src="${fallbackImage}"
-                        alt="${escapeHTML(place.name)}"
-                        loading="lazy"
-                        referrerpolicy="no-referrer"
-                    >
+                return;
+            }
 
-                </div>
-            `;
-        }
+            const location =
+                cache.location || {
 
-        /*
-         * For restaurants/hobbies/meetups:
-         *
-         * imageHTML remains completely empty.
-         *
-         * No div.
-         * No img.
-         * No fallback.
-         */
+                    address:
+                        ADDRESS_PLACEHOLDER,
+
+                    lat: null,
+
+                    lng: null,
+
+                    country: null
+                };
 
 
-        // --------------------------------------------------------
-        // CATEGORIES
-        // --------------------------------------------------------
+            // ------------------------------------------------
+            // DESCRIPTION
+            // ------------------------------------------------
 
-        const categoriesHTML =
-            Array.isArray(place.categories)
-                ? place.categories
-                    .map(category => `
-                        <span class="place-category">
+            const description =
+                shouldSkipDescription(
+                    place
+                )
+                    ? ""
+                    : (
+                        cache.description ||
+                        DESCRIPTION_PLACEHOLDER
+                    );
+
+            let descriptionHTML =
+                "";
+
+            if (description) {
+
+                descriptionHTML = `
+                    <p class="place-description">
+                        ${escapeHTML(
+                            description
+                        )}
+                    </p>
+                `;
+            }
+
+
+            // ------------------------------------------------
+            // IMAGE
+            // ------------------------------------------------
+
+            /*
+             * No fallback image exists.
+             *
+             * Restaurants:
+             *     no image
+             *
+             * Hobbies:
+             *     no image
+             *
+             * Nightlife:
+             *     no image
+             *
+             * Meetups:
+             *     no image
+             *
+             * Other categories:
+             *     Wikimedia image if found
+             *
+             * If Wikimedia returns null:
+             *     no image
+             */
+            const image =
+                shouldSkipImage(
+                    place
+                )
+                    ? null
+                    : cache.image;
+
+            let imageHTML =
+                "";
+
+            if (image) {
+
+                imageHTML = `
+                    <div class="place-image">
+
+                        <img
+                            src="${escapeHTML(image)}"
+                            alt="${escapeHTML(place.name)}"
+                            loading="lazy"
+                            referrerpolicy="no-referrer"
+                            onerror="this.parentElement.remove();"
+                        >
+
+                    </div>
+                `;
+            }
+
+
+            // ------------------------------------------------
+            // CATEGORIES
+            // ------------------------------------------------
+
+            const categoriesHTML =
+                Array.isArray(
+                    place.categories
+                )
+                    ? place.categories
+                        .map(
+                            category => `
+                                <span class="place-category">
+                                    ${escapeHTML(
+                                        formatCategory(
+                                            category
+                                        )
+                                    )}
+                                </span>
+                            `
+                        )
+                        .join("")
+                    : "";
+
+            const meetupTag =
+                isMeetup(place)
+                    ? `
+                        <span
+                            class="place-category meetup-tag"
+                        >
+                            Meetup
+                        </span>
+                    `
+                    : "";
+
+
+            // ------------------------------------------------
+            // LINKS
+            // ------------------------------------------------
+
+            const externalLinkHTML =
+                getExternalLinkHTML(
+                    place
+                );
+
+            const mapButtonHTML =
+                getMapButtonHTML(
+                    place,
+                    location
+                );
+
+
+            // ------------------------------------------------
+            // CARD
+            // ------------------------------------------------
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+            card.className =
+                "place-card";
+
+            card.innerHTML = `
+
+                ${imageHTML}
+
+                <div
+                    class="place-card-content"
+                >
+
+                    <h3 class="place-name">
+                        ${escapeHTML(
+                            place.name
+                        )}
+                    </h3>
+
+                    <div class="place-categories">
+
+                        ${categoriesHTML}
+
+                        ${meetupTag}
+
+                    </div>
+
+                    ${descriptionHTML}
+
+                    <div class="place-address">
+
+                        <span
+                            class="address-icon"
+                        >
+                            📍
+                        </span>
+
+                        <span>
                             ${escapeHTML(
-                                formatCategory(category)
+                                location.address ||
+                                ADDRESS_PLACEHOLDER
                             )}
                         </span>
-                    `)
-                    .join("")
-                : "";
 
-        const meetupTag =
-            isMeetup(place)
-                ? `
-                    <span
-                        class="place-category meetup-tag"
-                    >
-                        Meetup
-                    </span>
-                `
-                : "";
+                    </div>
 
+                    <div class="place-actions">
 
-        // --------------------------------------------------------
-        // LINKS
-        // --------------------------------------------------------
+                        ${mapButtonHTML}
 
-        const externalLinkHTML =
-            getExternalLinkHTML(place);
+                        ${externalLinkHTML}
 
-        const mapButtonHTML =
-            getMapButtonHTML(
-                place,
-                location
-            );
+                        <button
+                            type="button"
+                            class="copy-button"
+                        >
+                            Copy address
+                        </button>
 
+                    </div>
 
-        // --------------------------------------------------------
-        // DESCRIPTION
-        // --------------------------------------------------------
-
-        let descriptionHTML = "";
-
-        if (description) {
-
-            descriptionHTML = `
-                <p class="place-description">
-                    ${escapeHTML(description)}
-                </p>
+                </div>
             `;
-        }
 
 
-        // --------------------------------------------------------
-        // CARD HTML
-        // --------------------------------------------------------
+            // ------------------------------------------------
+            // COPY BUTTON
+            // ------------------------------------------------
 
-        card.innerHTML = `
+            const copyButton =
+                card.querySelector(
+                    ".copy-button"
+                );
 
-            ${imageHTML}
+            if (copyButton) {
 
-            <div class="place-card-content">
+                copyButton.addEventListener(
+                    "click",
+                    () => {
 
-                <h3 class="place-name">
-                    ${escapeHTML(place.name)}
-                </h3>
-
-                <div class="place-categories">
-
-                    ${categoriesHTML}
-
-                    ${meetupTag}
-
-                </div>
-
-                ${descriptionHTML}
-
-                <div class="place-address">
-
-                    <span class="address-icon">
-                        📍
-                    </span>
-
-                    <span>
-                        ${escapeHTML(
+                        copyAddress(
                             location.address ||
-                            ADDRESS_PLACEHOLDER
-                        )}
-                    </span>
+                            ADDRESS_PLACEHOLDER,
+                            copyButton
+                        );
+                    }
+                );
+            }
 
-                </div>
-
-                <div class="place-actions">
-
-                    ${mapButtonHTML}
-
-                    ${externalLinkHTML}
-
-                    <button
-                        type="button"
-                        class="copy-button"
-                    >
-                        Copy address
-                    </button>
-
-                </div>
-
-            </div>
-        `;
-
-
-        // --------------------------------------------------------
-        // COPY ADDRESS
-        // --------------------------------------------------------
-
-        const copyButton =
-            card.querySelector(".copy-button");
-
-        if (copyButton) {
-
-            copyButton.addEventListener(
-                "click",
-                () => {
-
-                    copyAddress(
-                        location.address ||
-                        ADDRESS_PLACEHOLDER,
-                        copyButton
-                    );
-                }
-            );
+            placesContainer
+                .appendChild(card);
         }
-
-        placesContainer.appendChild(card);
-    });
+    );
 }
 
 
@@ -1970,7 +2371,8 @@ async function copyAddress(
 
     try {
 
-        await navigator.clipboard.writeText(address);
+        await navigator.clipboard
+            .writeText(address);
 
         const originalText =
             button.textContent;
@@ -1978,16 +2380,23 @@ async function copyAddress(
         button.textContent =
             "✓ Copied";
 
-        button.classList.add("copied");
+        button.classList.add(
+            "copied"
+        );
 
-        setTimeout(() => {
+        setTimeout(
+            () => {
 
-            button.textContent =
-                originalText;
+                button.textContent =
+                    originalText;
 
-            button.classList.remove("copied");
+                button.classList.remove(
+                    "copied"
+                );
 
-        }, 1500);
+            },
+            1500
+        );
 
     } catch {
 
@@ -2011,8 +2420,8 @@ function getCountryFromURL() {
         );
 
     return (
-        params
-            .get("country") || ""
+        params.get("country") ||
+        ""
     ).toUpperCase();
 }
 
@@ -2025,8 +2434,8 @@ function getCategoryFromURL() {
         );
 
     return (
-        params
-            .get("category") || ""
+        params.get("category") ||
+        ""
     ).toLowerCase();
 }
 
@@ -2058,7 +2467,9 @@ function updateURL() {
 
     } else {
 
-        params.delete("category");
+        params.delete(
+            "category"
+        );
     }
 
     const query =
@@ -2081,13 +2492,19 @@ function updateURL() {
 // FORMATTING
 // ============================================================
 
-function formatCategory(category) {
+function formatCategory(
+    category
+) {
 
     return String(category)
-        .replace(/-/g, " ")
+        .replace(
+            /-/g,
+            " "
+        )
         .replace(
             /\b\w/g,
-            letter => letter.toUpperCase()
+            letter =>
+                letter.toUpperCase()
         );
 }
 
@@ -2096,21 +2513,39 @@ function formatCategory(category) {
 // HTML ESCAPING
 // ============================================================
 
-function escapeHTML(value) {
+function escapeHTML(
+    value
+) {
 
     if (
         value === undefined ||
         value === null
     ) {
+
         return "";
     }
 
     return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 }
 
 
