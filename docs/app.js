@@ -119,6 +119,7 @@ const placeCache = {};
 let places = [];
 let currentCountry = "JP";
 let currentCategory = "all";
+let countryLoadGeneration = 0;
 
 
 // ============================================================
@@ -366,20 +367,9 @@ async function detectVisitorCountry() {
             countryExists(detectedCountry)
         ) {
 
-            currentCountry =
-                detectedCountry;
-
-            populateRegionForCountry(
-                currentCountry
+            setCountry(
+                detectedCountry
             );
-
-            updateCountryDisplay();
-
-            updateURL();
-
-            render();
-
-            loadVisiblePlaceData();
         }
 
     } catch (error) {
@@ -567,6 +557,12 @@ function setCountry(
         return;
     }
 
+    /*
+     * Every country selection gets its own generation. Responses
+     * from earlier selections must never update the current UI.
+     */
+    countryLoadGeneration += 1;
+
     currentCountry =
         countryCode;
 
@@ -599,8 +595,15 @@ function setCountry(
 
                 cache.countryCode =
                     null;
+
+                cache.generation =
+                    null;
             }
         });
+
+    populateRegionForCountry(
+        currentCountry
+    );
 
     updateCountryDisplay();
 
@@ -806,6 +809,12 @@ function render() {
 
 async function loadVisiblePlaceData() {
 
+    const countryForRequest =
+        currentCountry;
+
+    const requestGeneration =
+        countryLoadGeneration;
+
     const candidates =
         getCandidatePlaces();
 
@@ -815,6 +824,12 @@ async function loadVisiblePlaceData() {
 
                 return !(
                     placeCache[place.id] &&
+                    placeCache[place.id]
+                        .countryCode ===
+                        countryForRequest &&
+                    placeCache[place.id]
+                        .generation ===
+                        requestGeneration &&
                     (
                         placeCache[place.id]
                             .loaded ||
@@ -829,11 +844,25 @@ async function loadVisiblePlaceData() {
     await Promise.all(
         placesToLoad.map(
             place =>
-                loadPlaceData(place)
+                loadPlaceData(
+                    place,
+                    countryForRequest,
+                    requestGeneration
+                )
         )
     );
 
-    renderCards();
+    if (
+        currentCountry === countryForRequest &&
+        countryLoadGeneration === requestGeneration
+    ) {
+        /*
+         * Replace the complete skeleton grid at once. Filtering
+         * country mismatches card-by-card would shift the page while
+         * requests finish at different times.
+         */
+        renderCards();
+    }
 }
 
 
@@ -842,7 +871,9 @@ async function loadVisiblePlaceData() {
 // ============================================================
 
 async function loadPlaceData(
-    place
+    place,
+    countryForRequest = currentCountry,
+    requestGeneration = countryLoadGeneration
 ) {
 
     if (!placeCache[place.id]) {
@@ -859,7 +890,9 @@ async function loadPlaceData(
 
             image: null,
 
-            countryCode: null
+            countryCode: null,
+
+            generation: null
         };
     }
 
@@ -867,8 +900,12 @@ async function loadPlaceData(
         placeCache[place.id];
 
     if (
-        cache.loading ||
-        cache.loaded
+        cache.countryCode === countryForRequest &&
+        cache.generation === requestGeneration &&
+        (
+            cache.loading ||
+            cache.loaded
+        )
     ) {
         return;
     }
@@ -876,8 +913,14 @@ async function loadPlaceData(
     cache.loading =
         true;
 
-    const countryForRequest =
-        currentCountry;
+    cache.loaded =
+        false;
+
+    cache.countryCode =
+        countryForRequest;
+
+    cache.generation =
+        requestGeneration;
 
     const skipDescription =
         shouldSkipDescription(
@@ -947,13 +990,10 @@ async function loadPlaceData(
          * changed countries while loading.
          */
         if (
-            currentCountry !==
-            countryForRequest
+            currentCountry !== countryForRequest ||
+            countryLoadGeneration !== requestGeneration ||
+            cache.generation !== requestGeneration
         ) {
-
-            cache.loading =
-                false;
-
             return;
         }
 
@@ -979,14 +1019,24 @@ async function loadPlaceData(
         cache.loading =
             false;
 
-        renderCards();
-
     } catch (error) {
 
         console.error(
             `Error loading ${place.name}:`,
             error
         );
+
+        /*
+         * The request may have failed after a newer country request
+         * took ownership of this cache entry. Do not overwrite it.
+         */
+        if (
+            currentCountry !== countryForRequest ||
+            countryLoadGeneration !== requestGeneration ||
+            cache.generation !== requestGeneration
+        ) {
+            return;
+        }
 
         cache.loading =
             false;
@@ -1012,8 +1062,6 @@ async function loadPlaceData(
 
         cache.loaded =
             true;
-
-        renderCards();
     }
 }
 
@@ -2019,6 +2067,8 @@ function renderCards() {
                 if (
                     cache &&
                     cache.loaded &&
+                    cache.countryCode === currentCountry &&
+                    cache.generation === countryLoadGeneration &&
                     cache.location
                 ) {
 
@@ -2096,7 +2146,9 @@ function renderCards() {
              */
             if (
                 !cache ||
-                !cache.loaded
+                !cache.loaded ||
+                cache.countryCode !== currentCountry ||
+                cache.generation !== countryLoadGeneration
             ) {
 
                 placesContainer
