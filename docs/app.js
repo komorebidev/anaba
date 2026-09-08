@@ -2087,11 +2087,12 @@ function renderCards() {
                     }
 
                     /*
-                     * If country is unknown,
-                     * don't incorrectly remove
-                     * the card.
+                     * A completed lookup must confirm the selected
+                     * country. Keeping an unknown result here lets
+                     * recommendations from a previous country remain
+                     * visible after a country switch.
                      */
-                    return true;
+                    return false;
                 }
 
                 /*
