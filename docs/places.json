@@ -88,55 +88,55 @@
   {
     "id": "jojoen-shibuya",
     "name": "Jojoen Shibuya",
-    "searchNameJa": "叙々苑 渋谷店",
+    "searchNameJa": "叙々苑渋谷店",
     "categories": ["restaurants"]
   },
   {
     "id": "ippudo-komazawa-daigaku",
     "name": "Ippudo Komazawa Daigaku",
-    "searchNameJa": "一風堂 駒沢大学店",
+    "searchNameJa": "一風堂駒沢大学店",
     "categories": ["restaurants"]
   },
   {
     "id": "ramen-express-hakata-ramen-ippudo-tokyo-solamachi",
     "name": "Ramen Express Hakata Ramen Ippudo Tokyo Solamachi",
-    "searchNameJa": "RAMEN EXPRESS 博多一風堂 東京ソラマチ店",
+    "searchNameJa": "RAMENEXPRESS博多一風堂東京ソラマチ店",
     "categories": ["restaurants"]
   },
   {
     "id": "frijoles-shibuya-dogenzaka",
     "name": "Frijoles Shibuya Dogenzaka",
-    "searchNameJa": "フリホーレス 渋谷道玄坂店",
+    "searchNameJa": "フリホーレス渋谷道玄坂店",
     "categories": ["restaurants"]
   },
   {
     "id": "shiawase-no-pancake-omotesando",
     "name": "Shiawase no Pancake Omotesando",
-    "searchNameJa": "幸せのパンケーキ 表参道店",
+    "searchNameJa": "幸せのパンケーキ表参道店",
     "categories": ["restaurants"]
   },
   {
     "id": "the-bvlgari-bar",
     "name": "Bulgari Ginza Bar",
-    "searchNameJa": "ブルガリ ギンザ・バー",
+    "searchNameJa": "ブルガリギンザ・バー",
     "categories": ["restaurants", "nightlife"]
   },
   {
     "id": "rigoletto-shibuya",
     "name": "RIGOLETTO WINE BAR AND GRILL Shibuya",
-    "searchNameJa": "リゴレット ワインバー アンド グリル 渋谷",
+    "searchNameJa": "リゴレットワインバーアンドグリル渋谷",
     "categories": ["restaurants"]
   },
   {
     "id": "rigoletto-otemachi",
     "name": "RIGOLETTO WINE BAR AND GRILL Otemachi",
-    "searchNameJa": "リゴレット ワインバー アンド グリル 大手町",
+    "searchNameJa": "リゴレットワインバーアンドグリル大手町",
     "categories": ["restaurants"]
   },
   {
     "id": "rooftop-bar-piro-ginza",
     "name": "Rooftop Bar Piro Ginza",
-    "searchNameJa": "ルーフトップバー ピロ ギンザ",
+    "searchNameJa": "ルーフトップバーピロギンザ",
     "categories": ["restaurants", "nightlife"]
   },
 
@@ -176,7 +176,7 @@
   {
     "id": "language-cafe-bar-mickey-house",
     "name": "Language Cafe Bar Mickey House",
-    "searchNameJa": "ミッキーハウス 高田馬場",
+    "searchNameJa": "ミッキーハウス高田馬場",
     "categories": ["experiences"],
     "url": "https://www.meetup.com/language-cafe-bar-mickey-house/",
     "country": "JP"
@@ -191,7 +191,7 @@
   {
     "id": "showa-kinen-park-cycling",
     "name": "Showa Kinen Park Cycling",
-    "searchNameJa": "国営昭和記念公園 サイクリングコース",
+    "searchNameJa": "国営昭和記念公園サイクリングコース",
     "categories": ["hobbies"]
   },
   {
