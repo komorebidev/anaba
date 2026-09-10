@@ -24,6 +24,12 @@ Pass your Yahoo Client ID as the first argument:
 python test_yahoo_search.py YOUR_CLIENT_ID
 ```
 
+Prod sample: 
+
+```bash
+python .\yahooTest.py dmVyPTIwMjUwNyZpZD1IZWpTRHZONHhsJmhhc2g9TXpNNFpUVTNOemczWWpsa05Ua3daZw --results=10
+```
+
 Example:
 
 ```bash
