@@ -2227,62 +2227,54 @@ function renderCards() {
      * Filter by country only after
      * geocoding has completed.
      */
-    const visiblePlaces =
-        candidates.filter(
-            place => {
+const visiblePlaces = candidates.filter((place) => {
+    /*
+     * Online-only recommendations such as meetups may
+     * not have a physical search result. When the source
+     * data already declares their country, trust it.
+     */
+    if (place.country) {
+        return place.country === currentCountry;
+    }
 
-                /*
-                 * Online-only recommendations such as meetups may
-                 * not have a physical search result. When the source
-                 * data already declares their country, trust it.
-                 */
-                if (place.country) {
-                    return (
-                        place.country === currentCountry
-                    );
-                }
+    const cache = placeCache[place.id];
 
-                const cache =
-                    placeCache[place.id];
+    if (
+        cache &&
+        cache.loaded &&
+        cache.countryCode === currentCountry &&
+        cache.generation === countryLoadGeneration &&
+        cache.location
+    ) {
+        /*
+         * If country is known,
+         * filter normally.
+         */
+        if (cache.location.country) {
+            return cache.location.country === currentCountry;
+        }
 
-                if (
-                    cache &&
-                    cache.loaded &&
-                    cache.countryCode === currentCountry &&
-                    cache.generation === countryLoadGeneration &&
-                    cache.location
-                ) {
+        /*
+         * A completed lookup must confirm the selected
+         * country. Keeping an unknown result here lets
+         * recommendations from a previous country remain
+         * visible after a country switch.
+         */
+        return false;
+    }
 
-                    /*
-                     * If country is known,
-                     * filter normally.
-                     */
-                    if (
-                        cache.location.country
-                    ) {
+    /*
+     * Still loading.
+     */
+    return true;
+});
 
-                        return (
-                            cache.location.country ===
-                            currentCountry
-                        );
-                    }
-
-                    /*
-                     * A completed lookup must confirm the selected
-                     * country. Keeping an unknown result here lets
-                     * recommendations from a previous country remain
-                     * visible after a country switch.
-                     */
-                    return false;
-                }
-
-                /*
-                 * Still loading.
-                 */
-                return true;
-            }
-        );
-
+/*
+ * Sort cards alphabetically by name.
+ */
+visiblePlaces.sort((a, b) =>
+    a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
+);
     if (resultCount) {
 
         resultCount.textContent =
