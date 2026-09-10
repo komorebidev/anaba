@@ -113,6 +113,11 @@ const countryRegions = {
 
 const DESCRIPTION_PLACEHOLDER = "Description unavailable.";
 const ADDRESS_PLACEHOLDER = "Address unavailable.";
+const YAHOO_APP_ID =
+    window.APP_CONFIG?.yahooAppId || "";
+
+let yahooRequestQueue =
+    Promise.resolve();
 
 const placeCache = {};
 
@@ -1075,6 +1080,23 @@ async function getPlaceLocation(
     countryCode
 ) {
 
+    /*
+     * Yahoo Local Search has strong Japan POI and address coverage.
+     * Its terms prohibit persistent caching, so results are used for
+     * this page load only before falling back to general geocoders.
+     */
+    if (countryCode === "JP") {
+
+        const yahooLocation =
+            await getYahooJapanLocation(
+                place
+            );
+
+        if (yahooLocation) {
+            return yahooLocation;
+        }
+    }
+
     const countryName =
         getCountryName(
             countryCode
@@ -1285,6 +1307,151 @@ async function getPlaceLocation(
                 fallback?.countryCode ??
                 null
         };
+    }
+}
+
+
+// ============================================================
+// YAHOO JAPAN LOCAL SEARCH
+// ============================================================
+
+async function getYahooJapanLocation(
+    place
+) {
+
+    if (!YAHOO_APP_ID) {
+        return null;
+    }
+
+    /*
+     * Avoid a burst of simultaneous browser requests. Yahoo can
+     * restrict short periods of heavy traffic on its free service.
+     */
+    const previousRequest =
+        yahooRequestQueue;
+
+    let releaseQueue;
+
+    yahooRequestQueue =
+        new Promise(resolve => {
+
+            releaseQueue =
+                resolve;
+        });
+
+    await previousRequest;
+
+    const callbackName =
+        `anabaYahooSearch${Date.now()}${Math.random()
+            .toString(36)
+            .slice(2)}`;
+
+    const requestURL =
+        "https://map.yahooapis.jp/search/local/V1/localSearch" +
+        "?appid=" +
+        encodeURIComponent(YAHOO_APP_ID) +
+        "&query=" +
+        encodeURIComponent(place.name) +
+        "&ac=JP" +
+        "&output=json" +
+        "&results=1" +
+        "&callback=" +
+        encodeURIComponent(callbackName);
+
+    try {
+
+        return await new Promise(resolve => {
+
+            const script =
+                document.createElement("script");
+
+            let settled =
+                false;
+
+            const finish =
+                location => {
+
+                    if (settled) {
+                        return;
+                    }
+
+                    settled =
+                        true;
+
+                    clearTimeout(timeout);
+
+                    delete window[callbackName];
+
+                    script.remove();
+
+                    resolve(location);
+                };
+
+            const timeout =
+                setTimeout(
+                    () => finish(null),
+                    8000
+                );
+
+            window[callbackName] =
+                data => {
+
+                    const feature =
+                        Array.isArray(data?.Feature)
+                            ? data.Feature[0]
+                            : null;
+
+                    const coordinates =
+                        String(
+                            feature?.Geometry?.Coordinates || ""
+                        )
+                            .split(",")
+                            .map(Number);
+
+                    const longitude =
+                        coordinates[0];
+
+                    const latitude =
+                        coordinates[1];
+
+                    const address =
+                        feature?.Property?.Address ||
+                        "";
+
+                    if (
+                        !address ||
+                        !Number.isFinite(latitude) ||
+                        !Number.isFinite(longitude)
+                    ) {
+                        finish(null);
+                        return;
+                    }
+
+                    const location = {
+                        address,
+                        lat: latitude,
+                        lng: longitude,
+                        country: "JP"
+                    };
+
+                    finish(location);
+                };
+
+            script.onerror =
+                () => finish(null);
+
+            script.src =
+                requestURL;
+
+            document.head.appendChild(script);
+        });
+
+    } finally {
+
+        setTimeout(
+            releaseQueue,
+            300
+        );
     }
 }
 
