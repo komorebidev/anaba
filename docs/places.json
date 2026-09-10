@@ -123,14 +123,14 @@
   },
   {
     "id": "rigoletto-shibuya",
-    "name": "RIGOLETTO WINE BAR AND GRILL Shibuya",
-    "searchNameJa": "リゴレットワインバーアンドグリル渋谷",
+    "name": "RIGOLETTO Shibuya",
+    "searchNameJa": "THERIGOLETTO",
     "categories": ["restaurants"]
   },
   {
     "id": "rigoletto-otemachi",
-    "name": "RIGOLETTO WINE BAR AND GRILL Otemachi",
-    "searchNameJa": "リゴレットワインバーアンドグリル大手町",
+    "name": "RIGOLETTO WINE BAR AND GRILL Marunouchi",
+    "searchNameJa": "リゴレット丸の内",
     "categories": ["restaurants"]
   },
   {
@@ -162,7 +162,7 @@
   },
 
   {
-    "id": "daikaku-parking-area",
+    "id": "daikoku-parking-area",
     "name": "Daikoku Parking Area",
     "searchNameJa": "大黒パーキングエリア",
     "categories": ["experiences"]
