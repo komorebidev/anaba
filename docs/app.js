@@ -1351,7 +1351,10 @@ async function getYahooJapanLocation(
         "?appid=" +
         encodeURIComponent(YAHOO_APP_ID) +
         "&query=" +
-        encodeURIComponent(place.name) +
+        encodeURIComponent(
+            place.searchNameJa ||
+            place.name
+        ) +
         "&ac=JP" +
         "&output=json" +
         "&results=1" +
@@ -2227,6 +2230,17 @@ function renderCards() {
     const visiblePlaces =
         candidates.filter(
             place => {
+
+                /*
+                 * Online-only recommendations such as meetups may
+                 * not have a physical search result. When the source
+                 * data already declares their country, trust it.
+                 */
+                if (place.country) {
+                    return (
+                        place.country === currentCountry
+                    );
+                }
 
                 const cache =
                     placeCache[place.id];

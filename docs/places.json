@@ -2,124 +2,148 @@
   {
     "id": "carrot-tower",
     "name": "Carrot Tower",
+    "searchNameJa": "キャロットタワー",
     "categories": ["sightseeing"]
   },
   {
     "id": "asakusa-culture-tourist-information-center",
     "name": "Asakusa Culture Tourist Information Center",
+    "searchNameJa": "浅草文化観光センター",
     "categories": ["sightseeing"]
   },
   {
     "id": "showa-kinen-park",
     "name": "Showa Kinen Park",
+    "searchNameJa": "国営昭和記念公園",
     "categories": ["sightseeing"]
   },
   {
     "id": "yoyogi-park",
     "name": "Yoyogi Park",
+    "searchNameJa": "代々木公園",
     "categories": ["sightseeing"]
   },
   {
     "id": "tokyo-tower",
     "name": "Tokyo Tower",
+    "searchNameJa": "東京タワー",
     "categories": ["sightseeing"]
   },
   {
     "id": "skytree",
     "name": "Tokyo Skytree",
+    "searchNameJa": "東京スカイツリー",
     "categories": ["sightseeing"]
   },
   {
     "id": "kanazawa-station",
     "name": "Kanazawa Station",
+    "searchNameJa": "金沢駅",
     "categories": ["sightseeing"]
   },
   {
     "id": "enoshima",
     "name": "Enoshima",
+    "searchNameJa": "江の島",
     "categories": ["sightseeing"]
   },
   {
     "id": "kamakura",
     "name": "Kamakura",
+    "searchNameJa": "鎌倉",
     "categories": ["sightseeing"]
   },
 
   {
     "id": "minami-machida-grandberry-park",
     "name": "Minami Machida Grandberry Park",
+    "searchNameJa": "南町田グランベリーパーク",
     "categories": ["shopping"]
   },
   {
     "id": "lumine-shinjuku",
     "name": "Lumine Shinjuku",
+    "searchNameJa": "ルミネ新宿",
     "categories": ["shopping"]
   },
   {
     "id": "lumine-yurakucho",
     "name": "Lumine Yurakucho",
+    "searchNameJa": "ルミネ有楽町",
     "categories": ["shopping"]
   },
   {
     "id": "gotemba-premium-outlet",
     "name": "Gotemba Premium Outlets",
+    "searchNameJa": "御殿場プレミアム・アウトレット",
     "categories": ["shopping"]
   },
   {
     "id": "northport-mall",
     "name": "Northport Mall",
+    "searchNameJa": "ノースポート・モール",
     "categories": ["shopping"]
   },
 
   {
     "id": "jojoen-shibuya",
     "name": "Jojoen Shibuya",
+    "searchNameJa": "叙々苑 渋谷店",
     "categories": ["restaurants"]
   },
   {
     "id": "ippudo-komazawa-daigaku",
     "name": "Ippudo Komazawa Daigaku",
+    "searchNameJa": "一風堂 駒沢大学店",
     "categories": ["restaurants"]
   },
   {
     "id": "ramen-express-hakata-ramen-ippudo-tokyo-solamachi",
     "name": "Ramen Express Hakata Ramen Ippudo Tokyo Solamachi",
+    "searchNameJa": "RAMEN EXPRESS 博多一風堂 東京ソラマチ店",
     "categories": ["restaurants"]
   },
   {
     "id": "frijoles-shibuya-dogenzaka",
     "name": "Frijoles Shibuya Dogenzaka",
+    "searchNameJa": "フリホーレス 渋谷道玄坂店",
     "categories": ["restaurants"]
   },
   {
     "id": "shiawase-no-pancake-omotesando",
     "name": "Shiawase no Pancake Omotesando",
+    "searchNameJa": "幸せのパンケーキ 表参道店",
     "categories": ["restaurants"]
   },
   {
     "id": "the-bvlgari-bar",
     "name": "Bulgari Ginza Bar",
+    "searchNameJa": "ブルガリ ギンザ・バー",
     "categories": ["restaurants", "nightlife"]
   },
   {
     "id": "rigoletto-shibuya",
     "name": "RIGOLETTO WINE BAR AND GRILL Shibuya",
+    "searchNameJa": "リゴレット ワインバー アンド グリル 渋谷",
     "categories": ["restaurants"]
   },
   {
     "id": "rigoletto-otemachi",
     "name": "RIGOLETTO WINE BAR AND GRILL Otemachi",
+    "searchNameJa": "リゴレット ワインバー アンド グリル 大手町",
     "categories": ["restaurants"]
   },
   {
     "id": "rooftop-bar-piro-ginza",
     "name": "Rooftop Bar Piro Ginza",
+    "searchNameJa": "ルーフトップバー ピロ ギンザ",
     "categories": ["restaurants", "nightlife"]
   },
 
   {
     "id": "ginza-corridor",
     "name": "Ginza Corridor Street",
+    "searchNameJa": "銀座コリドー街",
     "categories": ["nightlife"]
   },
   {
@@ -140,16 +164,19 @@
   {
     "id": "daikaku-parking-area",
     "name": "Daikoku Parking Area",
+    "searchNameJa": "大黒パーキングエリア",
     "categories": ["experiences"]
   },
   {
     "id": "lake-yamanakako",
     "name": "Lake Yamanaka",
+    "searchNameJa": "山中湖",
     "categories": ["experiences"]
   },
   {
     "id": "language-cafe-bar-mickey-house",
     "name": "Language Cafe Bar Mickey House",
+    "searchNameJa": "ミッキーハウス 高田馬場",
     "categories": ["experiences"],
     "url": "https://www.meetup.com/language-cafe-bar-mickey-house/",
     "country": "JP"
@@ -158,11 +185,13 @@
   {
     "id": "tamagawa-cycling-road",
     "name": "Tamagawa Cycling Road",
+    "searchNameJa": "多摩川サイクリングロード",
     "categories": ["hobbies"]
   },
   {
     "id": "showa-kinen-park-cycling",
     "name": "Showa Kinen Park Cycling",
+    "searchNameJa": "国営昭和記念公園 サイクリングコース",
     "categories": ["hobbies"]
   },
   {
