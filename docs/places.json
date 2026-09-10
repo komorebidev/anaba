@@ -92,21 +92,15 @@
     "categories": ["restaurants"]
   },
   {
-    "id": "ippudo-komazawa-daigaku",
-    "name": "Ippudo Komazawa Daigaku",
-    "searchNameJa": "一風堂駒沢大学店",
-    "categories": ["restaurants"]
-  },
-  {
     "id": "ramen-express-hakata-ramen-ippudo-tokyo-solamachi",
     "name": "Ramen Express Hakata Ramen Ippudo Tokyo Solamachi",
-    "searchNameJa": "RAMENEXPRESS博多一風堂東京ソラマチ店",
+    "searchNameJa": "博多一風堂東京ソラマチ店",
     "categories": ["restaurants"]
   },
   {
     "id": "frijoles-shibuya-dogenzaka",
     "name": "Frijoles Shibuya Dogenzaka",
-    "searchNameJa": "フリホーレス渋谷道玄坂店",
+    "searchNameJa": "フリホーレス 渋谷道玄坂通店",
     "categories": ["restaurants"]
   },
   {
@@ -128,9 +122,9 @@
     "categories": ["restaurants"]
   },
   {
-    "id": "rigoletto-otemachi",
-    "name": "RIGOLETTO WINE BAR AND GRILL Marunouchi",
-    "searchNameJa": "リゴレット丸の内",
+    "id": "rigoletto-marunouchi",
+    "name": "RIGOLETTO WINE AND BAR Marunouchi",
+    "searchNameJa": "リゴレットワイン&バー",
     "categories": ["restaurants"]
   },
   {

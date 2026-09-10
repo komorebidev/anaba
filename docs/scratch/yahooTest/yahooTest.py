@@ -24,8 +24,8 @@ QUERIES = [
     ("rooftop-bar-piro-ginza", "ルーフトップバーピロギンザ"),
     ("rooftop-bar-piro-ginza", "ルーフトップバー ピロ 銀座"),
     ("rooftop-bar-piro-ginza", "PIRO Ginza"),
-    ("rooftop-bar-piro-ginza", "Rooftop Bar Piro Ginza"),
-    ("rooftop-bar-piro-ginza", "PIRO"),
+    ("rooftop-bar-piro-ginza", "GINZA HOTEL by GRANBELL"),
+    ("rooftop-bar-piro-ginza", "Rooftop Bar piro ginza"),
 
     # Ippudo Komazawa Daigaku
     ("ippudo-komazawa-daigaku", "一風堂駒沢大学店"),
